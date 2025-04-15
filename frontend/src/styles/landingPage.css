@@ -1,0 +1,39 @@
+#landing-logo {
+    width: 20rem;
+    height: 20rem;
+}
+
+#landing-list {
+    list-style: "\2605";
+    margin-top: 0;
+    padding-left: 3rem;
+}
+
+#landing-main {
+    background-color: #D6E2D6;
+    font-size: 4rem;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+#landing-topic {
+    display: flex;
+    font-size: 5rem;
+}
+
+#landing-topic p {
+    width: 60%;
+    margin-top: 1rem;
+}
+
+#signUp-button {
+    background-color: #98F298;
+    border: 1px solid black;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 50vw;
+}

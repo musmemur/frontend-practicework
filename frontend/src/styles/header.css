@@ -1,0 +1,86 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #F0F0F0;
+}
+
+a#logo {
+    color: black;
+    text-decoration: none;
+}
+
+header::before {
+    content: "";
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: #F0F0F0;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#header-logo {
+    width: 4rem;
+    height: 4rem;
+}
+
+#logo, #search-form, #enter-button {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#logo span {
+    padding-left: 1rem;
+}
+
+#search-input, #submit-input, #enter-button {
+    background-color: #98F298;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    height: 2rem;
+}
+
+#search-form {
+    position: relative;
+}
+
+#search-input {
+    padding-left: 1rem;
+}
+
+#submit-input {
+    padding: 1rem 2rem;
+    background-image: url('../assets/loop.svg');
+    background-size: 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1rem;
+    position: absolute;
+    left: 17rem;
+    border: solid black 1px !important;
+}
+
+#search-input::placeholder {
+    color: black;
+    font-weight: normal;
+}
+
+#enter-button {
+    width: 10rem;
+    display: block;
+    align-self: center;
+}

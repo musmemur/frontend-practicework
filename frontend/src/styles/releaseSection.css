@@ -1,0 +1,22 @@
+.release-section-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.release-section {
+    background: #D6E2D6;
+    padding: 1rem;
+    margin: 0 1rem;
+}
+
+.releases {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    border-top: 1px solid black;
+    flex-wrap: wrap;
+}

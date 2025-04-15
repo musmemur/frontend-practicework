@@ -1,0 +1,14 @@
+.profile-picture-container {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-page-profile-picture-container {
+    width: 10rem;
+    height: 10rem;
+}
+
+#user-page-picture {
+    width: 100%;
+    height: 100%;
+}

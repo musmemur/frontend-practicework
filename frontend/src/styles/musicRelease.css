@@ -1,0 +1,23 @@
+#release-picture {
+    width: 15rem;
+    height: 15rem;
+}
+
+#music-release {
+    width: 15rem;
+    padding: 1rem 0;
+    overflow: hidden;
+}
+
+#release-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.more-button {
+    border: none;
+    background: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
