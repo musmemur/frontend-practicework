@@ -10,30 +10,21 @@ using Microsoft.AspNetCore.Authorization;
 namespace Backend.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
+[Route("[controller]")]
+public class UsersController(AppDbContext dbContext, JwtService jwtService) : ControllerBase
 {
-    private readonly AppDbContext _dbContext;
-    private readonly JwtService _jwtService;
-
-    public UsersController(AppDbContext dbContext, JwtService jwtService)
-    {
-        _dbContext = dbContext;
-        _jwtService = jwtService;
-    }
-
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] CreateUserRequest request, CancellationToken ct)
     {
-        if (await _dbContext.Users.AnyAsync(u => u.Username == request.Username, ct))
+        if (await dbContext.Users.AnyAsync(u => u.Username == request.Username, ct))
         {
             return BadRequest("Пользователь уже существует.");
         }
 
         var user = new User(request.Username, PasswordHasher.Hash(request.Password), request.UserPhoto);
 
-        _dbContext.Users.Add(user);
-        await _dbContext.SaveChangesAsync(ct);
+        dbContext.Users.Add(user);
+        await dbContext.SaveChangesAsync(ct);
 
         return Ok();
     }
@@ -41,13 +32,18 @@ public class UsersController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken ct)
     {
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == request.Username, ct);
-        if (user == null || !PasswordHasher.Validate(user.Password, request.Password))
+        var userInfo = await dbContext.Users
+            .Where(u => u.Username == request.Username)
+            .Select(u => new { u.Id, u.Password })
+            .AsNoTracking()
+            .FirstOrDefaultAsync(ct);
+        
+        if (userInfo == null || !PasswordHasher.Validate(userInfo.Password, request.Password))
         {
             return Unauthorized("Неверный логин или пароль.");
         }
 
-        var token = _jwtService.GenerateJwtToken(user);
+        var token = await jwtService.GenerateJwtTokenAsync(userInfo.Id, ct);
         return Ok(new { token });
     }
 

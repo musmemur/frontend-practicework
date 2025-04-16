@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen(c =>
                 Id = "Bearer"
             }
         },
-        new string[] {}
+        []
     }});
 });
 builder.Services.AddControllers();
@@ -52,7 +52,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
-
 
 var app = builder.Build();
 

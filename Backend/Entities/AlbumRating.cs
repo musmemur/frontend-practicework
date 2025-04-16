@@ -8,9 +8,12 @@ public class AlbumRating
         AlbumId = albumId;
         Rating = rating;
     }
+
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-
     public Guid AlbumId { get; set; }
     public uint Rating { get; set; }
+
+    public User User { get; set; }
+    public Album Album { get; set; }
 }

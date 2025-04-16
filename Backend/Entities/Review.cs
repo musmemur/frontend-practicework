@@ -8,9 +8,12 @@ public class Review
         AlbumId = albumId;
         ReviewText = reviewText;
     }
+
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-
     public Guid AlbumId { get; set; }
     public string ReviewText { get; set; }
+
+    public User User { get; set; }
+    public Album Album { get; set; }
 }

@@ -7,8 +7,11 @@ public class SavedAlbum
         UserId = userId;
         AlbumId = albumId;
     }
-    
+
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    public Guid AlbumId { get; set; } 
+    public Guid AlbumId { get; set; }
+
+    public User User { get; set; }
+    public Album Album { get; set; }
 }
