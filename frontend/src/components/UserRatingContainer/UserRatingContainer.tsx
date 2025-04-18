@@ -1,4 +1,4 @@
-import "../styles/userRatingContainer.css";
+import "./userRatingContainer.css";
 
 export const UserRatingContainer = () => {
 

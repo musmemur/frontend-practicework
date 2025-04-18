@@ -1,5 +1,5 @@
-import {UserReview} from "./UserReview.tsx";
-import "../styles/userReviews.css";
+import {UserReview} from "../UserReview/UserReview.tsx";
+import "./userReviews.css";
 
 export const UserReviews = () => {
     return(

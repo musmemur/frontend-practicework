@@ -1,4 +1,4 @@
-import '../styles/artistResult.css';
+import './artistResult.css';
 
 export const ArtistResult = () => {
     return(

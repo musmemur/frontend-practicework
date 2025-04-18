@@ -1,4 +1,4 @@
-import '../styles/musicRelease.css';
+import './musicRelease.css';
 
 export const MusicRelease = () => {
     return(

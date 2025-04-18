@@ -1,4 +1,4 @@
-import "../styles/albumInfo.css";
+import "./albumInfo.css";
 
 export const AlbumInfo = () => {
     return(

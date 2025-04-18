@@ -1,4 +1,4 @@
-import '../styles/artistCard.css';
+import './artistCard.css';
 
 export const ArtistCard = () => {
     return(

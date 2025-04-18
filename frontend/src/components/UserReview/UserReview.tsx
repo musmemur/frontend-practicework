@@ -1,4 +1,4 @@
-import '../styles/userReview.css';
+import './userReview.css';
 
 export const UserReview = () => {
     return (

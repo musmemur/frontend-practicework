@@ -1,7 +1,7 @@
-import {Header} from "../components/Header.tsx";
-import {ReleaseSection} from "../components/ReleaseSection.tsx";
+import {Header} from "../components/Header/Header.tsx";
+import {ReleaseSection} from "../components/ReleaseSection/ReleaseSection.tsx";
 import '../styles/searchPage.css';
-import {ArtistResult} from "../components/ArtistResult.tsx";
+import {ArtistResult} from "../components/ArtistResult/ArtistResult.tsx";
 
 export const SearchPage = () => {
     return(

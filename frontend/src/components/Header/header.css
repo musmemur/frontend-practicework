@@ -64,7 +64,7 @@ nav {
 
 #submit-input {
     padding: 1rem 2rem;
-    background-image: url('../assets/loop.svg');
+    background-image: url('../../assets/loop.svg');
     background-size: 1rem;
     background-position: center;
     background-repeat: no-repeat;
