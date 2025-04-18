@@ -1,19 +1,19 @@
 ﻿namespace Backend.Entities;
 
-public class AlbumRating
+public class ReleaseRating
 {
-    public AlbumRating(Guid userId, Guid albumId, uint rating)
+    public ReleaseRating(Guid userId, Guid releaseId, uint rating)
     {
         UserId = userId;
-        AlbumId = albumId;
+        ReleaseId = releaseId;
         Rating = rating;
     }
 
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    public Guid AlbumId { get; set; }
+    public Guid ReleaseId { get; set; }
     public uint Rating { get; set; }
 
     public User User { get; set; }
-    public Album Album { get; set; }
+    public Release Release { get; set; }
 }

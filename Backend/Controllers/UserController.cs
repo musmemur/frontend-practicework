@@ -4,14 +4,13 @@ using Backend.Contracts;
 using Backend.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Backend.Entities;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UsersController(AppDbContext dbContext, JwtService jwtService) : ControllerBase
+public class UserController(AppDbContext dbContext, JwtService jwtService) : ControllerBase
 {
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] CreateUserRequest request, CancellationToken ct)
@@ -55,7 +54,7 @@ public class UsersController(AppDbContext dbContext, JwtService jwtService) : Co
                      ?? User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         if (userId == null)
-            return Unauthorized(new { message = "User ID not found in token" });
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         return Ok(new { userId });
     }

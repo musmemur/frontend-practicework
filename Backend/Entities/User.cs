@@ -14,7 +14,7 @@ public class User
     public string Password { get; set; }
     public string? UserPhoto { get; set; }
 
-    public ICollection<AlbumRating> Ratings { get; set; } = new List<AlbumRating>();
+    public ICollection<ReleaseRating> Ratings { get; set; } = new List<ReleaseRating>();
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
-    public ICollection<SavedAlbum> SavedAlbums { get; set; } = new List<SavedAlbum>();
+    public ICollection<SavedRelease> SavedReleases { get; set; } = new List<SavedRelease>();
 }

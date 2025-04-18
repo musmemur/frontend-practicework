@@ -15,7 +15,6 @@ public class JwtService
         _config = config;
     }
 
-    // Обновленная реализация JWT-сервиса
     public Task<string> GenerateJwtTokenAsync(Guid userId, CancellationToken ct)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
