@@ -5,6 +5,7 @@ using System.Text;
 using Backend.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<ReleaseService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

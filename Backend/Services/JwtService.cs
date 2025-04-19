@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Backend.Entities;
 
-namespace Backend;
+namespace Backend.Services;
 
 public class JwtService
 {
