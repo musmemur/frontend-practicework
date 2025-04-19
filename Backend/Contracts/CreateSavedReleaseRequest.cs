@@ -1,3 +1,3 @@
 ﻿namespace Backend.Contracts;
 
-public record CreateSavedReleaseRequest(Guid UserId, Guid ReleaseId);
+public record CreateSavedReleaseRequest(Guid UserId, ReleaseRequest Release);

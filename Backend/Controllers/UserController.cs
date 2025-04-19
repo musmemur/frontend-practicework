@@ -58,5 +58,4 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
 
         return Ok(new { userId });
     }
-
 }
