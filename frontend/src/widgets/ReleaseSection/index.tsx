@@ -1,5 +1,5 @@
 import './releaseSection.css';
-import {MusicRelease} from "../MusicRelease/MusicRelease.tsx";
+import {MusicRelease} from "../../entities/MusicRelease";
 import React from "react";
 
 interface ReleaseSectionProps {

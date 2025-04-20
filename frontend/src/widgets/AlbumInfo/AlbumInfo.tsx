@@ -1,4 +1,5 @@
 import "./albumInfo.css";
+import {Link} from "react-router";
 
 export const AlbumInfo = () => {
     return(
@@ -6,8 +7,11 @@ export const AlbumInfo = () => {
             <img src="src/assets/future-nostalgia.png" alt="Картинка альбома" id="album-picture"/>
             <div id="description-info">
                 <div>
-                    <a href="/artist" id="artist">Dua Lipa</a>
-                    <div className="album-title">Future Nostalgia</div>
+                    <Link to="/artist" id="artist">Dua Lipa</Link>
+                    <div className="release-title-container">
+                        <span className="album-title">Future Nostalgia</span>
+                        <span className="release-type">/album</span>
+                    </div>
                 </div>
                 <div id="album-score-container">
                     <span>Общая оценка</span>

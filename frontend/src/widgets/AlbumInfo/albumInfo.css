@@ -22,3 +22,8 @@
 .album-title {
     font-weight: bold;
 }
+
+.release-type {
+    font-style: italic;
+    margin-left: 1rem;
+}

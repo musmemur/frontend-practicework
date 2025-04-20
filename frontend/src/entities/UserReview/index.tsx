@@ -1,4 +1,5 @@
 import './userReview.css';
+import {Link} from "react-router";
 
 export const UserReview = () => {
     return (
@@ -9,17 +10,17 @@ export const UserReview = () => {
             </div>
             <div className="user-review-info-text">
                 <div className="user-review-info-text-top">
-                    <a href="/user" className="user-review-nickname">
-                            nickname
-                        </a>
-                        <div className="user-review-score">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <div className="user-review-review">
-                        Мне понравился альбом
+                    <Link to="/user" className="user-review-nickname">
+                        nickname
+                    </Link>
+                    <div className="user-review-score">
+                        ★★★★★
                     </div>
                 </div>
+                <div className="user-review-review">
+                    Мне понравился альбом
+                </div>
             </div>
-            )
-            }
+        </div>
+    )
+}

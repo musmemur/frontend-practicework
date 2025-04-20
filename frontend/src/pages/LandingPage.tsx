@@ -1,5 +1,6 @@
-import {Header} from "../components/Header/Header.tsx";
-import "../styles/landingPage.css";
+import {Header} from "../widgets/Header";
+import "../app/styles/landingPage.css";
+import {Link} from "react-router";
 
 export const LandingPage = () => {
     return(
@@ -15,7 +16,7 @@ export const LandingPage = () => {
                     <li>поделитесь своим мнением</li>
                     <li>сохраните любимое</li>
                 </ul>
-                <a href="/sign-up" id="signUp-button">зарегистрироваться</a>
+                <Link to="/sign-up" id="signUp-button">зарегистрироваться</Link>
             </main>
         </div>
     )

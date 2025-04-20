@@ -1,18 +1,19 @@
 import "./header.css";
+import {Link} from "react-router";
 
 export const Header = () =>{
     return (
         <header>
-            <nav>
-                <a id="logo" href="/">
+            <nav id="header-nav">
+                <Link to="/" id="logo">
                     <img src="src/assets/logo.svg" id="header-logo" alt="Логотип"/>
                     <span>SOUNDTRACKER</span>
-                </a>
+                </Link>
                 <form id="search-form">
                     <input type="search" name="search" id="search-input" placeholder="поиск"/>
                     <input type="submit" value=" " id="submit-input" className="button"/>
                 </form>
-                <a href="/sign-up" id="enter-button">войти</a>
+                <Link to="/sign-up" id="enter-button">войти</Link>
             </nav>
         </header>
     );

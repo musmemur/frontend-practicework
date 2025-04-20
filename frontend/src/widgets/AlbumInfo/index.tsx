@@ -1,6 +1,6 @@
 // import "../styles/albumInfo.css";
-import styles from './index.module.scss';
-import {Link} from "react-router";
+// import styles from './index.module.scss';
+// import {Link} from "react-router";
 
 // export const AlbumInfo = () => {
 //     return(

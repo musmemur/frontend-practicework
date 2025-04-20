@@ -21,7 +21,7 @@ header::before {
     background-color: #F0F0F0;
 }
 
-nav {
+#header-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -46,7 +46,7 @@ nav {
 }
 
 #search-input, #submit-input, #enter-button {
-    background-color: #98F298;
+    background-color: var(--button-primary-color);
     border: none;
     font-size: 1.5rem;
     font-weight: bold;
@@ -64,7 +64,7 @@ nav {
 
 #submit-input {
     padding: 1rem 2rem;
-    background-image: url('../../assets/loop.svg');
+    background-image: url('../../shared/assets/loop.svg');
     background-size: 1rem;
     background-position: center;
     background-repeat: no-repeat;

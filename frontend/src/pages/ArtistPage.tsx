@@ -1,6 +1,6 @@
-import {Header} from "../components/Header/Header.tsx";
-import {ArtistCard} from "../components/ArtistCard/ArtistCard.tsx";
-import {ReleaseSection} from "../components/ReleaseSection/ReleaseSection.tsx";
+import {Header} from "../widgets/Header";
+import {ArtistCard} from "../entities/ArtistCard";
+import {ReleaseSection} from "../widgets/ReleaseSection";
 
 export const ArtistPage = () => {
     return(

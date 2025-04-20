@@ -1,4 +1,5 @@
 import "./userRatingContainer.css";
+import {Link} from "react-router";
 
 export const UserRatingContainer = () => {
 
@@ -25,9 +26,9 @@ export const UserRatingContainer = () => {
                              alt="плейсхолдер аватарки пользователя"/>
                     </div>
                     <div id="user-info-text">
-                        <a href="/user" id="nickname">
+                        <Link to="/user" id="nickname">
                             nickname
-                        </a>
+                        </Link>
                         <div className="rating">
                             <input type="radio" name="any_name" value="5" id="rating-5"/><label
                             htmlFor="rating-5">5</label>

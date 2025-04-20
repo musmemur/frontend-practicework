@@ -1,7 +1,7 @@
-import {Header} from "../components/Header/Header.tsx";
-import {AlbumInfo} from "../components/AlbumInfo/AlbumInfo.tsx";
-import {UserRatingContainer} from "../components/UserRatingContainer/UserRatingContainer.tsx";
-import {UserReviews} from "../components/UserReviews/UserReviews.tsx";
+import {Header} from "../widgets/Header";
+import {AlbumInfo} from "../widgets/AlbumInfo/AlbumInfo.tsx";
+import {UserRatingContainer} from "../widgets/UserRatingContainer";
+import {UserReviews} from "../widgets/UserReviews";
 
 export const AlbumPage = () => {
     return(

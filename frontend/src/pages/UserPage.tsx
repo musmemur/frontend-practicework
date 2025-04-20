@@ -1,6 +1,6 @@
-import {Header} from "../components/Header/Header.tsx";
-import {UserCard} from "../components/UserCard/UserCard.tsx";
-import {ReleaseSection} from "../components/ReleaseSection/ReleaseSection.tsx";
+import {Header} from "../widgets/Header";
+import {UserCard} from "../entities/UserCard";
+import {ReleaseSection} from "../widgets/ReleaseSection";
 
 export const UserPage = () => {
     return(

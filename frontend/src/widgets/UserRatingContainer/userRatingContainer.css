@@ -38,7 +38,7 @@
 }
 
 #save-user-changes-button {
-    background-color: #98F298;
+    background-color: var(--button-primary-color);
     width: 12rem;
     border: 1px solid black;
     align-self: end;
@@ -50,7 +50,7 @@
 }
 
 #search-input, #submit-input, #enter-button {
-    background-color: #98F298;
+    background-color: var(--button-primary-color);
     border: none;
     font-size: 1.5rem;
     font-weight: bold;
