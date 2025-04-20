@@ -9,7 +9,7 @@ export const LandingPage = () => {
             <main id="landing-main">
                 <div id="landing-topic">
                     <p>ОТКРОЙТЕ<br />ДЛЯ СЕБЯ <strong><br />МИР МУЗЫКИ</strong></p>
-                    <img src="src/assets/logo.svg" id="landing-logo" alt="Логотип"/>
+                    <img src="../shared/assets/logo.svg" id="landing-logo" alt="Логотип"/>
                 </div>
                 <ul id="landing-list">
                     <li>откройте новые звуки</li>

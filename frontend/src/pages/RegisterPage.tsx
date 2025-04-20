@@ -1,16 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
-
-type UserRegister = {
-    username: string;
-    password: string;
-    userPhoto: string | null;
-}
-
-type UserPhoto = {
-    fileName: string;
-    data: string;
-}
+import {UserRegister} from "../app/types/UserRegister.ts";
+import {UserPhoto} from "../app/types/UserPhoto.ts";
 
 export const RegisterPage = () => {
     const [registerLogin, setRegisterLogin] = useState('');
@@ -38,15 +29,15 @@ export const RegisterPage = () => {
         const user: UserRegister = {
             username: registerLogin,
             password: registerPassword,
-            userPhoto: userPhoto===null ? null : userPhoto.data,
+            userPhoto: userPhoto === null ? null : userPhoto.data,
         };
 
         try {
             const response = await axios.post("http://localhost:1792/User/register", user, {
                 headers: { "Content-Type": "application/json" }
             });
-            localStorage.setItem("user", JSON.stringify(response));
-            window.location.href = `/user`;
+            localStorage.setItem("token", response.data.token);
+            window.location.href = `/user/${response.data.userId}`;
         } catch(error) {
             console.error(error);
         }

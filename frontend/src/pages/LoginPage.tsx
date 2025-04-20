@@ -1,10 +1,6 @@
 import React, {FC, useState} from "react";
 import axios from "axios";
-
-type UserLogin = {
-    username: string;
-    password: string;
-}
+import {UserLogin} from "../app/types/UserLogin.ts";
 
 export const LoginPage: FC = () => {
     const [login, setLogin] = useState('');
@@ -21,8 +17,8 @@ export const LoginPage: FC = () => {
             const response = await axios.post("http://localhost:1792/User/login", user, {
                 headers: { "Content-Type": "application/json" }
             });
-            localStorage.setItem("user", JSON.stringify(response));
-            window.location.href = `/user`;
+            localStorage.setItem("token", response.data.token);
+            window.location.href = `/user/${response.data.userId}`;
         } catch(error) {
             console.error(error);
         }

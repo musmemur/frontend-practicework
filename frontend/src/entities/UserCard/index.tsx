@@ -1,14 +1,27 @@
 import './userCard.css';
+import {useEffect, useState} from "react";
+import {ApiUserResponse} from "../../app/types/ApiUserResponse.ts";
+import {fetchUserData} from "../../processes/fetchUserData.ts";
 
 export const UserCard = () => {
+    const [user, setUser] = useState<ApiUserResponse | null>(null);
+
+    useEffect(() => {
+        fetchUserData(window.location.pathname.split('/').pop())
+            .then(setUser)
+            .catch(() => setUser(null));
+    }, []);
+
+    if (!user) return <div>Загрузка...</div>;
+
     return(
         <div className="profile-card">
             <div className="profile-picture-container user-page-profile-picture-container">
-                <img src="src/assets/user-photo.svg" id="user-page-picture"
+                <img src="../../shared/assets/user-photo.svg" id="user-page-picture"
                      alt="плейсхолдер аватарки пользователя"/>
             </div>
             <div className="profile-name">
-                nickname
+                {user.username}
             </div>
         </div>
     )

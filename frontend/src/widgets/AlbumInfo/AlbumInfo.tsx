@@ -4,7 +4,7 @@ import {Link} from "react-router";
 export const AlbumInfo = () => {
     return(
         <section id="album-info">
-            <img src="src/assets/future-nostalgia.png" alt="Картинка альбома" id="album-picture"/>
+            <img src="../../shared/assets/future-nostalgia.png" alt="Картинка альбома" id="album-picture"/>
             <div id="description-info">
                 <div>
                     <Link to="/artist" id="artist">Dua Lipa</Link>
