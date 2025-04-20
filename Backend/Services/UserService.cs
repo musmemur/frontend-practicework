@@ -1,4 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using Backend.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 
 namespace Backend.Services;
 
@@ -22,4 +25,5 @@ public class UserService
 
         return Guid.TryParse(userIdString, out var userId) ? userId : null;
     }
+    
 }
