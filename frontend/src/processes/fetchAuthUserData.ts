@@ -1,9 +1,9 @@
 import axios from "axios";
-import {AuthUserResponse} from "../widgets/Header";
+import {ApiUserResponse} from "../app/types/ApiUserResponse.ts";
 
 const token = localStorage.getItem("token");
 
-export async function fetchAuthUserData(): Promise<AuthUserResponse> {
+export async function fetchAuthUserData(): Promise<ApiUserResponse> {
     try {
         const response = await axios.get("http://localhost:1792/User/me", {
             headers: {

@@ -4,6 +4,9 @@ import {useEffect, useState} from 'react';
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
 import {User} from "../../app/types/User.ts";
 
+import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
+import logo from '../../shared/assets/logo.svg';
+
 export const Header = () => {
     const [user, setUser] = useState<User | null>(null);
 
@@ -11,7 +14,7 @@ export const Header = () => {
         const loadUser = async () => {
             try {
                 const fetchedUser = await fetchAuthUserData();
-                fetchedUser.userPhoto = fetchedUser.userPhoto || "../../shared/assets/user-photo.svg";
+                fetchedUser.userPhoto = fetchedUser.userPhoto || {userPhotoPlaceholder};
                 const loggedUser: User = fetchedUser as User;
                 setUser(loggedUser);
             } catch {
@@ -25,7 +28,7 @@ export const Header = () => {
         <header>
             <nav id="header-nav">
                 <Link to="/" id="logo">
-                    <img src="../../shared/assets/logo.svg" id="header-logo" alt="Логотип" />
+                    <img src={logo} id="header-logo" alt="Логотип" />
                     <span>SOUNDTRACKER</span>
                 </Link>
                 <form id="search-form">

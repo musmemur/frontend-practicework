@@ -1,14 +1,15 @@
 import {Header} from "../widgets/Header";
 import {ArtistCard} from "../entities/ArtistCard";
-import {ReleaseSection} from "../widgets/ReleaseSection";
+import {ReleasesSection} from "../widgets/ReleasesSection";
+
+// <ReleasesSection sectionTitle="Альбомы"/>
+// <ReleasesSection sectionTitle="Синглы"/>
 
 export const ArtistPage = () => {
     return(
         <div>
             <Header />
             <ArtistCard />
-            <ReleaseSection sectionTitle="Альбомы"/>
-            <ReleaseSection sectionTitle="Синглы"/>
         </div>
     )
 }

@@ -2,6 +2,8 @@ import {Header} from "../widgets/Header";
 import "../app/styles/landingPage.css";
 import {Link} from "react-router";
 
+import logo from '../shared/assets/logo.svg';
+
 export const LandingPage = () => {
     return(
         <div>
@@ -9,7 +11,7 @@ export const LandingPage = () => {
             <main id="landing-main">
                 <div id="landing-topic">
                     <p>ОТКРОЙТЕ<br />ДЛЯ СЕБЯ <strong><br />МИР МУЗЫКИ</strong></p>
-                    <img src="../shared/assets/logo.svg" id="landing-logo" alt="Логотип"/>
+                    <img src={logo} id="landing-logo" alt="Логотип"/>
                 </div>
                 <ul id="landing-list">
                     <li>откройте новые звуки</li>

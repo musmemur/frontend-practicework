@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {ApiUserResponse} from "../../app/types/ApiUserResponse.ts";
 import {fetchUserData} from "../../processes/fetchUserData.ts";
 
+import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
+
 export const UserCard = () => {
     const [user, setUser] = useState<ApiUserResponse | null>(null);
 
@@ -17,7 +19,7 @@ export const UserCard = () => {
     return(
         <div className="profile-card">
             <div className="profile-picture-container user-page-profile-picture-container">
-                <img src="../../shared/assets/user-photo.svg" id="user-page-picture"
+                <img src={userPhotoPlaceholder} id="user-page-picture"
                      alt="плейсхолдер аватарки пользователя"/>
             </div>
             <div className="profile-name">

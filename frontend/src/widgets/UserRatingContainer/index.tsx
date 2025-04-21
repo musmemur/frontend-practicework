@@ -1,6 +1,9 @@
 import "./userRatingContainer.css";
 import {Link} from "react-router";
 
+import likePhoto from "../../shared/assets/like.svg";
+import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
+
 export const UserRatingContainer = () => {
 
     const changeLikeImg = () => {
@@ -22,7 +25,7 @@ export const UserRatingContainer = () => {
             <div id="user-info-top">
                 <div id="user-info">
                     <div className="profile-picture-container user-rating-profile-picture-container">
-                        <img src="../../shared/assets/user-photo.svg" className="photo-user-placeholder"
+                        <img src={userPhotoPlaceholder} className="photo-user-placeholder"
                              alt="плейсхолдер аватарки пользователя"/>
                     </div>
                     <div id="user-info-text">
@@ -45,7 +48,7 @@ export const UserRatingContainer = () => {
                 </div>
                 <div>
                     <button id="like-button" value='0'>
-                        <img src="../../shared/assets/like.svg" id="user-like" alt="Лайк" onClick={changeLikeImg}/>
+                        <img src={likePhoto} id="user-like" alt="Лайк" onClick={changeLikeImg}/>
                     </button>
                 </div>
             </div>

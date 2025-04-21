@@ -12,6 +12,7 @@ export async function fetchUserData(userId: string | undefined): Promise<ApiUser
             username: response.data.username,
             userPhoto: response.data.userPhoto,
         };
+
     } catch (error) {
         console.error("Ошибка при выполнении fetchUserData:", error);
         throw error;

@@ -1,10 +1,12 @@
 import "./albumInfo.css";
 import {Link} from "react-router";
 
+import albumPhoto from "../../shared/assets/future-nostalgia.png";
+
 export const AlbumInfo = () => {
     return(
         <section id="album-info">
-            <img src="../../shared/assets/future-nostalgia.png" alt="Картинка альбома" id="album-picture"/>
+            <img src={albumPhoto} alt="Картинка альбома" id="album-picture"/>
             <div id="description-info">
                 <div>
                     <Link to="/artist" id="artist">Dua Lipa</Link>
