@@ -18,8 +18,7 @@ public class SavedReleaseController(AppDbContext dbContext, ReleaseService relea
         var release = await releaseService.GetOrCreateReleaseAsync(
             new ReleaseRequest(
                 request.Title,
-                request.Artist,
-                request.ReleaseType), ct);
+                request.Artist), ct);
 
         var userId = userService.GetUserId();
         if (userId == null)

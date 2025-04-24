@@ -2,19 +2,16 @@
 
 public class Release
 {
-     public Release(string title, string artist, string releaseType, string? releasePhoto)
+     public Release(string title, string artist, string? releasePhoto)
      {
           Title = title;
           Artist = artist;
-          ReleaseType = releaseType;
           ReleasePhoto = releasePhoto;
      }
 
      public Guid Id { get; set; }
      public string Title { get; set; }
      public string Artist { get; set; }
-     
-     public string ReleaseType { get; set; }
      
      public string? ReleasePhoto { get; set; }
 

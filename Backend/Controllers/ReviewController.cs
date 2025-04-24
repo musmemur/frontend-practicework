@@ -16,7 +16,7 @@ public class ReviewController(AppDbContext dbContext, ReleaseService releaseServ
     public async Task<IActionResult> CreateOrUpdateReview([FromBody] ReviewRequest request, CancellationToken ct)
     {
         var release = await releaseService.GetOrCreateReleaseAsync(
-            new ReleaseRequest(request.Title, request.Artist, request.ReleaseType),
+            new ReleaseRequest(request.Title, request.Artist),
             ct);
 
         var userId = userService.GetUserId();

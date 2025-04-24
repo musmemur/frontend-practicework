@@ -16,7 +16,7 @@ public class ReleaseRatingController(AppDbContext dbContext, ReleaseService rele
     public async Task<IActionResult> RateRelease([FromBody] ReleaseRatingRequest request, CancellationToken ct)
     {
         var release = await releaseService.GetOrCreateReleaseAsync(
-            new ReleaseRequest(request.Title, request.Artist, request.ReleaseType),
+            new ReleaseRequest(request.Title, request.Artist),
             ct);
 
         var userId = userService.GetUserId();

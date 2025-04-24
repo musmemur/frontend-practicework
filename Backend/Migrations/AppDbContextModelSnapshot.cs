@@ -35,10 +35,6 @@ namespace Backend.Migrations
                     b.Property<string>("ReleasePhoto")
                         .HasColumnType("text");
 
-                    b.Property<string>("ReleaseType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");

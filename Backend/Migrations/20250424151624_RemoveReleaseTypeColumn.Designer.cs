@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250419110607_AddReleasePhotoColumn")]
-    partial class AddReleasePhotoColumn
+    [Migration("20250424151624_RemoveReleaseTypeColumn")]
+    partial class RemoveReleaseTypeColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,10 +36,6 @@ namespace Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ReleasePhoto")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ReleaseType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Title")

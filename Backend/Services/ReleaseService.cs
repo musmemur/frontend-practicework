@@ -18,13 +18,12 @@ public class ReleaseService
         var release = await _dbContext.Releases
             .FirstOrDefaultAsync(r =>
                 r.Title == request.Title &&
-                r.Artist == request.Artist &&
-                r.ReleaseType == request.ReleaseType, ct);
+                r.Artist == request.Artist, ct);
 
         if (release == null)
         {
             string? releasePhoto = null;
-            release = new Release(request.Title, request.Artist, request.ReleaseType, releasePhoto);
+            release = new Release(request.Title, request.Artist, releasePhoto);
             _dbContext.Releases.Add(release);
             await _dbContext.SaveChangesAsync(ct);
         }
