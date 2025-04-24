@@ -14,7 +14,7 @@ export const Header = () => {
         const loadUser = async () => {
             try {
                 const fetchedUser = await fetchAuthUserData();
-                fetchedUser.userPhoto = fetchedUser.userPhoto || {userPhotoPlaceholder};
+                fetchedUser.userPhoto = fetchedUser.userPhoto || userPhotoPlaceholder;
                 const loggedUser: User = fetchedUser as User;
                 setUser(loggedUser);
             } catch {
@@ -37,15 +37,12 @@ export const Header = () => {
                 </form>
 
                 {user ? (
-                    <div id="user-header-info" style={{ display: 'flex', alignItems: 'center' }}>
+                    <div id="user-header-info">
                         <img
                             src={user.userPhoto}
                             alt={`${user.username} avatar`}
                             style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                marginRight: '8px',
+
                             }}
                         />
                         <span>{user.username}</span>

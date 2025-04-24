@@ -1,17 +1,11 @@
 import './releasesSection.css';
-import {ApiImage, MusicRelease} from "../../entities/MusicRelease";
+import {MusicRelease} from "../../entities/MusicRelease";
 import React from "react";
+import {Release} from "../../app/types/Release.ts";
 
 interface ReleaseSectionProps {
     sectionTitle: string;
     releases: Release[];
-}
-
-export type Release = {
-    releaseId: string;
-    name: string;
-    artist: string;
-    image: ApiImage[];
 }
 
 export const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}) => {

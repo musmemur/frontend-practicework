@@ -1,0 +1,29 @@
+#album-info {
+  background-color: #D6E2D6;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+#album-picture {
+  width: 15rem;
+  height: 15rem;
+}
+
+#description-info {
+  padding: 1rem;
+  display: flex;
+  gap: 4rem;
+  flex-direction: column;
+}
+
+.album-title {
+  font-weight: bold;
+}
+
+.release-type {
+  font-style: italic;
+  margin-left: 1rem;
+}
