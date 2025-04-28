@@ -1,19 +1,29 @@
 import "./albumInfo.css";
 import {Link} from "react-router";
 
-import albumPhoto from "../../shared/assets/future-nostalgia.png";
-
 //<section className={cn(styles.container, styles.dssd, { [styles.dsds]: flag })}>
 
-export const AlbumInfo = () => {
+type AlbumInfoProps = {
+    title: string;
+    artist: string;
+    imageUrl?: string;
+};
+
+export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl}) => {
     return (
         <section id="album-info">
-            <img src={albumPhoto} alt="Картинка альбома" id="album-picture"/>
+            <img
+                src={imageUrl || "/fallback.jpg"}
+                alt={`Обложка ${title}`}
+                id="album-picture"
+            />
             <div id="description-info">
                 <div>
-                    <Link to="/artist" id="artist">Dua Lipa</Link>
+                    <Link to={`/artist/${encodeURIComponent(artist)}`} id="artist">
+                        {artist}
+                    </Link>
                     <div className="release-title-container">
-                        <span className="album-title">Future Nostalgia</span>
+                        <span className="album-title">{title}</span>
                     </div>
                 </div>
                 <div id="album-score-container">

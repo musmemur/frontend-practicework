@@ -3,7 +3,6 @@ import {FC} from "react";
 import {useNavigate} from "react-router";
 
 export const SignUpPage: FC = () => {
-
     const navigate = useNavigate();
 
     return (

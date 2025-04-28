@@ -2,12 +2,39 @@ import {Header} from "../widgets/Header";
 import {AlbumInfo} from "../widgets/AlbumInfo";
 import {UserRatingContainer} from "../widgets/UserRatingContainer";
 import {UserReviews} from "../widgets/UserReviews";
+import {useEffect, useState} from "react";
+import {Navigate, useLocation, useNavigate, useParams} from "react-router";
 
 export const AlbumPage = () => {
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.state?.fromSearch !== true) {
+            navigate('/search', { replace: true });
+        }
+    }, [location.state, navigate]);
+    const { artist, name } = useParams<{ artist?: string; name?: string }>();
+
+    const [imageUrl, setImageUrl] = useState<string>("fallback.jpg");
+
+    useEffect(() => {
+        const cachedAlbum = localStorage.getItem(`album_${artist}_${name}`);
+        if (cachedAlbum) {
+            const { image } = JSON.parse(cachedAlbum);
+            setImageUrl(image?.[3]?.['#text']);
+        }
+    }, [artist, name]);
+
+    if (!artist || !name) {
+        return <Navigate to="/not-found" />;
+    }
+
     return(
         <div>
             <Header />
-            <AlbumInfo />
+            <AlbumInfo title={name} artist={artist} imageUrl={imageUrl} />
             <UserRatingContainer />
             <UserReviews />
         </div>

@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUpPage />}></Route>
         <Route path="/sign-up/register" element={<RegisterPage />}></Route>
         <Route path="/sign-up/login" element={<LoginPage />}></Route>
-        <Route path="/album/*" element={<AlbumPage />}></Route>
+        <Route path="/album/:artist/:name" element={<AlbumPage />}></Route>
         <Route path="/artist/*" element={<ArtistPage />}></Route>
         <Route path="/user/*" element={<UserPage />}></Route>
         <Route path="/search" element={<SearchPage />}></Route>

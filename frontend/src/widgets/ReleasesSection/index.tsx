@@ -1,6 +1,6 @@
 import './releasesSection.css';
 import {MusicRelease} from "../../entities/MusicRelease";
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Release} from "../../app/types/Release.ts";
 
 interface ReleaseSectionProps {
@@ -9,11 +9,12 @@ interface ReleaseSectionProps {
 }
 
 export const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}) => {
+
     return(
         <div className="release-section">
             <div className="release-section-top">
                 <div>{sectionTitle}</div>
-                <button className="more-button">Больше</button>
+                <button className="more-button" >Больше</button>
             </div>
 
             <div className="releases">

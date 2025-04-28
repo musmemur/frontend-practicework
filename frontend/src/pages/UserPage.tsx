@@ -7,8 +7,10 @@ export const UserPage = () => {
         <div>
             <Header />
             <UserCard />
-            <ReleasesSection sectionTitle="Понравившиеся релизы"/>
-            <ReleasesSection sectionTitle="Недавние оценки"/>
         </div>
     )
 }
+
+// потом надо сделать связь с бэком для получения релизов пользователя
+// <ReleasesSection sectionTitle="Понравившиеся релизы"/>
+// <ReleasesSection sectionTitle="Недавние оценки"/>

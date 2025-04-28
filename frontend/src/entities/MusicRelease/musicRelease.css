@@ -1,12 +1,12 @@
-#release-picture {
-    width: 15rem;
-    height: 15rem;
+.music-release {
+    height: 21rem;
+    width: 18.75rem;
+    padding: 1rem 0;
 }
 
-#music-release {
-    width: 15rem;
-    padding: 1rem 0;
+.music-release > div {
     overflow: hidden;
+    white-space: nowrap;
 }
 
 #release-title {
@@ -20,4 +20,9 @@
     background: none;
     font-size: 1.3rem;
     font-weight: bold;
+}
+
+.release-picture {
+    width: 19rem;
+    height: 19rem;
 }
