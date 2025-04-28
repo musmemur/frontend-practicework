@@ -1,6 +1,6 @@
-import {Header} from "../widgets/Header";
-import {UserCard} from "../entities/UserCard";
-import {ReleasesSection} from "../widgets/ReleasesSection";
+import {Header} from "../../widgets/Header";
+import {UserCard} from "../../widgets/UserCard";
+import {ReleasesSection} from "../../widgets/ReleasesSection";
 
 export const UserPage = () => {
     return(

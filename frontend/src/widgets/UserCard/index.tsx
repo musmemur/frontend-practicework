@@ -1,20 +1,22 @@
 import './userCard.css';
 import {useEffect, useState} from "react";
-import {ApiUserResponse} from "../../app/types/ApiUserResponse.ts";
+import {ApiUserResponse} from "../../entities/ApiUserResponse.ts";
 import {fetchUserData} from "../../processes/fetchUserData.ts";
 
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
+import {useParams} from "react-router";
 
 export const UserCard = () => {
     const [user, setUser] = useState<ApiUserResponse | null>(null);
+    const { userId } = useParams<{ userId?: string }>();
 
     useEffect(() => {
-        fetchUserData(window.location.pathname.split('/').pop())
+        fetchUserData(userId)
             .then(setUser)
             .catch(() => setUser(null));
-    }, []);
+    }, [userId]);
 
-    if (!user) return <div>Загрузка...</div>;
+    if (!user) return <div>Не найдено</div>;
 
     return(
         <div className="profile-card">

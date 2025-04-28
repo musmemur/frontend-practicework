@@ -1,5 +1,6 @@
 import "./albumInfo.css";
 import {Link} from "react-router";
+import React from "react";
 
 //<section className={cn(styles.container, styles.dssd, { [styles.dsds]: flag })}>
 
@@ -29,7 +30,7 @@ export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl}) =
                 <div id="album-score-container">
                     <span>Общая оценка</span>
                     <div id="score">
-                        <span>★★★★★</span>
+                        <span>★</span>
                         <span>(4.0)</span>
                     </div>
                 </div>

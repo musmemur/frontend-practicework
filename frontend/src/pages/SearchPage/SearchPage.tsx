@@ -1,10 +1,9 @@
-import {Header} from "../widgets/Header";
-import {ReleasesSection} from "../widgets/ReleasesSection";
-import '../app/styles/searchPage.css';
-import {ArtistResult} from "../entities/ArtistResult";
+import {Header} from "../../widgets/Header";
+import {ReleasesSection} from "../../widgets/ReleasesSection";
+import '../../app/styles/searchPage.css';
 import {NavLink, useLocation} from "react-router";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {axiosInstance} from "../../app/axiosInstance.ts";
 
 export const SearchPage = () => {
     const [query, _] = useState("dua lipa");
@@ -17,7 +16,7 @@ export const SearchPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`http://localhost:1792/Search?query=${encodeURIComponent(searchValue)}`);
+            const response = await axiosInstance.get(`/Search?query=${encodeURIComponent(searchValue)}`);
             setAlbums(response.data.albums);
             setArtists(response.data.artists);
         };

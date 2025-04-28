@@ -6,7 +6,7 @@ import likeClickedImg from "../../shared/assets/like(clicked).svg";
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import {useEffect, useState} from "react";
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
-import {User} from "../../app/types/User.ts";
+import {User} from "../../entities/User.ts";
 
 export const UserRatingContainer = () => {
     const [user, setUser] = useState<User | null>(null);

@@ -1,7 +1,7 @@
 import './releasesSection.css';
-import {MusicRelease} from "../../entities/MusicRelease";
+import {MusicRelease} from "../MusicRelease";
 import React, {useState} from "react";
-import {Release} from "../../app/types/Release.ts";
+import {Release} from "../../entities/Release.ts";
 
 interface ReleaseSectionProps {
     sectionTitle: string;

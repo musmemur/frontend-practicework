@@ -1,11 +1,12 @@
 import React, {FC, useState} from "react";
 import axios from "axios";
-import {UserLogin} from "../app/types/UserLogin.ts";
+import {UserLogin} from "../../entities/UserLogin.ts";
+import {useNavigate} from "react-router";
 
 export const LoginPage: FC = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
 
     const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ export const LoginPage: FC = () => {
                 headers: { "Content-Type": "application/json" }
             });
             localStorage.setItem("token", response.data.token);
-            window.location.href = `/user/${response.data.userId}`;
+            navigate(`/user/${response.data.userId}`);
         } catch(error) {
             console.error(error);
         }

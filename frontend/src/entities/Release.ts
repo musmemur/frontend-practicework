@@ -1,4 +1,4 @@
-import {ApiImage} from "../../entities/MusicRelease";
+import {ApiImage} from "../widgets/MusicRelease";
 
 export type Release = {
     releaseId: string;

@@ -1,4 +1,4 @@
-import {UserReview} from "../../entities/UserReview";
+import {UserReview} from "../UserReview";
 import "./userReviews.css";
 
 export const UserReviews = () => {

@@ -1,12 +1,11 @@
-import axios from "axios";
-import {ApiUserResponse} from "../app/types/ApiUserResponse.ts";
-import {BASE_API_URL} from "../app/BASE_API_URL.ts";
+import {ApiUserResponse} from "../entities/ApiUserResponse.ts";
+import {axiosInstance} from "../app/axiosInstance.ts";
 
 const token = localStorage.getItem("token");
 
 export async function fetchAuthUserData(): Promise<ApiUserResponse> {
     try {
-        const response = await axios.get(`${BASE_API_URL}/User/me`, {
+        const response = await axiosInstance.get(`/User/me`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

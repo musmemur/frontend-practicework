@@ -1,8 +1,8 @@
-import {Header} from "../widgets/Header";
-import "../app/styles/landingPage.css";
+import {Header} from "../../widgets/Header";
+import "../../app/styles/landingPage.css";
 import {Link} from "react-router";
 
-import logo from '../shared/assets/logo.svg';
+import logo from '../../shared/assets/logo.svg';
 
 export const LandingPage = () => {
     return(

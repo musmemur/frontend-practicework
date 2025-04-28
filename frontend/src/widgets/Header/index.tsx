@@ -2,7 +2,7 @@ import "./header.css";
 import {Link, useNavigate} from "react-router";
 import {useEffect, useState} from 'react';
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
-import {User} from "../../app/types/User.ts";
+import {User} from "../../entities/User.ts";
 
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import logo from '../../shared/assets/logo.svg';

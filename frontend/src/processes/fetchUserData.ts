@@ -1,10 +1,9 @@
-import axios from "axios";
-import { ApiUserResponse } from "../app/types/ApiUserResponse";
-import {BASE_API_URL} from "../app/BASE_API_URL.ts";
+import { ApiUserResponse } from "../entities/ApiUserResponse.ts";
+import {axiosInstance} from "../app/axiosInstance.ts";
 
 export async function fetchUserData(userId: string | undefined): Promise<ApiUserResponse> {
     try {
-        const response = await axios.get(`${BASE_API_URL}/User/get-user-by-id`, {
+        const response = await axiosInstance.get(`/User/get-user-by-id`, {
             params: { userId },
         });
 

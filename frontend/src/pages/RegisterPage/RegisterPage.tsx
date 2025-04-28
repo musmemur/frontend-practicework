@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {UserRegister} from "../app/types/UserRegister.ts";
-import {UserPhoto} from "../app/types/UserPhoto.ts";
-import {getFileData} from "../processes/getFileData.ts";
+import {UserRegister} from "../../entities/UserRegister.ts";
+import {UserPhoto} from "../../entities/UserPhoto.ts";
+import {getFileData} from "../../processes/getFileData.ts";
 
 export const RegisterPage = () => {
     const [registerLogin, setRegisterLogin] = useState('');
