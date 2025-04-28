@@ -1,6 +1,6 @@
 import './releasesSection.css';
 import {MusicRelease} from "../../entities/MusicRelease";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import {Release} from "../../app/types/Release.ts";
 
 interface ReleaseSectionProps {
@@ -9,15 +9,30 @@ interface ReleaseSectionProps {
 }
 
 export const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
 
     return(
         <div className="release-section">
             <div className="release-section-top">
                 <div>{sectionTitle}</div>
-                <button className="more-button" >Больше</button>
+                <button
+                    className={`more-button ${isExpanded ? 'expanded' : ''}`}
+                    onClick={toggleExpand}
+                >
+                    {isExpanded ? 'Свернуть' : 'Больше'}
+                </button>
             </div>
 
-            <div className="releases">
+            <div
+                className="releases"
+                style={{
+                    flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                }}
+            >
                 {releases.map((release) => (
                     <MusicRelease
                         key={release.releaseId}

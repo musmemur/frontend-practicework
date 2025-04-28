@@ -9,6 +9,7 @@ import axios from "axios";
 export const SearchPage = () => {
     const [query, _] = useState("dua lipa");
     const [albums, setAlbums] = useState([]);
+    const [artists, setArtists] = useState([]);
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -18,6 +19,7 @@ export const SearchPage = () => {
         const fetchData = async () => {
             const response = await axios.get(`http://localhost:1792/Search?query=${encodeURIComponent(searchValue)}`);
             setAlbums(response.data.albums);
+            setArtists(response.data.artists);
         };
 
         fetchData();
@@ -35,18 +37,7 @@ export const SearchPage = () => {
                 Результаты по запросу "{searchValue}"
             </div>
             <ReleasesSection sectionTitle="Альбомы" releases={albums}/>
-            <div className="release-section">
-                <div className="release-section-top">
-                    <div>Артисты</div>
-                    <button className="more-button">Больше</button>
-                </div>
-                <div className="search-artist">
-                    <ArtistResult/>
-                    <ArtistResult/>
-                    <ArtistResult/>
-                    <ArtistResult/>
-                </div>
-            </div>
+            <ReleasesSection sectionTitle="Артисты" releases={artists}/>
         </div>
     )
 }

@@ -18,7 +18,7 @@
     flex-direction: row;
     gap: 1.5rem;
     border-top: 1px solid black;
-    flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
 
