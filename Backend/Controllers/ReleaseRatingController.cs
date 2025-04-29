@@ -11,35 +11,35 @@ namespace Backend.Controllers;
 [Route("[controller]")]
 public class ReleaseRatingController(AppDbContext dbContext, ReleaseService releaseService, UserService userService) : ControllerBase
 {
-    [HttpPost("rate")]
-    [Authorize]
-    public async Task<IActionResult> RateRelease([FromBody] ReleaseRatingRequest request, CancellationToken ct)
-    {
-        var release = await releaseService.GetOrCreateReleaseAsync(
-            new ReleaseRequest(request.Title, request.Artist),
-            ct);
-
-        var userId = userService.GetUserId();
-        if (userId == null)
-            return Unauthorized(new { message = "Пользователь не авторизован" });
-
-        var existing = await dbContext.ReleaseRatings
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
-
-        if (existing != null)
-        {
-            existing.Rating = request.Rating;
-            dbContext.ReleaseRatings.Update(existing);
-        }
-        else
-        {
-            var rating = new ReleaseRating(userId.Value, release.Id, request.Rating);
-            dbContext.ReleaseRatings.Add(rating);
-        }
-
-        await dbContext.SaveChangesAsync(ct);
-        return Ok(new { message = "Оценка сохранена или обновлена." });
-    }
+    // [HttpPost("rate")]
+    // [Authorize]
+    // public async Task<IActionResult> RateRelease([FromBody] ReleaseRatingRequest request, CancellationToken ct)
+    // {
+    //     var release = await releaseService.GetOrCreateReleaseAsync(
+    //         new ReleaseRequest(request.Title, request.Artist),
+    //         ct);
+    //
+    //     var userId = userService.GetUserId();
+    //     if (userId == null)
+    //         return Unauthorized(new { message = "Пользователь не авторизован" });
+    //
+    //     var existing = await dbContext.ReleaseRatings
+    //         .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+    //
+    //     if (existing != null)
+    //     {
+    //         existing.Rating = request.Rating;
+    //         dbContext.ReleaseRatings.Update(existing);
+    //     }
+    //     else
+    //     {
+    //         var rating = new ReleaseRating(userId.Value, release.Id, request.Rating);
+    //         dbContext.ReleaseRatings.Add(rating);
+    //     }
+    //
+    //     await dbContext.SaveChangesAsync(ct);
+    //     return Ok(new { message = "Оценка сохранена или обновлена." });
+    // }
 
     [HttpDelete("delete/{releaseId:guid}")]
     [Authorize]

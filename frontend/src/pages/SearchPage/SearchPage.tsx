@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 import {axiosInstance} from "../../app/axiosInstance.ts";
 
 export const SearchPage = () => {
-    const [query, _] = useState("dua lipa");
     const [albums, setAlbums] = useState([]);
     const [artists, setArtists] = useState([]);
 
@@ -16,13 +15,14 @@ export const SearchPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axiosInstance.get(`/Search?query=${encodeURIComponent(searchValue)}`);
+            const queryString = searchValue ? encodeURIComponent(searchValue) : '';
+            const response = await axiosInstance.get(`/Search?query=${encodeURIComponent(queryString)}`);
             setAlbums(response.data.albums);
             setArtists(response.data.artists);
         };
 
         fetchData();
-    }, [query]);
+    }, [searchValue]);
 
     return(
         <div id="search-section">

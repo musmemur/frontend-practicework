@@ -11,7 +11,8 @@ export const ArtistPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axiosInstance.get(`/Search?query=${encodeURIComponent(artist)}`);
+            const query = artist ? encodeURIComponent(artist) : '';
+            const response = await axiosInstance.get(`/Search?query=${encodeURIComponent(query)}`);
             setAlbums(response.data.albums);
         };
 

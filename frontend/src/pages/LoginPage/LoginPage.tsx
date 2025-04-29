@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react";
-import axios from "axios";
 import {UserLogin} from "../../entities/UserLogin.ts";
 import {useNavigate} from "react-router";
+import {axiosInstance} from "../../app/axiosInstance.ts";
 
 export const LoginPage: FC = () => {
     const [login, setLogin] = useState('');
@@ -15,7 +15,7 @@ export const LoginPage: FC = () => {
             password: password
         };
         try {
-            const response = await axios.post("http://localhost:1792/User/login", user, {
+            const response = await axiosInstance.post("/User/login", user, {
                 headers: { "Content-Type": "application/json" }
             });
             localStorage.setItem("token", response.data.token);

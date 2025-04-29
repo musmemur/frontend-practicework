@@ -2,22 +2,14 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Backend.Entities;
 
 namespace Backend.Services;
 
-public class JwtService
+public class JwtService(IConfiguration config)
 {
-    private readonly IConfiguration _config;
-
-    public JwtService(IConfiguration config)
-    {
-        _config = config;
-    }
-
     public Task<string> GenerateJwtTokenAsync(Guid userId, CancellationToken ct)
     {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
@@ -27,10 +19,10 @@ public class JwtService
         };
 
         var token = new JwtSecurityToken(
-            issuer: _config["Jwt:Issuer"],
-            audience: _config["Jwt:Audience"],
+            issuer: config["Jwt:Issuer"],
+            audience: config["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(int.Parse(_config["Jwt:ExpiresInMinutes"]!)),
+            expires: DateTime.UtcNow.AddMinutes(int.Parse(config["Jwt:ExpiresInMinutes"]!)),
             signingCredentials: credentials
         );
 

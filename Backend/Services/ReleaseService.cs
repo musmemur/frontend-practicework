@@ -4,29 +4,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Services;
 
-public class ReleaseService
+public class ReleaseService(AppDbContext dbContext)
 {
-    private readonly AppDbContext _dbContext;
-
-    public ReleaseService(AppDbContext dbContext)
+    public async Task<Release> GetOrCreateReleaseAsync(ReleaseWithPhotoRequest request, CancellationToken ct)
     {
-        _dbContext = dbContext;
-    }
-
-    public async Task<Release> GetOrCreateReleaseAsync(ReleaseRequest request, CancellationToken ct)
-    {
-        var release = await _dbContext.Releases
+        var release = await dbContext.Releases
             .FirstOrDefaultAsync(r =>
                 r.Title == request.Title &&
                 r.Artist == request.Artist, ct);
 
-        if (release == null)
-        {
-            string? releasePhoto = null;
-            release = new Release(request.Title, request.Artist, releasePhoto);
-            _dbContext.Releases.Add(release);
-            await _dbContext.SaveChangesAsync(ct);
-        }
+        if (release != null) return release;
+        release = new Release(request.Title, request.Artist, request.ReleasePhoto);
+        dbContext.Releases.Add(release);
+        await dbContext.SaveChangesAsync(ct);
 
         return release;
     }

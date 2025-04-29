@@ -10,7 +10,6 @@ import {User} from "../../entities/User.ts";
 
 export const UserRatingContainer = () => {
     const [user, setUser] = useState<User | null>(null);
-
     useEffect(() => {
         const loadUser = async () => {
             try {

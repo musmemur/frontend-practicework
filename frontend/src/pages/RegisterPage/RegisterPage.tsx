@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import axios from "axios";
 import {UserRegister} from "../../entities/UserRegister.ts";
 import {UserPhoto} from "../../entities/UserPhoto.ts";
 import {getFileData} from "../../processes/getFileData.ts";
+import {axiosInstance} from "../../app/axiosInstance.ts";
 
 export const RegisterPage = () => {
     const [registerLogin, setRegisterLogin] = useState('');
@@ -34,7 +34,7 @@ export const RegisterPage = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:1792/User/register", user, {
+            const response = await axiosInstance.post("/User/register", user, {
                 headers: { "Content-Type": "application/json" }
             });
             localStorage.setItem("token", response.data.token);

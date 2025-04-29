@@ -19,6 +19,15 @@
     gap: 1.5rem;
     border-top: 1px solid black;
     overflow-x: hidden;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.more-button {
+    border: none;
+    background: none;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 

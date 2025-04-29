@@ -9,20 +9,14 @@
     white-space: nowrap;
 }
 
-#release-title {
+.release-title {
     font-size: 1.2rem;
     font-weight: bold;
     overflow: hidden;
 }
 
-.more-button {
-    border: none;
-    background: none;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
 .release-picture {
     width: 19rem;
     height: 19rem;
+    box-shadow: 0 4px 24px 0 rgba(0, 11, 38, 0.12);
 }

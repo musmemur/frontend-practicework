@@ -3,12 +3,10 @@ import {Link, useNavigate} from "react-router";
 import {useEffect, useState} from 'react';
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
 import {User} from "../../entities/User.ts";
-
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import logo from '../../shared/assets/logo.svg';
 
 export const Header = () => {
-
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
 
@@ -41,20 +39,10 @@ export const Header = () => {
 
                 {user ? (
                     <Link to={`/user/${encodeURIComponent(user.userId)}`} id="user-header-info">
-                        <img
-                            src={user.userPhoto}
-                            alt={`${user.username} avatar`}
-                            style={{
-
-                            }}
-                        />
+                        <img src={user.userPhoto} alt={`${user.username} avatar`}/>
                         <span>{user.username}</span>
                     </Link>
-                ) : (
-                    <Link to="/sign-up" id="enter-button">
-                        войти
-                    </Link>
-                )}
+                ) : ( <Link to="/sign-up" id="enter-button">войти</Link> )}
             </nav>
         </header>
     );
