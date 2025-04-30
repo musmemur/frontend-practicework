@@ -10,6 +10,10 @@ import {User} from "../../entities/User.ts";
 import {saveReleaseByUser} from "../../processes/saveReleaseByUser.ts";
 import {checkSavedReleaseByUser} from "../../processes/checkSavedReleaseByUser.ts";
 import {deleteSavedReleaseByUser} from "../../processes/deleteSavedReleaseByUser.ts";
+import React from "react";
+import {saveUserRating} from "../../processes/saveUserRating.ts";
+import {deleteUserRating} from "../../processes/deleteUserRating.ts";
+import {fetchUserRating} from "../../processes/fetchUserRating.ts";
 
 interface UserRatingContainerProps {
     releaseId: string;
@@ -18,6 +22,7 @@ interface UserRatingContainerProps {
 export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     const [user, setUser] = useState<User | null>(null);
     const [isSaved, setIsSaved] = useState(false);
+    const [rating, setRating] = useState<number | null>(null);
 
     useEffect(() => {
         const loadUser = async () => {
@@ -29,6 +34,9 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
 
                 if (loggedUser.userId && releaseId) {
                     setIsSaved(await checkSavedReleaseByUser(loggedUser.userId, releaseId));
+
+                    const userRating = await fetchUserRating(loggedUser.userId, releaseId);
+                    if (userRating) setRating(userRating);
                 }
             } catch {
                 setUser(null);
@@ -37,6 +45,21 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
         loadUser();
     }, [releaseId]);
 
+    const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedRating = parseInt(e.target.value);
+        setRating(selectedRating);
+
+        if (user) {
+            saveUserRating(user.userId, releaseId, selectedRating);
+        }
+    };
+
+    const handleCancelRating = () => {
+        setRating(null);
+        if (user) {
+            deleteUserRating(user.userId, releaseId);
+        }
+    };
 
     const handleClickSaveReleaseButton = () => {
         const likeButton = document.getElementById("user-like") as HTMLImageElement;
@@ -72,17 +95,29 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                                 <Link to={`/user/${encodeURIComponent(user.userId)}`} id="nickname">
                                     {user?.username}
                                 </Link>
-                                <div className="rating">
-                                    <input type="radio" name="any_name" value="5" id="rating-5"/><label
-                                    htmlFor="rating-5">5</label>
-                                    <input type="radio" name="any_name" value="4" id="rating-4"/><label
-                                    htmlFor="rating-4">4</label>
-                                    <input type="radio" name="any_name" value="3" id="rating-3"/><label
-                                    htmlFor="rating-3">3</label>
-                                    <input type="radio" name="any_name" value="2" id="rating-2"/><label
-                                    htmlFor="rating-2">2</label>
-                                    <input type="radio" name="any_name" value="1" id="rating-1"/><label
-                                    htmlFor="rating-1">1</label>
+                                <div className="rating-container">
+                                    <div className="rating">
+                                        {[5, 4, 3, 2, 1].map((value) => (
+                                            <React.Fragment key={value}>
+                                                <input
+                                                    type="radio"
+                                                    name="user-rating"
+                                                    value={value}
+                                                    id={`rating-${value}`}
+                                                    checked={rating === value}
+                                                    onChange={handleRatingChange}
+                                                />
+                                                <label htmlFor={`rating-${value}`}>{value}</label>
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        className="cancel-rating-button"
+                                        onClick={handleCancelRating}
+                                    >
+                                        X
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -92,16 +127,13 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                                     <img src={likeClickedImg} id="user-like" alt="Лайк"
                                          onClick={handleClickSaveReleaseButton}/>
                                 </button>
-                                )
-                            }
+                            )}
                             {!isSaved && (
                                 <button id="like-button" value='0'>
                                     <img src={likeButtonImg} id="user-like" alt="Лайк"
                                          onClick={handleClickSaveReleaseButton}/>
                                 </button>
-                                )
-                            }
-
+                            )}
                         </div>
                     </div>
                     <form id="user-album-review-form">

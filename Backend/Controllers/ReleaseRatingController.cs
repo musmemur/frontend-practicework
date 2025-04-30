@@ -11,47 +11,49 @@ namespace Backend.Controllers;
 [Route("[controller]")]
 public class ReleaseRatingController(AppDbContext dbContext, ReleaseService releaseService, UserService userService) : ControllerBase
 {
-    // [HttpPost("rate")]
-    // [Authorize]
-    // public async Task<IActionResult> RateRelease([FromBody] ReleaseRatingRequest request, CancellationToken ct)
-    // {
-    //     var release = await releaseService.GetOrCreateReleaseAsync(
-    //         new ReleaseRequest(request.Title, request.Artist),
-    //         ct);
-    //
-    //     var userId = userService.GetUserId();
-    //     if (userId == null)
-    //         return Unauthorized(new { message = "Пользователь не авторизован" });
-    //
-    //     var existing = await dbContext.ReleaseRatings
-    //         .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
-    //
-    //     if (existing != null)
-    //     {
-    //         existing.Rating = request.Rating;
-    //         dbContext.ReleaseRatings.Update(existing);
-    //     }
-    //     else
-    //     {
-    //         var rating = new ReleaseRating(userId.Value, release.Id, request.Rating);
-    //         dbContext.ReleaseRatings.Add(rating);
-    //     }
-    //
-    //     await dbContext.SaveChangesAsync(ct);
-    //     return Ok(new { message = "Оценка сохранена или обновлена." });
-    // }
-
-    [HttpDelete("delete/{releaseId:guid}")]
+    [HttpPost("rate")]
     [Authorize]
-    public async Task<IActionResult> DeleteRating(Guid releaseId, CancellationToken ct)
+    public async Task<IActionResult> RateRelease([FromBody] ReleaseRatingRequest request, CancellationToken ct)
     {
-        var userId = userService.GetUserId();
-        if (userId == null)
-            return Unauthorized(new { message = "Пользователь не авторизован" });
+        var release = await dbContext.Releases
+            .Where(u => u.Id == request.ReleaseId)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(ct);
+    
+        var userId = request.UserId;
+
+        var existing = await dbContext.ReleaseRatings
+            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+    
+        if (existing != null)
+        {
+            existing.Rating = request.Rating;
+            dbContext.ReleaseRatings.Update(existing);
+        }
+        else
+        {
+            var rating = new ReleaseRating(userId, release.Id, request.Rating);
+            dbContext.ReleaseRatings.Add(rating);
+        }
+    
+        await dbContext.SaveChangesAsync(ct);
+        return Ok(new { message = "Оценка сохранена или обновлена." });
+    }
+
+    [HttpPost("delete")]
+    [Authorize]
+    public async Task<IActionResult> DeleteRating([FromBody] DeleteReleaseRatingRequest request, CancellationToken ct)
+    {
+        var release = await dbContext.Releases
+            .Where(u => u.Id == request.ReleaseId)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(ct);
+    
+        var userId = request.UserId;
 
         var rating = await dbContext.ReleaseRatings
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == releaseId, ct);
-
+            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+        
         if (rating == null)
             return NotFound(new { message = "Оценка не найдена." });
 
@@ -61,20 +63,20 @@ public class ReleaseRatingController(AppDbContext dbContext, ReleaseService rele
         return Ok(new { message = "Оценка удалена." });
     }
 
-    [HttpGet("get/{releaseId:guid}")]
+    [HttpPost("get")]
     [Authorize]
-    public async Task<IActionResult> GetUserRating(Guid releaseId, CancellationToken ct)
+    public async Task<IActionResult?> GetUserRating([FromBody]GetReleaseRatingRequest request, CancellationToken ct)
     {
-        var userId = userService.GetUserId();
-        if (userId == null)
-            return Unauthorized(new { message = "Пользователь не авторизован" });
+        var release = await dbContext.Releases
+            .Where(u => u.Id == request.ReleaseId)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(ct);
+    
+        var userId = request.UserId;
 
         var rating = await dbContext.ReleaseRatings
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == releaseId, ct);
-
-        if (rating == null)
-            return NotFound(new { message = "Оценка не найдена." });
-
-        return Ok(new { rating.Rating });
+            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+        
+        return rating == null ? null : Ok(new { rating.Rating });
     }
 }

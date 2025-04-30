@@ -78,10 +78,18 @@
     height: 5rem;
 }
 
+.rating-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
 .rating {
     unicode-bidi: bidi-override;
     direction: rtl;
-    margin-top: -0.5rem;
+    align-items: center;
+    display: flex;
 }
 
 .rating label {
@@ -93,6 +101,7 @@
     font-size:0;
     cursor: pointer;
 }
+
 .rating input {
     display:none;
 }
@@ -100,4 +109,10 @@
 .rating input:checked + label,
 .rating input:checked ~ input + label {
     background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAABgFBMVEXRXzXs0sT//v779fLu2MzSYTT0akL58e326ePqYkLy4tnmxbPqzb3dYTq6XizYpIntZELhYj37bkPcrpW6XCvCXS3esZrNYTHbZjf1bUDoybjJgVvLhmHZYDnKXjLmaDvNXjPGXi/GeVD9+vjBbUHlwa7Pjmv37Ofw3dPqZUDhZTvaqY7MiWXlZT7CcUb+/v3VnX+8YzPeZDnYYza9ZTbftJ7OXjTQkG/XYTfhuqTsaj7UYjTXoYS/aTvUYDe7YTHwaz/kYz7XYjfXYzXWXzj2a0P0aUP8+Pb2akPxZ0O9XCvzaEPyaEPvZUPyZ0PvZkPuZULsY0LwZkPwZ0P4bEP3a0P5bUP6bUP5bEP8b0Pjvan05d2+ZznAaj39cEPIfVXHfFTRlHTt1cjbq5LEdErFd079+/r15+Drz8HgtqDvaUDy39bqZj/lZzzwaUDHXTDYZDXtZ0DfZzj47+nIf1jJYC/yaULuZ0HTmHnUmXrw28+7Xy7VYTb4bkH5bkP///8s9V56AAAAgHRSTlP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ADgFS2cAAAIJSURBVHjaldX5V9owAMDxGmBQrtoRUDkqyI2MgUKZ4jyQ6e6NjW2WS0R0p5vTuUPY8q+7duWN1ya1/f7UNPn8kCbvlUL4on2EjwQceYOg3DEGQOHi0hBwzpwxhsCv+bmcEQDav7sRuwHQv+h2Zz0GwNqZIGwuGACxOUEQvDbdIBW5+bfTkm6wOCuC1YBuMNgUwR9o1Qla3jdSlaZO4Dt9LTWf1Ql6q3tSjWFUF0jCxr/2ZhwYsKuqtN2QO0moZyl/8aGiyodX47aVc/CQQrZe5cY9fS13+uIeAANP9Cz/XAla5U0728v3ry3j9vz/Sslvlu/XrK/GzJOfFSzCzI5GXy1Zk+Ic3t2tktcvuX3qgzsPWH48wjeKXeJOGhzCzGNMn6iEiXA1pjqjp6pcw/fku2QNLj1QlM6ltC6fOaIEIx/SAkz1paJb+5ogl36hDCY1gN37TBW1ogE8609UsUENsLD1XJ3bRAQ277QcG4ah8XM4TgQlSl5zpxBP5cYDV4IIAuy0FHXUQiha5rekUXrjmADOYV2M5fJAGq8MQ9ILzk8ATV6crhUdSO7jgBLfhA4IIOuq12m+93bib30QZus0XQRYEHXTtItbA2iy5kaNpr9MYYGDo9eLfqTIPuDpWh4LyiF+34ZUHf/k2A4OgAJkAMIVL0TMGOBsOxGh1hGDAc0kInbbpwAGugICsJ4iKYYBmgAAAABJRU5ErkJggg==);
+}
+
+.cancel-rating-button {
+    border: 1px solid red;
+    color: red;
+    background: rgba(255, 0, 0, 0.1);
 }
