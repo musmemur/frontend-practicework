@@ -7,15 +7,19 @@ import {useLocation, useNavigate, useParams} from "react-router";
 import {fetchReleaseDataById} from "../../processes/fetchReleaseDataById.ts";
 
 export const AlbumPage = () => {
-    const [title, setTitle] = useState<string>("Album");
+    const [title, setTitle] = useState<string>("");
     const [artist, setArtist] = useState<string>("");
     const [releaseImage, setReleaseImage] = useState<string>("");
+    // const [ratings, setRatings] = useState([]);
+    // const [savedByUsers, setSavedByUsers] = useState([]);
+
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     const location = useLocation();
     const navigate = useNavigate();
-    const { releaseId } = useParams<{ releaseId?: string }>();
+    const { releaseId } = useParams<{ releaseId: string }>();
 
     useEffect(() => {
         if (location.state?.fromSearch !== true) {
@@ -45,15 +49,11 @@ export const AlbumPage = () => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
-    // if (!artist || !title) {
-    //     return <Link to="/not-found" />;
-    // }
-
     return(
         <div>
             <Header />
-            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} />
-            <UserRatingContainer />
+            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage}  />
+            {releaseId && <UserRatingContainer releaseId={releaseId} />}
             <UserReviews />
         </div>
     )

@@ -19,7 +19,7 @@ public class ReleaseController(AppDbContext dbContext, ReleaseService releaseSer
     }
     
         
-    [HttpGet("get-release-by-id/{releaseId}")]
+    [HttpGet("get-release-by-id/{releaseId:guid}")]
     public async Task<Release?> GetReleaseById(Guid releaseId, CancellationToken cancellationToken = default)
     {
         var releaseInfo = await dbContext.Releases

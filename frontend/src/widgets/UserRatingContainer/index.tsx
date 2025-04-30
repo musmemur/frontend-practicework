@@ -7,9 +7,18 @@ import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import {useEffect, useState} from "react";
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
 import {User} from "../../entities/User.ts";
+import {saveReleaseByUser} from "../../processes/saveReleaseByUser.ts";
+import {checkSavedReleaseByUser} from "../../processes/checkSavedReleaseByUser.ts";
+import {deleteSavedReleaseByUser} from "../../processes/deleteSavedReleaseByUser.ts";
 
-export const UserRatingContainer = () => {
+interface UserRatingContainerProps {
+    releaseId: string;
+}
+
+export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isSaved, setIsSaved] = useState(false);
+
     useEffect(() => {
         const loadUser = async () => {
             try {
@@ -17,23 +26,34 @@ export const UserRatingContainer = () => {
                 fetchedUser.userPhoto = fetchedUser.userPhoto || userPhotoPlaceholder;
                 const loggedUser: User = fetchedUser as User;
                 setUser(loggedUser);
+
+                if (loggedUser.userId && releaseId) {
+                    setIsSaved(await checkSavedReleaseByUser(loggedUser.userId, releaseId));
+                }
             } catch {
                 setUser(null);
             }
         };
         loadUser();
-    }, []);
+    }, [releaseId]);
 
-    const changeLikeImg = () => {
+
+    const handleClickSaveReleaseButton = () => {
         const likeButton = document.getElementById("user-like") as HTMLImageElement;
         const button = document.getElementById("like-button") as HTMLButtonElement;
         if (likeButton && button) {
             if (likeButton.src.includes("like.svg")) {
                 likeButton.src = likeClickedImg;
                 button.setAttribute("value", "1");
+                if(user) {
+                    saveReleaseByUser(user.userId, releaseId);
+                }
             } else {
                 likeButton.src = likeButtonImg;
                 button.setAttribute("value", "0");
+                if (user) {
+                    deleteSavedReleaseByUser(user.userId, releaseId);
+                }
             }
         }
     };
@@ -67,9 +87,21 @@ export const UserRatingContainer = () => {
                             </div>
                         </div>
                         <div>
-                            <button id="like-button" value='0'>
-                                <img src={likeButtonImg} id="user-like" alt="Лайк" onClick={changeLikeImg}/>
-                            </button>
+                            {isSaved && (
+                                <button id="like-button" value='1'>
+                                    <img src={likeClickedImg} id="user-like" alt="Лайк"
+                                         onClick={handleClickSaveReleaseButton}/>
+                                </button>
+                                )
+                            }
+                            {!isSaved && (
+                                <button id="like-button" value='0'>
+                                    <img src={likeButtonImg} id="user-like" alt="Лайк"
+                                         onClick={handleClickSaveReleaseButton}/>
+                                </button>
+                                )
+                            }
+
                         </div>
                     </div>
                     <form id="user-album-review-form">
@@ -79,6 +111,5 @@ export const UserRatingContainer = () => {
                 </div>
             )}
         </div>
-
     )
 }
