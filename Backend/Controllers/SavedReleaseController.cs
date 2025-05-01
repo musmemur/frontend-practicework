@@ -9,7 +9,7 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class SavedReleaseController(AppDbContext dbContext, ReleaseService releaseService, UserService userService) : ControllerBase
+public class SavedReleaseController(AppDbContext dbContext, UserService userService) : ControllerBase
 {
     [HttpPost("save")]
     [Authorize]

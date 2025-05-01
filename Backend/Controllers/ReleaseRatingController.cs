@@ -1,6 +1,5 @@
 ﻿using Backend.Contracts;
 using Backend.Entities;
-using Backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,7 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ReleaseRatingController(AppDbContext dbContext, ReleaseService releaseService, UserService userService) : ControllerBase
+public class ReleaseRatingController(AppDbContext dbContext) : ControllerBase
 {
     [HttpPost("rate")]
     [Authorize]
@@ -23,7 +22,7 @@ public class ReleaseRatingController(AppDbContext dbContext, ReleaseService rele
         var userId = request.UserId;
 
         var existing = await dbContext.ReleaseRatings
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+            .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
     
         if (existing != null)
         {
@@ -32,8 +31,11 @@ public class ReleaseRatingController(AppDbContext dbContext, ReleaseService rele
         }
         else
         {
-            var rating = new ReleaseRating(userId, release.Id, request.Rating);
-            dbContext.ReleaseRatings.Add(rating);
+            if (release != null)
+            {
+                var rating = new ReleaseRating(userId, release.Id, request.Rating);
+                dbContext.ReleaseRatings.Add(rating);
+            }
         }
     
         await dbContext.SaveChangesAsync(ct);
@@ -52,7 +54,7 @@ public class ReleaseRatingController(AppDbContext dbContext, ReleaseService rele
         var userId = request.UserId;
 
         var rating = await dbContext.ReleaseRatings
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+            .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
         
         if (rating == null)
             return NotFound(new { message = "Оценка не найдена." });
@@ -65,18 +67,23 @@ public class ReleaseRatingController(AppDbContext dbContext, ReleaseService rele
 
     [HttpPost("get")]
     [Authorize]
-    public async Task<IActionResult?> GetUserRating([FromBody]GetReleaseRatingRequest request, CancellationToken ct)
+    public async Task<IActionResult> GetUserRating([FromBody]GetReleaseRatingRequest request, CancellationToken ct)
     {
         var release = await dbContext.Releases
             .Where(u => u.Id == request.ReleaseId)
             .AsNoTracking()
             .FirstOrDefaultAsync(ct);
     
+        if (release == null)
+        {
+            return NotFound("Release not found");
+        }
+
         var userId = request.UserId;
 
         var rating = await dbContext.ReleaseRatings
             .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
-        
-        return rating == null ? null : Ok(new { rating.Rating });
+    
+        return rating == null ? Ok(null) : Ok(new { rating.Rating });
     }
 }

@@ -14,6 +14,9 @@ import React from "react";
 import {saveUserRating} from "../../processes/saveUserRating.ts";
 import {deleteUserRating} from "../../processes/deleteUserRating.ts";
 import {fetchUserRating} from "../../processes/fetchUserRating.ts";
+import {saveReview} from "../../processes/saveReview.ts";
+import {fetchUserReview} from "../../processes/fetchUserReview.ts";
+import {deleteReview} from "../../processes/deleteReview.ts";
 
 interface UserRatingContainerProps {
     releaseId: string;
@@ -23,6 +26,7 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     const [user, setUser] = useState<User | null>(null);
     const [isSaved, setIsSaved] = useState(false);
     const [rating, setRating] = useState<number | null>(null);
+    const [review, setReview] = useState<string>("");
 
     useEffect(() => {
         const loadUser = async () => {
@@ -37,6 +41,9 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
 
                     const userRating = await fetchUserRating(loggedUser.userId, releaseId);
                     if (userRating) setRating(userRating);
+
+                    const userReview = await fetchUserReview(loggedUser.userId, releaseId);
+                    if(userReview) setReview(userReview);
                 }
             } catch {
                 setUser(null);
@@ -48,7 +55,6 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedRating = parseInt(e.target.value);
         setRating(selectedRating);
-
         if (user) {
             saveUserRating(user.userId, releaseId, selectedRating);
         }
@@ -78,6 +84,20 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                     deleteSavedReleaseByUser(user.userId, releaseId);
                 }
             }
+        }
+    };
+
+    const handleClickSaveReviewButton = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if(review && user) {
+            saveReview(user.userId, releaseId, review);
+        }
+    }
+
+    const handleClickDeleteReview = () => {
+        setReview("");
+        if (user) {
+            deleteReview(user.userId, releaseId);
         }
     };
 
@@ -111,13 +131,9 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                                             </React.Fragment>
                                         ))}
                                     </div>
-                                    <button
-                                        type="button"
-                                        className="cancel-rating-button"
-                                        onClick={handleCancelRating}
-                                    >
-                                        X
-                                    </button>
+                                    {rating && (
+                                        <button type="button" className="cancel-rating-button" onClick={handleCancelRating}>X</button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -136,9 +152,18 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                             )}
                         </div>
                     </div>
-                    <form id="user-album-review-form">
-                        <input id="add-review-input" type="text" placeholder="Добавить рецензию"/>
-                        <button id="save-user-changes-button" type="submit">сохранить</button>
+                    <form id="user-album-review-form" onSubmit={handleClickSaveReviewButton}>
+                            <textarea id="add-review-input"
+                                      placeholder="Добавить рецензию"
+                                      value={review}
+                                      onChange={(e) => setReview(e.target.value)}
+                            />
+                        <div className="review-buttons-container">
+                            {review && (
+                                <button className="delete-review-button" onClick={handleClickDeleteReview}>удалить рецензию</button>
+                            )}
+                            <button id="save-user-changes-button" type="submit">сохранить</button>
+                        </div>
                     </form>
                 </div>
             )}

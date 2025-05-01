@@ -18,37 +18,6 @@
     padding-bottom: 1rem;
 }
 
-#user-album-review-form {
-    display: flex;
-    flex-direction: column;
-}
-
-#add-review-input {
-    background-color: #CFE0C4;
-    width: 100%;
-    height: 10rem;
-    border: 1px solid black;
-    text-align: start;
-    vertical-align: top;
-}
-
-#add-review-input::placeholder {
-    text-align: start;
-    color: black;
-}
-
-#save-user-changes-button {
-    background-color: var(--button-primary-color);
-    width: 12rem;
-    border: 1px solid black;
-    align-self: end;
-    margin: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 1rem;
-    height: 2.5rem;
-}
-
 #search-input, #submit-input, #enter-button {
     background-color: var(--button-primary-color);
     border: none;
@@ -88,7 +57,6 @@
 .rating {
     unicode-bidi: bidi-override;
     direction: rtl;
-    align-items: center;
     display: flex;
 }
 
@@ -115,4 +83,54 @@
     border: 1px solid red;
     color: red;
     background: rgba(255, 0, 0, 0.1);
+}
+
+
+#user-album-review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#add-review-input {
+    background-color: #CFE0C4;
+    width: 100%;
+    height: 10rem;
+    border: 1px solid black;
+    padding: 1rem 0 0 1rem;
+}
+
+#add-review-input::placeholder {
+    color: black;
+}
+
+.review-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-input-container button {
+    align-self: center;
+}
+
+#save-user-changes-button {
+    background-color: var(--button-primary-color);
+    width: 12rem;
+    border: 1px solid black;
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    height: 2.5rem;
+}
+
+.review-buttons-container {
+    align-self: end;
+}
+
+.delete-review-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: rgba(255, 0, 0, 0.1);
+    color: red;
+    border: 1px solid red;
 }
