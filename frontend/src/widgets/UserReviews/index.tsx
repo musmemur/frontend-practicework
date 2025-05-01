@@ -1,7 +1,8 @@
 import {UserReview} from "../UserReview";
 import "./userReviews.css";
+import {ReviewModal} from "../../pages/AlbumPage/AlbumPage.tsx";
 
-export const UserReviews = () => {
+export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
     return(
         <div id="user-reviews-container">
             <div>

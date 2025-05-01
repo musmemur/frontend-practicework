@@ -1,5 +1,5 @@
 ﻿using Backend.Contracts;
-using Backend.Entities;
+using Backend.Dtos;
 using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +20,35 @@ public class ReleaseController(AppDbContext dbContext, ReleaseService releaseSer
     
         
     [HttpGet("get-release-by-id/{releaseId:guid}")]
-    public async Task<Release?> GetReleaseById(Guid releaseId, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<ReleaseDto>> GetReleaseById(Guid releaseId, CancellationToken cancellationToken = default)
     {
         var releaseInfo = await dbContext.Releases
-            .Where(u => u.Id == releaseId)
+            .Include(r => r.Ratings)
+            .Include(r => r.Reviews)
+            .Include(r => r.SavedByUsers)
+            .Where(r => r.Id == releaseId)
+            .Select(r => new ReleaseDto
+            {
+                Id = r.Id,
+                Title = r.Title,
+                Artist = r.Artist,
+                ReleasePhoto = r.ReleasePhoto,
+                Ratings = r.Ratings.Select(rt => new RatingDto
+                {
+                    Rating = rt.Rating
+                }).ToList(),
+                Reviews = r.Reviews.Select(rv => new ReviewDto
+                {
+                    UserId = rv.UserId,
+                    ReviewText = rv.ReviewText
+                }).ToList()
+            })
             .AsNoTracking()
             .FirstOrDefaultAsync(cancellationToken);
-        
+
+        if (releaseInfo == null)
+            return NotFound("Релиз не найден");
+
         return releaseInfo;
     }
 }

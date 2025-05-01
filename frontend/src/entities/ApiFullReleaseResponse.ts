@@ -1,9 +1,9 @@
+import {RatingModal, ReviewModal} from "../pages/AlbumPage/AlbumPage.tsx";
+
 export type ApiFullReleaseResponse = {
-    releaseId: string;
     title: string;
     artist: string;
     releasePhoto: string;
-    ratings: string[] | null;
-    reviews: string[] | null;
-    savedByUsers: string[] | null
+    ratings: RatingModal[] | [];
+    reviews: ReviewModal[] | [];
 }

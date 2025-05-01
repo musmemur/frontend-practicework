@@ -9,7 +9,7 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ReviewController(AppDbContext dbContext, ReleaseService releaseService, UserService userService) : ControllerBase
+public class ReviewController(AppDbContext dbContext) : ControllerBase
 {
     [HttpPost("create")]
     [Authorize]

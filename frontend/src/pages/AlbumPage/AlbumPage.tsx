@@ -6,13 +6,21 @@ import {useEffect, useState} from "react";
 import {useLocation, useNavigate, useParams} from "react-router";
 import {fetchReleaseDataById} from "../../processes/fetchReleaseDataById.ts";
 
+export type RatingModal = {
+    rating: number;
+}
+
+export type ReviewModal = {
+    userId: string;
+    reviewText: string;
+}
+
 export const AlbumPage = () => {
     const [title, setTitle] = useState<string>("");
     const [artist, setArtist] = useState<string>("");
     const [releaseImage, setReleaseImage] = useState<string>("");
-    // const [ratings, setRatings] = useState([]);
-    // const [savedByUsers, setSavedByUsers] = useState([]);
-
+    const [ratings, setRatings] = useState<RatingModal[] | []>([]);
+    const [reviews, setReviews] = useState<ReviewModal[] | []>([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -34,6 +42,8 @@ export const AlbumPage = () => {
                 setTitle(response.title);
                 setArtist(response.artist);
                 setReleaseImage(response.releasePhoto);
+                setRatings(response.ratings);
+                setReviews(response.reviews);
             } catch (err) {
                 console.error(err);
                 setError("Failed to load album data");
@@ -52,9 +62,9 @@ export const AlbumPage = () => {
     return(
         <div>
             <Header />
-            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage}  />
+            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} ratings={ratings}  />
             {releaseId && <UserRatingContainer releaseId={releaseId} />}
-            <UserReviews />
+            <UserReviews reviews={reviews} />
         </div>
     )
 }

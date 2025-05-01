@@ -6,13 +6,11 @@ export async function fetchReleaseDataById(releaseId: string | undefined): Promi
         const response = await axiosInstance.get(`/Release/get-release-by-id/${releaseId}`);
 
         return {
-            releaseId: response.data.releaseId,
             title: response.data.title,
             artist: response.data.artist,
             releasePhoto: response.data.releasePhoto,
             ratings: response.data.ratings,
             reviews: response.data.reviews,
-            savedByUsers: response.data.savedByUsers
         };
 
     } catch (error) {
