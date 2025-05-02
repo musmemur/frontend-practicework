@@ -3,16 +3,22 @@ import "./userReviews.css";
 import {ReviewModal} from "../../pages/AlbumPage/AlbumPage.tsx";
 
 export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
-    return(
+    return reviews.length > 0 ? (
         <div id="user-reviews-container">
             <div>
                 <strong>Пользовательские рецензии</strong>
             </div>
-            <ul id="album-reviews-list">
-                <li> <UserReview/> </li>
-                <li> <UserReview/> </li>
-            </ul>
-            <button className="show-more-button search-page">больше</button>
+            {reviews.length > 0 && (
+                <ul id="album-reviews-list">
+                    <li> {reviews.map((review) => (
+                        <UserReview review={review}/>
+                    ))}
+                    </li>
+                </ul>
+            )}
+            {reviews.length > 3 && (
+                <button className="show-more-button search-page">больше</button>
+            )}
         </div>
-    )
+    ) : null;
 }
