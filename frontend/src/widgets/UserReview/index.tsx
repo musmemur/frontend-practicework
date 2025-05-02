@@ -2,11 +2,11 @@ import './userReview.css';
 import {Link, useParams} from "react-router";
 
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
-import {ReviewModal} from "../../pages/AlbumPage/AlbumPage.tsx";
 import React, {useEffect, useState} from "react";
 import {ApiUserResponse} from "../../entities/ApiUserResponse.ts";
 import {fetchUserData} from "../../processes/fetchUserData.ts";
 import {fetchUserRating} from "../../processes/fetchUserRating.ts";
+import {ReviewModal} from "../../entities/ReviewModal.ts";
 
 export type UserReviewProps = {
     review: ReviewModal;

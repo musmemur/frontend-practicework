@@ -2,10 +2,12 @@ import './releasesSection.css';
 import {MusicRelease} from "../MusicRelease";
 import React from "react";
 import {Release} from "../../entities/Release.ts";
+import {ReleaseWithRating} from "../../entities/ReleaseWithRating.ts";
+import {SavedRelease} from "../../entities/SavedRelease.ts";
 
 interface ReleaseSectionProps {
     sectionTitle: string;
-    releases: Release[];
+    releases: Release[] | ReleaseWithRating[] | SavedRelease[];
 }
 
 export const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}) => {

@@ -5,15 +5,8 @@ import {UserReviews} from "../../widgets/UserReviews";
 import {useEffect, useState} from "react";
 import {useLocation, useNavigate, useParams} from "react-router";
 import {fetchReleaseDataById} from "../../processes/fetchReleaseDataById.ts";
-
-export type RatingModal = {
-    rating: number;
-}
-
-export type ReviewModal = {
-    userId: string;
-    reviewText: string;
-}
+import {RatingModal} from "../../entities/RatingModal.ts";
+import {ReviewModal} from "../../entities/ReviewModal.ts";
 
 export const AlbumPage = () => {
     const [title, setTitle] = useState<string>("");

@@ -7,7 +7,7 @@ import {ApiReleaseRequest} from "../../entities/ApiReleaseRequest.ts";
 export type MusicReleaseProps = {
     name: string;
     artist: string;
-    image: ApiImage[];
+    image: ApiImage[] | string;
 }
 
 export type ApiImage = {
@@ -19,7 +19,13 @@ const albumImgPlaceholder = "https://lastfm.freetls.fastly.net/i/u/64s/c6f59c1e5
 
 export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image }) => {
     const navigate = useNavigate();
-    const imageUrl = image?.[3]?.['#text'] || albumImgPlaceholder;
+    let imageUrl = "";
+    if(typeof image != "string") {
+        imageUrl = image?.[3]?.['#text'] || albumImgPlaceholder;
+    }
+    else {
+        imageUrl = image;
+    }
 
     const handleClick = (e: React.MouseEvent) => {
         e.preventDefault();

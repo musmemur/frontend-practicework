@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Backend.Contracts;
+using Backend.Dtos;
 using Backend.Entities;
 using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -85,5 +86,36 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
             .FirstOrDefaultAsync(cancellationToken);
         
         return userInfo;
+    }
+    
+    [HttpGet("get-full-user-info-by-id")]
+    public async Task<IActionResult> GetFullUserInfoById(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var userInfo = await dbContext.Users
+            .Include(r => r.Ratings)
+            .Include(r => r.SavedReleases)
+            .Where(r => r.Id == userId)
+            .Select(r => new FullUserInfoDto
+            {
+                Id = r.Id,
+                Username = r.Username,
+                UserPhoto = r.UserPhoto,
+                Ratings = r.Ratings.Select(rt => new RatingForUserDto
+                {
+                    ReleaseId = rt.ReleaseId,
+                    Rating = rt.Rating
+                }).ToList(),
+                SavedReleases = r.SavedReleases.Select(sr => new SavedReleasesForUserDto
+                {
+                    ReleaseId = sr.ReleaseId,
+                }).ToList()
+            })
+            .AsNoTracking()
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (userInfo == null)
+            return NotFound("Пользователь не найден");
+
+        return Ok(userInfo );
     }
 }

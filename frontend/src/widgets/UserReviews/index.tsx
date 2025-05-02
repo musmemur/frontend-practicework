@@ -1,6 +1,6 @@
 import {UserReview} from "../UserReview";
 import "./userReviews.css";
-import {ReviewModal} from "../../pages/AlbumPage/AlbumPage.tsx";
+import {ReviewModal} from "../../entities/ReviewModal.ts";
 
 export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
     return reviews.length > 0 ? (
