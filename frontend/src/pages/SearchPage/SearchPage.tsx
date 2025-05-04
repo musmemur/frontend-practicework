@@ -1,6 +1,6 @@
 import {Header} from "../../widgets/Header";
 import {ReleasesSection} from "../../widgets/ReleasesSection";
-import '../../app/styles/searchPage.css';
+import './searchPage.css';
 import {NavLink, useLocation} from "react-router";
 import {useEffect, useState} from "react";
 import {axiosInstance} from "../../app/axiosInstance.ts";

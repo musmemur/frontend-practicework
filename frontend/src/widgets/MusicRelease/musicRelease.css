@@ -1,5 +1,4 @@
 .music-release {
-    height: 21rem;
     width: 18.75rem;
     padding: 1rem 0;
 }
@@ -18,5 +17,5 @@
 .release-picture {
     width: 19rem;
     height: 19rem;
-    box-shadow: 0 4px 24px 0 rgba(0, 11, 38, 0.12);
+    box-shadow: 0 4px 1.5rem 0 rgba(0, 11, 38, 0.12);
 }

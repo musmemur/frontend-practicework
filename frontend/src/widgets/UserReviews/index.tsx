@@ -10,10 +10,11 @@ export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
             </div>
             {reviews.length > 0 && (
                 <ul id="album-reviews-list">
-                    <li> {reviews.map((review) => (
-                        <UserReview review={review}/>
+                    {reviews.map((review) => (
+                        <li key={`review-${review.userId}-${review.reviewText}`}>
+                            <UserReview review={review}/>
+                        </li>
                     ))}
-                    </li>
                 </ul>
             )}
             {reviews.length > 3 && (

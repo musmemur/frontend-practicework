@@ -30,7 +30,7 @@ export const UserPage = () => {
                     const releasesData = await Promise.all(releasesPromises);
 
                     const formattedReleases: SavedRelease[] = releasesData.map(release => ({
-                        url: '',
+                        url: `SavedRelease: "${release.title}" by ${release.artist}`,
                         name: release.title,
                         artist: release.artist,
                         image: release.releasePhoto
@@ -40,21 +40,16 @@ export const UserPage = () => {
                 }
 
                 if (userData?.ratings) {
-                    // Создаём массив промисов для загрузки данных о релизах
                     const releasesPromises = userData.ratings.map(rating =>
                         fetchReleaseDataById(rating.releaseId)
                     );
-
-                    // Ожидаем завершения всех промисов
                     const releasesData = await Promise.all(releasesPromises);
-
-                    // Сопоставляем данные релизов с их рейтингами
                     const formattedReleases: ReleaseWithRating[] = releasesData.map((release, index) => ({
-                        url: '', // Заполните соответствующим значением
+                        url: `RatedRelease: "${release.title}" by ${release.artist}`,
                         name: release.title,
                         artist: release.artist,
                         image: release.releasePhoto,
-                        rating: userData.ratings[index].rating // Сохраняем рейтинг из исходных данных
+                        rating: userData.ratings[index].rating
                     }));
 
                     setRatedReleases(formattedReleases);

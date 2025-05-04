@@ -116,23 +116,26 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                                     {user?.username}
                                 </Link>
                                 <div className="rating-container">
-                                    <div className="rating">
+                                    <div className="release-rating">
                                         {[5, 4, 3, 2, 1].map((value) => (
                                             <React.Fragment key={value}>
-                                                <input
-                                                    type="radio"
-                                                    name="user-rating"
-                                                    value={value}
-                                                    id={`rating-${value}`}
-                                                    checked={rating === value}
-                                                    onChange={handleRatingChange}
-                                                />
-                                                <label htmlFor={`rating-${value}`}>{value}</label>
+                                                <label>
+                                                    {value}
+                                                    <input
+                                                        type="radio"
+                                                        name="user-rating"
+                                                        value={value}
+                                                        id={`rating-${value}`}
+                                                        checked={rating === value}
+                                                        onChange={handleRatingChange}
+                                                    />
+                                                </label>
                                             </React.Fragment>
                                         ))}
                                     </div>
                                     {rating && (
-                                        <button type="button" className="cancel-rating-button" onClick={handleCancelRating}>X</button>
+                                        <button type="button" className="cancel-rating-button"
+                                                onClick={handleCancelRating}>X</button>
                                     )}
                                 </div>
                             </div>

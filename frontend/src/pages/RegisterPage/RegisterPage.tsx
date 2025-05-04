@@ -3,11 +3,13 @@ import {UserRegister} from "../../entities/UserRegister.ts";
 import {UserPhoto} from "../../entities/UserPhoto.ts";
 import {getFileData} from "../../processes/getFileData.ts";
 import {axiosInstance} from "../../app/axiosInstance.ts";
+import {useNavigate} from "react-router";
 
 export const RegisterPage = () => {
     const [registerLogin, setRegisterLogin] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
     const [profilePicture, setProfilePicture] = useState<File | null>(null);
+    const navigate = useNavigate();
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -47,21 +49,29 @@ export const RegisterPage = () => {
     return (
         <div className="modal" id="register-modal">
             <div className="modal-content" onClick={e => e.stopPropagation()}>
-                <h2>Зарегистрироваться</h2>
-                <form onSubmit={handleRegisterSubmit}>
+                <div className="modal-content-top">
+                    <h2>Зарегистрироваться</h2>
+                    <button onClick={() => navigate(-1)}>X</button>
+                </div>
+                <form className="signUp-form" onSubmit={handleRegisterSubmit}>
                     <input
+                        name="login-input"
                         type="text"
                         placeholder="Логин"
                         value={registerLogin}
+                        autoComplete= "new-username"
                         onChange={e => setRegisterLogin(e.target.value)}
                     />
                     <input
+                        name="password-input"
                         type="password"
                         placeholder="Пароль"
                         value={registerPassword}
+                        autoComplete= "new-password"
                         onChange={e => setRegisterPassword(e.target.value)}
                     />
                     <input
+                        name="file-input"
                         type="file"
                         onChange={onFileChange}
                     />

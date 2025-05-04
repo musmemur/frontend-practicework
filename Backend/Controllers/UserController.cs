@@ -20,7 +20,7 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
     {
         if (await dbContext.Users.AnyAsync(u => u.Username == request.Username, ct))
         {
-            return BadRequest("Пользователь уже существует.");
+            return BadRequest("Пользователь с таким логином уже существует");
         }
 
         var user = new User(
@@ -47,7 +47,7 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
         
         if (userInfo == null || !PasswordHasher.Validate(userInfo.Password, request.Password))
         {
-            return Unauthorized("Неверный логин или пароль.");
+            return Unauthorized("Неверный логин или пароль");
         }
 
         var token = await jwtService.GenerateJwtTokenAsync(userInfo.Id, ct);

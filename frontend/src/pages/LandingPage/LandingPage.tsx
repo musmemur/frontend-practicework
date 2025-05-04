@@ -1,5 +1,5 @@
 import {Header} from "../../widgets/Header";
-import "../../app/styles/landingPage.css";
+import "./landingPage.css";
 import {Link} from "react-router";
 
 import logo from '../../shared/assets/logo.svg';
