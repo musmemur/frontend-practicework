@@ -1,4 +1,5 @@
-import {RatingModal, ReviewModal} from "../pages/AlbumPage/AlbumPage.tsx";
+import {RatingModal} from "./RatingModal.ts";
+import {ReviewModal} from "./ReviewModal.ts";
 
 export type ApiFullReleaseResponse = {
     title: string;

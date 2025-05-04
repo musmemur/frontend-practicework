@@ -69,7 +69,7 @@ export const UserPage = () => {
     return(
         <div>
             <Header />
-            <UserCard />
+            <UserCard user={user} />
             <ReleasesSection sectionTitle="Понравившиеся релизы" releases={savedReleases}/>
             <ReleasesSection sectionTitle="Недавние оценки" releases={ratedReleases}/>
         </div>

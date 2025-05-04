@@ -1,7 +1,7 @@
 import "./albumInfo.css";
 import {Link} from "react-router";
 import React from "react";
-import {RatingModal} from "../../pages/AlbumPage/AlbumPage.tsx";
+import {RatingModal} from "../../entities/RatingModal.ts";
 
 //<section className={cn(styles.container, styles.dssd, { [styles.dsds]: flag })}>
 
@@ -28,7 +28,7 @@ export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl, ra
             />
             <div id="description-info">
                 <div>
-                    <Link to={`/artist/${encodeURIComponent(artist)}`} id="artist">
+                    <Link to={`/search?search=${artist}`}>
                         {artist}
                     </Link>
                     <div className="release-title-container">

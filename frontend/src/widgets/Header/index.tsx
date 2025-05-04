@@ -8,7 +8,7 @@ import logo from '../../shared/assets/logo.svg';
 
 export const Header = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
+    const [authUser, setAuthUser] = useState<User | null>(null);
 
     useEffect(() => {
         const loadUser = async () => {
@@ -16,9 +16,9 @@ export const Header = () => {
                 const fetchedUser = await fetchAuthUserData();
                 fetchedUser.userPhoto = fetchedUser.userPhoto || userPhotoPlaceholder;
                 const loggedUser: User = fetchedUser as User;
-                setUser(loggedUser);
+                setAuthUser(loggedUser);
             } catch {
-                setUser(null);
+                setAuthUser(null);
             }
         };
         loadUser();
@@ -37,10 +37,10 @@ export const Header = () => {
                            id="submit-input" className="button" />
                 </form>
 
-                {user ? (
-                    <Link to={`/user/${encodeURIComponent(user.userId)}`} id="user-header-info">
-                        <img src={user.userPhoto} alt={`${user.username} avatar`}/>
-                        <span>{user.username}</span>
+                {authUser ? (
+                    <Link to={`/user/${encodeURIComponent(authUser.userId)}`} id="user-header-info">
+                        <img src={authUser.userPhoto} alt={`${authUser.username} avatar`}/>
+                        <span>{authUser.username}</span>
                     </Link>
                 ) : ( <Link to="/sign-up" id="enter-button">войти</Link> )}
             </nav>
