@@ -61,7 +61,9 @@ export const UserPage = () => {
             }
         };
 
-        fetchUserData();
+        (async () => {
+            await fetchUserData();
+        })();
     }, [userId]);
 
     if (!user) return <div>Не найдено</div>;

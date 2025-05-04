@@ -1,9 +1,9 @@
-import {ApiUserResponse} from "../entities/ApiUserResponse.ts";
+import {User} from "../entities/User.ts";
 import {axiosInstance} from "../app/axiosInstance.ts";
 
 const token = localStorage.getItem("token");
 
-export async function fetchAuthUserData(): Promise<ApiUserResponse> {
+export async function fetchAuthUserData(): Promise<User> {
     try {
         const response = await axiosInstance.get(`/User/me`, {
             headers: {

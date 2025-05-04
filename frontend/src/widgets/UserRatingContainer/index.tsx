@@ -49,7 +49,10 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                 setUser(null);
             }
         };
-        loadUser();
+
+        (async () => {
+            await loadUser();
+        })();
     }, [releaseId]);
 
     const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {

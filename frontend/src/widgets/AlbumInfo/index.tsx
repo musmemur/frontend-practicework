@@ -2,6 +2,7 @@ import "./albumInfo.css";
 import {Link} from "react-router";
 import React from "react";
 import {RatingModal} from "../../entities/RatingModal.ts";
+import {calculateAverageReleaseRating} from "../../features/calculateAverageReleaseRating.ts";
 
 //<section className={cn(styles.container, styles.dssd, { [styles.dsds]: flag })}>
 
@@ -11,12 +12,6 @@ type AlbumInfoProps = {
     imageUrl?: string;
     ratings: RatingModal[];
 };
-
-export function calculateAverageReleaseRating(ratings: RatingModal[]) {
-    let sum = 0;
-    ratings.forEach(rating => sum += rating.rating);
-    return sum;
-}
 
 export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl, ratings}) => {
     return (
@@ -28,12 +23,12 @@ export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl, ra
             />
             <div id="description-info">
                 <div>
-                    <Link to={`/search?search=${artist}`}>
-                        {artist}
-                    </Link>
                     <div className="release-title-container">
                         <span className="album-title">{title}</span>
                     </div>
+                    <Link to={`/search?search=${artist}`}>
+                        {artist}
+                    </Link>
                 </div>
                 {ratings.length > 0 && (
                     <div id="album-score-container">

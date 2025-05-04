@@ -1,9 +1,10 @@
+import "./albumPage.css";
 import {Header} from "../../widgets/Header";
 import {AlbumInfo} from "../../widgets/AlbumInfo";
 import {UserRatingContainer} from "../../widgets/UserRatingContainer";
 import {UserReviews} from "../../widgets/UserReviews";
-import {useEffect, useState} from "react";
-import {useLocation, useNavigate, useParams} from "react-router";
+import {Suspense, useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router";
 import {fetchReleaseDataById} from "../../processes/fetchReleaseDataById.ts";
 import {RatingModal} from "../../entities/RatingModal.ts";
 import {ReviewModal} from "../../entities/ReviewModal.ts";
@@ -16,18 +17,10 @@ export const AlbumPage = () => {
     const [reviews, setReviews] = useState<ReviewModal[] | []>([]);
 
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    const location = useLocation();
     const navigate = useNavigate();
     const { releaseId } = useParams<{ releaseId: string }>();
 
     useEffect(() => {
-        if (location.state?.fromSearch !== true) {
-            navigate('/search', { replace: true });
-            return;
-        }
-
         const fetchFullReleaseData = async () => {
             try {
                 setLoading(true);
@@ -39,25 +32,35 @@ export const AlbumPage = () => {
                 setReviews(response.reviews);
             } catch (err) {
                 console.error(err);
-                setError("Failed to load album data");
                 navigate('/not-found');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchFullReleaseData();
-    }, [releaseId, location.state, navigate]);
+        (async () => {
+            await fetchFullReleaseData();
+        })();
+    }, [releaseId, navigate]);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) {
+        return (
+            <div className="loading-screen">
+                <Header />
+                <div className="loading-spinner"></div>
+                <p>Загружаем альбом...</p>
+            </div>
+        );
+    }
 
-    return(
+    return (
         <div>
             <Header />
-            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} ratings={ratings}  />
-            {releaseId && <UserRatingContainer releaseId={releaseId} />}
-            <UserReviews reviews={reviews} />
+            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} ratings={ratings} />
+            <Suspense fallback={<div>Загрузка отзывов...</div>}>
+                {releaseId && <UserRatingContainer releaseId={releaseId} />}
+                <UserReviews reviews={reviews} />
+            </Suspense>
         </div>
-    )
+    );
 }

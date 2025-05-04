@@ -1,12 +1,12 @@
-import {LandingPage} from "../pages/LandingPage/LandingPage.tsx";
+import {LandingPage} from "../pages/LandingPage";
 import {Route, Routes} from "react-router";
-import {AlbumPage} from "../pages/AlbumPage/AlbumPage.tsx";
-import {UserPage} from "../pages/UserPage/UserPage.tsx";
-import {SearchPage} from "../pages/SearchPage/SearchPage.tsx";
+import {AlbumPage} from "../pages/AlbumPage";
+import {UserPage} from "../pages/UserPage";
+import {SearchPage} from "../pages/SearchPage";
 import './styles/index.css';
-import {SignUpPage} from "../pages/SignUpPage/SignUpPage.tsx";
-import {RegisterPage} from "../pages/RegisterPage/RegisterPage.tsx";
-import {LoginPage} from "../pages/LoginPage/LoginPage.tsx";
+import {SignUpPage} from "../pages/SignUpPage";
+import {RegisterPage} from "../pages/RegisterPage";
+import {LoginPage} from "../pages/LoginPage";
 
 export default function App() {
   return (

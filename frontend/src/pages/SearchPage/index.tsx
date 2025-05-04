@@ -19,7 +19,10 @@ export const SearchPage = () => {
             setAlbums(response.data.albums);
         };
 
-        fetchData();
+        (async () => {
+            await fetchData();
+        })();
+
     }, [searchValue]);
 
     return(

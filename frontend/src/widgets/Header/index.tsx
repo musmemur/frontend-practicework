@@ -21,7 +21,10 @@ export const Header = () => {
                 setAuthUser(null);
             }
         };
-        loadUser();
+
+        (async () => {
+            await loadUser();
+        })();
     }, []);
 
     return (

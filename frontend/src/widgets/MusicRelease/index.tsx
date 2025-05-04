@@ -46,7 +46,10 @@ export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image,
                 console.error(e);
             }
         };
-        loadRelease();
+
+        (async () => {
+            await loadRelease();
+        })();
     };
 
     return (

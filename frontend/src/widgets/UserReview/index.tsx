@@ -1,9 +1,7 @@
 import './userReview.css';
 import {Link, useParams} from "react-router";
-
-import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import React, {useEffect, useState} from "react";
-import {ApiUserResponse} from "../../entities/ApiUserResponse.ts";
+import {User} from "../../entities/User.ts";
 import {fetchUserData} from "../../processes/fetchUserData.ts";
 import {fetchUserRating} from "../../processes/fetchUserRating.ts";
 import {ReviewModal} from "../../entities/ReviewModal.ts";
@@ -16,7 +14,7 @@ export type UserReviewProps = {
 export const UserReview: React.FC<UserReviewProps> = ({review}) => {
     const { releaseId } = useParams<{ releaseId: string }>();
 
-    const [user, setUser] = useState<ApiUserResponse | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [ratingReview, setRating] = useState<number | null>(null);
 
     useEffect(() => {
@@ -29,20 +27,16 @@ export const UserReview: React.FC<UserReviewProps> = ({review}) => {
                 .then(setRating)
                 .catch(() => setRating(null));
         }
-    }, [review.userId]);
+    }, [releaseId, review.userId]);
 
     if (!user) return <div>Не найдено</div>;
     
 
     return (
         <div className="user-review-info">
-            <div className="profile-picture-container user-rating-profile-picture-container">
-                <img src={user.userPhoto || userPhotoPlaceholder} className="photo-user-placeholder"
-                     alt="плейсхолдер аватарки пользователя"/>
-            </div>
             <div className="user-review-info-text">
                 <div className="user-review-info-text-top">
-                    <Link to="/user" className="user-review-nickname">
+                    <Link to={`/user/${user.userId}`} className="user-review-nickname">
                         {user.username}
                     </Link>
                     {ratingReview && (

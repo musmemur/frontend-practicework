@@ -8,17 +8,17 @@ export const LandingPage = () => {
     return(
         <div>
             <Header/>
-            <main id="landing-main">
-                <div id="landing-topic">
+            <main className="landing-main">
+                <div className="landing-topic">
                     <p>ОТКРОЙТЕ<br />ДЛЯ СЕБЯ <strong><br />МИР МУЗЫКИ</strong></p>
-                    <img src={logo} id="landing-logo" alt="Логотип"/>
+                    <img src={logo} className="landing-logo" alt="Логотип"/>
                 </div>
-                <ul id="landing-list">
+                <ul className="landing-list">
                     <li>откройте новые звуки</li>
                     <li>поделитесь своим мнением</li>
                     <li>сохраните любимое</li>
                 </ul>
-                <Link to="/sign-up" id="signUp-button">зарегистрироваться</Link>
+                <Link to="/sign-up" className="signUp-button">зарегистрироваться</Link>
             </main>
         </div>
     )
