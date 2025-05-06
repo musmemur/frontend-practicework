@@ -1,4 +1,4 @@
-import './signUpPage.css';
+import './index.scss';
 import {FC} from "react";
 import {useNavigate} from "react-router";
 

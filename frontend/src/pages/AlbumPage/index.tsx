@@ -1,4 +1,4 @@
-import "./albumPage.css";
+import "./index.scss";
 import {Header} from "../../widgets/Header";
 import {AlbumInfo} from "../../widgets/AlbumInfo";
 import {UserRatingContainer} from "../../widgets/UserRatingContainer";

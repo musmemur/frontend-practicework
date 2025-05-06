@@ -1,4 +1,4 @@
-import "./userRatingContainer.css";
+import "./index.scss";
 import {Link} from "react-router";
 
 import likeButtonImg from "../../shared/assets/like.svg";

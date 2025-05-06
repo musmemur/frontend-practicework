@@ -1,4 +1,4 @@
-import "./header.css";
+import "./index.scss";
 import {Link, useNavigate} from "react-router";
 import {useEffect, useState} from 'react';
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
@@ -9,7 +9,6 @@ import logo from '../../shared/assets/logo.svg';
 export const Header = () => {
     const navigate = useNavigate();
     const [authUser, setAuthUser] = useState<User | null>(null);
-//коммент
     useEffect(() => {
         const loadUser = async () => {
             try {

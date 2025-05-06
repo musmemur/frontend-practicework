@@ -1,3 +1,7 @@
+.search-section {
+    height: 100vh;
+}
+
 #select-search, #search-result {
     background-color: #D6E2D6;
     display: flex;
@@ -15,7 +19,7 @@
     font-weight: bold;
 }
 
-#search-section .show-more-button {
+.search-section .show-more-button {
     align-self: center;
     align-content: center;
 }

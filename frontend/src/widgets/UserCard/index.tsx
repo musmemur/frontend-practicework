@@ -1,4 +1,4 @@
-import './userCard.css';
+import './index.scss';
 import React from "react";
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import {ApiFullUserResponse} from "../../entities/ApiFullUserResponse.ts";

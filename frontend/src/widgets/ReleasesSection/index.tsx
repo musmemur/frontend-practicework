@@ -1,4 +1,4 @@
-import './releasesSection.css';
+import './index.scss';
 import {MusicRelease} from "../MusicRelease";
 import React, {useState} from "react";
 import {Release} from "../../entities/Release.ts";

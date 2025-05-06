@@ -1,5 +1,5 @@
 import {UserReview} from "../UserReview";
-import "./userReviews.css";
+import "./index.scss";
 import {ReviewModal} from "../../entities/ReviewModal.ts";
 
 export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {

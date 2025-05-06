@@ -1,4 +1,4 @@
-import './musicRelease.css';
+import './index.scss';
 import {Link, useNavigate} from "react-router";
 import React from "react";
 import {fetchReleaseData} from "../../processes/fetchReleaseData.ts";
@@ -39,9 +39,7 @@ export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image,
                     releasePhoto: imageUrl,
                 }
                 const fetchedRelease = await fetchReleaseData(release);
-                navigate(`/album/${encodeURIComponent(fetchedRelease.releaseId)}`, {
-                    state: { fromSearch: true }
-                });
+                navigate(`/album/${encodeURIComponent(fetchedRelease.releaseId)}`);
             } catch(e) {
                 console.error(e);
             }
@@ -55,7 +53,6 @@ export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image,
     return (
         <Link
             to="#"
-            state={{fromSearch: true}}
             onClick={handleClick}
             className="music-release"
         >

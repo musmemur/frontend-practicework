@@ -1,11 +1,13 @@
-import React from "react";
-import "./releaseRating.css";
+import React, {useId} from "react";
+import "./index.scss";
 
 type ReleaseRatingProps = {
     rating: number;
 }
 
 export const ReleaseRating: React.FC<ReleaseRatingProps> = ({rating}) => {
+    const uniqueId = useId();
+
     return (
         <div className="release-rating">
             {[5, 4, 3, 2, 1].map((value) => (
@@ -15,7 +17,7 @@ export const ReleaseRating: React.FC<ReleaseRatingProps> = ({rating}) => {
                         <input
                             type="radio"
                             value={value}
-                            name={`rating-${value}`}
+                            name={`rating-${uniqueId}`}
                             className={`rating-${value}`}
                             checked={rating === value}
                             disabled

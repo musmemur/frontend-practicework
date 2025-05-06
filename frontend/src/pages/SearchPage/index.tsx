@@ -1,6 +1,6 @@
 import {Header} from "../../widgets/Header";
 import {ReleasesSection} from "../../widgets/ReleasesSection";
-import './searchPage.css';
+import './index.scss';
 import {useLocation} from "react-router";
 import {useEffect, useState} from "react";
 import {axiosInstance} from "../../app/axiosInstance.ts";
@@ -26,7 +26,7 @@ export const SearchPage = () => {
     }, [searchValue]);
 
     return(
-        <div id="search-section">
+        <div className="search-section">
             <Header/>
             <div id="search-result">
                 Результаты по запросу "{searchValue}"

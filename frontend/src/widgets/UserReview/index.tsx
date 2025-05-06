@@ -1,4 +1,4 @@
-import './userReview.css';
+import './index.scss';
 import {Link, useParams} from "react-router";
 import React, {useEffect, useState} from "react";
 import {User} from "../../entities/User.ts";
