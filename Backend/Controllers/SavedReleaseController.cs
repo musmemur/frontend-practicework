@@ -32,7 +32,7 @@ public class SavedReleaseController(AppDbContext dbContext, UserService userServ
             return Conflict("Релиз уже сохранён пользователем.");
         }
     
-        var savedRelease = new SavedRelease(userId.Value, release.Id);
+        var savedRelease = new SavedRelease(userId.Value, release!.Id);
     
         dbContext.SavedReleases.Add(savedRelease);
         await dbContext.SaveChangesAsync(ct);
@@ -54,7 +54,7 @@ public class SavedReleaseController(AppDbContext dbContext, UserService userServ
             return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var savedRelease = await dbContext.SavedReleases
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+            .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
 
         if (savedRelease == null)
         {

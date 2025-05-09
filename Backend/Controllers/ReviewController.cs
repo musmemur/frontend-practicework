@@ -1,6 +1,5 @@
 ﻿using Backend.Contracts;
 using Backend.Entities;
-using Backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +20,9 @@ public class ReviewController(AppDbContext dbContext) : ControllerBase
             .FirstOrDefaultAsync(ct);
     
         var userId = request.UserId;
-        if (userId == null)
-            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var existing = await dbContext.Reviews
-            .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);
+            .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
     
         if (existing != null)
         {
@@ -34,8 +31,11 @@ public class ReviewController(AppDbContext dbContext) : ControllerBase
         }
         else
         {
-            var review = new Review(userId, release.Id, request.ReviewText);
-            dbContext.Reviews.Add(review);
+            if (release != null)
+            {
+                var review = new Review(userId, release.Id, request.ReviewText);
+                dbContext.Reviews.Add(review);
+            }
         }
     
         await dbContext.SaveChangesAsync(ct);
