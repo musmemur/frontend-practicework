@@ -10,7 +10,7 @@ interface ReleaseSectionProps {
     releases: Release[] | ReleaseWithRating[] | SavedRelease[];
 }
 
-export const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}) => {
+const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}) => {
     const [showAll, setShowAll] = useState(false);
 
     const releasesToShow = showAll ? releases : releases.slice(0, 4);
@@ -59,3 +59,5 @@ export const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, re
         </div>
     )
 }
+
+export default ReleasesSection;

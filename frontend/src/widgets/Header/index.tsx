@@ -6,7 +6,7 @@ import {User} from "../../entities/User.ts";
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import logo from '../../shared/assets/logo.svg';
 
-export const Header = () => {
+const Header = () => {
     const navigate = useNavigate();
     const [authUser, setAuthUser] = useState<User | null>(null);
     useEffect(() => {
@@ -49,3 +49,5 @@ export const Header = () => {
         </header>
     );
 };
+
+export default Header;

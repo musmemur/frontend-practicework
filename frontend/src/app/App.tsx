@@ -1,9 +1,10 @@
+import './styles/index.scss';
+import 'react-loading-skeleton/dist/skeleton.css'
 import {LandingPage} from "../pages/LandingPage";
 import {Route, Routes} from "react-router";
 import {AlbumPage} from "../pages/AlbumPage";
 import {UserPage} from "../pages/UserPage";
 import {SearchPage} from "../pages/SearchPage";
-import './styles/index.scss';
 import {SignUpPage} from "../pages/SignUpPage";
 import {RegisterPage} from "../pages/RegisterPage";
 import {LoginPage} from "../pages/LoginPage";

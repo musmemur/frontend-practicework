@@ -1,4 +1,4 @@
-import {Header} from "../../widgets/Header";
+import Header from "../../widgets/Header";
 import "./index.scss";
 import {Link} from "react-router";
 

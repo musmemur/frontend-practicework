@@ -7,7 +7,7 @@ type UserCardProps = {
     user: ApiFullUserResponse;
 }
 
-export const UserCard: React.FC<UserCardProps> = ({user}) => {
+const UserCard: React.FC<UserCardProps> = ({user}) => {
     return(
         <div className="profile-card">
             <div className="profile-picture-container user-page-profile-picture-container">
@@ -20,3 +20,5 @@ export const UserCard: React.FC<UserCardProps> = ({user}) => {
         </div>
     )
 }
+
+export default UserCard;

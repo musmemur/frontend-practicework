@@ -1,5 +1,5 @@
-import {Header} from "../../widgets/Header";
-import {ReleasesSection} from "../../widgets/ReleasesSection";
+import Header from "../../widgets/Header";
+import ReleasesSection from "../../widgets/ReleasesSection";
 import './index.scss';
 import {useLocation} from "react-router";
 import {useEffect, useState} from "react";
