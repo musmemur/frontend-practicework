@@ -26,12 +26,12 @@ export const SearchPage = () => {
     }, [searchValue]);
 
     return(
-        <div className="search-section">
+        <>
             <Header/>
-            <div id="search-result">
+            <div className="search-result">
                 Результаты по запросу "{searchValue}"
             </div>
             <ReleasesSection sectionTitle="Альбомы" releases={albums}/>
-        </div>
+        </>
     )
 }

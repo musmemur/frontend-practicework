@@ -4,26 +4,26 @@ import React from "react";
 import {RatingModal} from "../../entities/RatingModal.ts";
 import {calculateAverageReleaseRating} from "../../features/calculateAverageReleaseRating.ts";
 
-//<section className={cn(styles.container, styles.dssd, { [styles.dsds]: flag })}>
-
 type AlbumInfoProps = {
     title: string;
     artist: string;
-    imageUrl?: string;
+    imageUrl: string;
     ratings: RatingModal[];
 };
 
 export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl, ratings}) => {
     return (
-        <section id="album-info">
-            <img
-                src={imageUrl || "/fallback.jpg"}
-                alt={`Обложка ${title}`}
-                id="album-picture"
-            />
-            <div id="description-info">
+        <section className="album-info">
+            <picture>
+                <img
+                    src={imageUrl}
+                    alt={`Обложка ${title}`}
+                    className="album-picture"
+                />
+            </picture>
+            <div className="description-info">
                 <div>
-                    <div className="release-title-container">
+                    <div>
                         <span className="album-title">{title}</span>
                     </div>
                     <Link to={`/search?search=${artist}`}>
@@ -31,9 +31,9 @@ export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl, ra
                     </Link>
                 </div>
                 {ratings.length > 0 && (
-                    <div id="album-score-container">
+                    <div>
                         <span>Общая оценка</span>
-                        <div id="score">
+                        <div>
                             <span>★</span>
                             <span>{calculateAverageReleaseRating(ratings)}</span>
                         </div>

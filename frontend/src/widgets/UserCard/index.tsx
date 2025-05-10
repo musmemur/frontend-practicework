@@ -11,7 +11,7 @@ const UserCard: React.FC<UserCardProps> = ({user}) => {
     return(
         <div className="profile-card">
             <div className="profile-picture-container user-page-profile-picture-container">
-                <img src={user.userPhoto || userPhotoPlaceholder} id="user-page-picture"
+                <img src={user.userPhoto || userPhotoPlaceholder} className="user-page-picture"
                      alt="плейсхолдер аватарки пользователя"/>
             </div>
             <div className="profile-name">

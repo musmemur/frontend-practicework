@@ -5,11 +5,6 @@ header {
     background-color: #F0F0F0;
 }
 
-a#logo {
-    color: black;
-    text-decoration: none;
-}
-
 header::before {
     content: "";
     position: sticky;
@@ -21,7 +16,7 @@ header::before {
     background-color: #F0F0F0;
 }
 
-#header-nav {
+.header-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -30,22 +25,22 @@ header::before {
     font-weight: bold;
 }
 
-#header-logo {
+.header-logo {
     width: 4rem;
     height: 4rem;
 }
 
-#logo, #search-form, #enter-button {
+.logo, .search-form, .enter-button {
     display: flex;
     align-items: center;
     text-align: center;
 }
 
-#logo span {
+.logo span, .search-input {
     padding-left: 1rem;
 }
 
-#search-input, #submit-input, #enter-button {
+.search-input, .submit-input, .enter-button {
     background-color: var(--button-primary-color);
     border: none;
     font-size: 1.5rem;
@@ -54,15 +49,11 @@ header::before {
     height: 2rem;
 }
 
-#search-form {
+.search-form {
     position: relative;
 }
 
-#search-input {
-    padding-left: 1rem;
-}
-
-#submit-input {
+.submit-input {
     padding: 1rem 2rem;
     background-image: url('../../shared/assets/loop.svg');
     background-size: 1rem;
@@ -74,25 +65,29 @@ header::before {
     border: solid black 1px !important;
 }
 
-#search-input::placeholder {
+.submit-input:hover {
+    background-color: #baf5ba;
+}
+
+.search-input::placeholder {
     color: black;
     font-weight: normal;
 }
 
-#enter-button {
+.enter-button {
     width: 10rem;
     display: block;
     align-self: center;
 }
 
-#user-header-info {
+.user-header-info {
     display: flex;
     align-items: center;
     background-color: rgba(69, 249, 24, 0.2);
     padding: 1rem;
 }
 
-#user-header-info img {
+.user-header-info img {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;

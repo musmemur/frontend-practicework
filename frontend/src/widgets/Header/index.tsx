@@ -29,23 +29,23 @@ const Header = () => {
 
     return (
         <header>
-            <nav id="header-nav">
-                <Link to="/" id="logo">
-                    <img src={logo} id="header-logo" alt="Логотип" />
+            <nav className="header-nav">
+                <Link to="/" className="logo">
+                    <img src={logo} className="header-logo" alt="Логотип" />
                     <span>SOUNDTRACKER</span>
                 </Link>
-                <form id="search-form">
-                    <input type="search" name="search" id="search-input" placeholder="поиск" />
+                <form className="search-form">
+                    <input type="search" name="search" className="search-input" placeholder="поиск" />
                     <input type="submit" value="" onClick={() => navigate("/search?search={value}")}
-                           id="submit-input" className="button" />
+                           className="button submit-input" />
                 </form>
 
                 {authUser ? (
-                    <Link to={`/user/${encodeURIComponent(authUser.userId)}`} id="user-header-info">
+                    <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className="user-header-info">
                         <img src={authUser.userPhoto} alt={`${authUser.username} avatar`}/>
                         <span>{authUser.username}</span>
                     </Link>
-                ) : ( <Link to="/sign-up" id="enter-button">войти</Link> )}
+                ) : ( <Link to="/sign-up" className="enter-button">войти</Link> )}
             </nav>
         </header>
     );

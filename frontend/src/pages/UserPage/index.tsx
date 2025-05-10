@@ -76,30 +76,30 @@ export const UserPage = () => {
 
     if (isLoading || !user) {
         return (
-            <div style={{ padding: '20px' }}>
+            <>
                 <HeaderSkeleton />
                 <UserCardSkeleton />
                 <ReleasesSectionSkeleton />
                 <ReleasesSectionSkeleton />
-            </div>
+            </>
         );
     }
 
     return(
-        <div>
+        <>
             <Suspense fallback={
-                <div style={{ padding: '20px' }}>
+                <>
                     <HeaderSkeleton />
                     <UserCardSkeleton />
                     <ReleasesSectionSkeleton />
                     <ReleasesSectionSkeleton />
-                </div>
+                </>
             }>
                 <Header />
                 <UserCard user={user} />
                 <ReleasesSection sectionTitle="Понравившиеся релизы" releases={savedReleases}/>
                 <ReleasesSection sectionTitle="Недавние оценки" releases={ratedReleases}/>
             </Suspense>
-        </div>
+        </>
     )
 }

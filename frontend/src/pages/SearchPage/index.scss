@@ -1,33 +1,9 @@
-.search-section {
-    height: 100vh;
-}
-
-#select-search, #search-result {
+.search-result {
     background-color: #D6E2D6;
     display: flex;
     padding: 1rem;
     font-size: 1.5rem;
     margin: 0 1rem;
     gap: 3rem;
-}
-
-#select-search {
-    border-bottom: 1px solid black;
-}
-
-.selected, #search-result {
     font-weight: bold;
-}
-
-.search-section .show-more-button {
-    align-self: center;
-    align-content: center;
-}
-
-.search-artist {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    border-top: 1px solid black;
 }

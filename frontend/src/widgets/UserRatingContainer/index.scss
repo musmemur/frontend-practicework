@@ -1,44 +1,25 @@
-#user-rating-container {
+.user-rating-container {
     background-color: #DDECDD;
     margin: 0 1rem;
     font-size: 1.5rem;
-    padding: 2rem;
-    border: 1px solid black;
+    padding: 1rem;
+    border: 1px solid rgba(62, 80, 114, 0.4);
 }
 
-#user-info-top {
+.user-info-top {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-#user-info {
+.user-info {
     display: flex;
     gap: 2rem;
     padding-bottom: 1rem;
 }
 
-#user-info-text #nickname {
+.nickname {
     font-weight: bold;
-}
-
-#search-input, #submit-input, #enter-button {
-    background-color: var(--button-primary-color);
-    border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 1rem;
-    height: 2rem;
-}
-
-#like-button {
-    background-color: #DDECDD;
-    border: none;
-}
-
-#user-like {
-    width: 5rem;
-    height: 5rem;
 }
 
 .photo-user-placeholder {
@@ -66,17 +47,26 @@
     margin-top: 0.5rem;
 }
 
+#like-button {
+    background-color: #DDECDD;
+    border: none;
+}
 
-#user-album-review-form {
+#user-like {
+    width: 5rem;
+    height: 5rem;
+}
+
+.user-release-review-form {
     display: flex;
     flex-direction: column;
 }
 
 #add-review-input {
     background-color: #CFE0C4;
-    width: 100%;
+    max-width: 100%;
     height: 10rem;
-    border: 1px solid black;
+    border: 1px solid rgba(62, 80, 114, 0.4);
     padding: 1rem 0 0 1rem;
     font-size: 2rem;
 }
@@ -90,13 +80,9 @@
     flex-direction: row;
 }
 
-.review-input-container button {
-    align-self: center;
-}
-
-#save-user-changes-button {
+.save-user-changes-button {
     background-color: var(--button-primary-color);
-    border: 1px solid black;
+    border: 1px solid rgba(62, 80, 114, 0.4);
     margin: 1rem;
     font-size: 1.5rem;
     font-weight: bold;

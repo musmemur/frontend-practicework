@@ -47,7 +47,7 @@ export const RegisterPage = () => {
     };
 
     return (
-        <div className="modal" id="register-modal">
+        <div className="modal">
             <div className="modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-content-top">
                     <h2>Зарегистрироваться</h2>

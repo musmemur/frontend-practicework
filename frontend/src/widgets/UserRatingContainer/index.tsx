@@ -105,17 +105,17 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     };
 
     return(
-        <div className="user-rating-main-container">
+        <>
             {user && (
-                <div id="user-rating-container">
-                    <div id="user-info-top">
-                        <div id="user-info">
+                <div className="user-rating-container">
+                    <div className="user-info-top">
+                        <div className="user-info">
                             <div className="profile-picture-container user-rating-profile-picture-container">
                                 <img src={user.userPhoto} className="photo-user-placeholder"
-                                     alt="плейсхолдер аватарки пользователя"/>
+                                     alt="аватарка пользователя"/>
                             </div>
-                            <div id="user-info-text">
-                                <Link to={`/user/${encodeURIComponent(user.userId)}`} id="nickname">
+                            <div>
+                                <Link to={`/user/${encodeURIComponent(user.userId)}`} className="nickname">
                                     {user?.username}
                                 </Link>
                                 <div className="rating-container">
@@ -158,7 +158,7 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                             )}
                         </div>
                     </div>
-                    <form id="user-album-review-form" onSubmit={handleClickSaveReviewButton}>
+                    <form className="user-release-review-form" onSubmit={handleClickSaveReviewButton}>
                             <textarea id="add-review-input"
                                       placeholder="Добавить рецензию"
                                       value={review}
@@ -168,11 +168,11 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                             {review && (
                                 <button className="delete-review-button" onClick={handleClickDeleteReview}>удалить рецензию</button>
                             )}
-                            <button id="save-user-changes-button" type="submit">сохранить</button>
+                            <button className="save-user-changes-button" type="submit">сохранить</button>
                         </div>
                     </form>
                 </div>
             )}
-        </div>
+        </>
     )
 }

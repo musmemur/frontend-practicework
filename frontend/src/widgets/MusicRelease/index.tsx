@@ -4,6 +4,7 @@ import React from "react";
 import {fetchReleaseData} from "../../processes/fetchReleaseData.ts";
 import {ApiReleaseRequest} from "../../entities/ApiReleaseRequest.ts";
 import {ReleaseRating} from "../../shared/ui/ReleaseRating";
+import {albumImgPlaceholder} from "../../shared/assets/AlbumImgPlaceholder.tsx";
 
 type MusicReleaseProps = {
     name: string;
@@ -16,8 +17,6 @@ export type ApiImage = {
     ['#text']: string;
     size: string;
 }
-
-const albumImgPlaceholder = "https://lastfm.freetls.fastly.net/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg";
 
 export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image, rating }) => {
     const navigate = useNavigate();
@@ -51,14 +50,10 @@ export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image,
     };
 
     return (
-        <Link
-            to="#"
-            onClick={handleClick}
-            className="music-release"
-        >
+        <Link to="#" onClick={handleClick} className="music-release">
             <img src={imageUrl} alt={name} className="release-picture"/>
             <div className="release-title">{name}</div>
-            <div className="release-artist">{artist}</div>
+            <div>{artist}</div>
             {rating && (
                 <ReleaseRating rating={rating} />
             )}

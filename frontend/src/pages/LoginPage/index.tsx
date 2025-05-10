@@ -34,7 +34,7 @@ export const LoginPage: FC = () => {
 
     return(
         <div>
-            <div className="modal" id="login-modal">
+            <div className="modal">
                 <div className="modal-content" onClick={e => e.stopPropagation()}>
                     <div className="modal-content-top">
                         <h2>Войти</h2>

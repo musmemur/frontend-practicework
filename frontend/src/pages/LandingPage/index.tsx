@@ -1,12 +1,11 @@
 import Header from "../../widgets/Header";
 import "./index.scss";
 import {Link} from "react-router";
-
 import logo from '../../shared/assets/logo.svg';
 
 export const LandingPage = () => {
     return(
-        <div>
+        <>
             <Header/>
             <main className="landing-main">
                 <div className="landing-topic">
@@ -20,6 +19,6 @@ export const LandingPage = () => {
                 </ul>
                 <Link to="/sign-up" className="signUp-button">зарегистрироваться</Link>
             </main>
-        </div>
+        </>
     )
 }

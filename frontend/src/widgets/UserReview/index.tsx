@@ -29,21 +29,20 @@ export const UserReview: React.FC<UserReviewProps> = ({review}) => {
         }
     }, [releaseId, review.userId]);
 
-    if (!user) return <div>Не найдено</div>;
-    
+    if (!user) return <div>Загрузка...</div>;
 
     return (
         <div className="user-review-info">
             <div className="user-review-info-text">
-                <div className="user-review-info-text-top">
-                    <Link to={`/user/${user.userId}`} className="user-review-nickname">
+                <div>
+                    <Link to={`/user/${user.userId}`}>
                         {user.username}
                     </Link>
                     {ratingReview && (
                         <ReleaseRating rating={ratingReview} />
                     )}
                 </div>
-                <div className="user-review-review">
+                <div>
                     {review.reviewText}
                 </div>
             </div>

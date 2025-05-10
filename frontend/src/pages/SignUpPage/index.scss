@@ -1,4 +1,4 @@
-#sign-up-page {
+.sign-up-page {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -25,7 +25,7 @@
     font-size: 2rem;
 }
 
-#sign-up-main-container {
+.sign-up-main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +33,7 @@
     gap: 1em;
 }
 
-#sign-up-main-container button {
+.sign-up-main-container button {
     width: 100%;
     font-size: 1.2em;
     padding: 10px;
@@ -43,7 +43,7 @@
     transition: background-color 0.3s;
 }
 
-#sign-up-main-container button:hover {
+.sign-up-main-container button:hover {
     background-color: #baf5ba;
 }
 
@@ -97,8 +97,8 @@
 }
 
 .modal-content input {
-    width: 100%;
-    padding: 0.5rem 0;
+    max-width: 100%;
+    padding: 0.5rem 0.5rem;
     border: 1px solid #ccc;
     font-size: 1rem;
     border-radius: 0.5rem;
@@ -107,6 +107,7 @@
 .signUp-form button {
     background-color: var(--button-primary-color);
     border: none;
+    border-radius: 0.5rem;
     padding: 10px;
     font-size: 1rem;
     transition: background-color 0.3s;
@@ -116,27 +117,10 @@
     background-color: #baf5ba;
 }
 
-#loginSubmitButton, #registerSubmitButton {
+.loginSubmitButton, .registerSubmitButton {
     height: auto;
     width: 100%;
     border-radius: 5px;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.suggestions div {
-    padding: 10px;
-    cursor: pointer;
-}
-.suggestions div:hover {
-    background-color: #f0f0f0;
 }
 
 .signUp-form {
