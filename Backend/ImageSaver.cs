@@ -8,9 +8,9 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-public class ImageSaver
+public static class ImageSaver
 {
-    public async Task<string> SaveImageToS3(byte[] imageBytes, string mimeType, string bucketName)
+    public static async Task<string> SaveImageToS3(byte[] imageBytes, string mimeType, string bucketName)
     {
         var endpoint = "127.0.0.1:9000";
         var accessKey = "admin";

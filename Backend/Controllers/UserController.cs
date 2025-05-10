@@ -22,11 +22,30 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
         {
             return BadRequest("Пользователь с таким логином уже существует");
         }
+
+        if (request.UserPhoto?.Data is not null)
+        {
+            try
+            {
+                var base64Data = request.UserPhoto.Data.Split(',')[1]; // Обрезаем префикс
+                var mimeType = request.UserPhoto.Data.Split(';')[0].Split(':')[1]; // Получаем MIME тип
+
+                var imageBytes = Convert.FromBase64String(base64Data);
+
+                var photoPath = await ImageSaver.SaveImageToS3(imageBytes, mimeType, "soundtrackerphotos");
+                request.UserPhoto.FileName = photoPath;
+                request.UserPhoto.Data = null;
+            }
+            catch (FormatException ex)
+            {
+                return BadRequest($"Некорректные base64 данные. Ошибка: {ex.Message}");
+            }
+        }
         
         var user = new User(
             request.Username, 
             PasswordHasher.Hash(request.Password), 
-            request.UserPhoto);
+            request.UserPhoto?.FileName);
 
         dbContext.Users.Add(user);
         await dbContext.SaveChangesAsync(ct); 
