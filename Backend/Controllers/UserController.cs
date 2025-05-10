@@ -27,8 +27,8 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
         {
             try
             {
-                var base64Data = request.UserPhoto.Data.Split(',')[1]; // Обрезаем префикс
-                var mimeType = request.UserPhoto.Data.Split(';')[0].Split(':')[1]; // Получаем MIME тип
+                var base64Data = request.UserPhoto.Data.Split(',')[1];
+                var mimeType = request.UserPhoto.Data.Split(';')[0].Split(':')[1];
 
                 var imageBytes = Convert.FromBase64String(base64Data);
 
@@ -64,9 +64,14 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
             .AsNoTracking()
             .FirstOrDefaultAsync(ct);
         
-        if (userInfo == null || !PasswordHasher.Validate(userInfo.Password, request.Password))
+        if (userInfo == null)
         {
-            return Unauthorized("Неверный логин или пароль");
+            return Unauthorized("Пользователя с таким логином не существует");
+        }
+
+        if (!PasswordHasher.Validate(userInfo.Password, request.Password))
+        {
+            return Unauthorized("Неверный пароль");
         }
 
         var token = await jwtService.GenerateJwtTokenAsync(userInfo.Id, ct);
