@@ -22,7 +22,7 @@ public class UserController(AppDbContext dbContext, JwtService jwtService) : Con
         {
             return BadRequest("Пользователь с таким логином уже существует");
         }
-
+        
         var user = new User(
             request.Username, 
             PasswordHasher.Hash(request.Password), 
