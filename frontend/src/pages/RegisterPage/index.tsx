@@ -32,7 +32,7 @@ export const RegisterPage = () => {
         const user: UserRegister = {
             username: registerLogin,
             password: registerPassword,
-            userPhoto: userPhoto === null ? null : userPhoto.data,
+            userPhoto: userPhoto,
         };
 
         try {
@@ -40,7 +40,7 @@ export const RegisterPage = () => {
                 headers: { "Content-Type": "application/json" }
             });
             localStorage.setItem("token", response.data.token);
-            window.location.href = `/user/${response.data.userId}`;
+            navigate(`/user/${response.data.userId}`);
         } catch(error) {
             console.error(error);
         }

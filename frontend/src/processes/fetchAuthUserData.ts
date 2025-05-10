@@ -1,9 +1,13 @@
 import {User} from "../entities/User.ts";
 import {axiosInstance} from "../app/axiosInstance.ts";
 
-const token = localStorage.getItem("token");
-
 export async function fetchAuthUserData(): Promise<User> {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        throw new Error("No token found");
+    }
+
     try {
         const response = await axiosInstance.get(`/User/me`, {
             headers: {

@@ -1,5 +1,4 @@
-﻿using Minio;
-using Minio.DataModel.Args;
+﻿using Minio.DataModel.Args;
 
 namespace Backend;
 
@@ -12,14 +11,15 @@ public static class ImageSaver
 {
     public static async Task<string> SaveImageToS3(byte[] imageBytes, string mimeType, string bucketName)
     {
-        var endpoint = "127.0.0.1:9000";
-        var accessKey = "admin";
-        var secretKey = "password";
+        const string endpoint = "127.0.0.1:9000";
+        const string accessKey = "admin";
+        const string secretKey = "password";
 
         var fileExtension = mimeType switch
         {
             "image/png" => ".png",
             "image/jpeg" => ".jpg",
+            "image/gif" => ".gif",
             "image/webp" => ".webp",
             _ => throw new Exception("Unsupported image format")
         };

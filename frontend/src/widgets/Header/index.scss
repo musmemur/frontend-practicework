@@ -88,6 +88,8 @@ header::before {
 #user-header-info {
     display: flex;
     align-items: center;
+    background-color: rgba(69, 249, 24, 0.2);
+    padding: 1rem;
 }
 
 #user-header-info img {

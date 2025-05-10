@@ -13,13 +13,6 @@ const Header = lazy(() => import("../../widgets/Header"));
 const UserCard = lazy(() => import("../../widgets/UserCard"));
 const ReleasesSection = lazy(() => import("../../widgets/ReleasesSection"));
 
-// Скелетон для заголовка
-
-
-// Скелетон для карточки пользователя
-
-// Скелетон для секции релизов
-
 export const UserPage = () => {
     const { userId } = useParams<{ userId?: string }>();
 

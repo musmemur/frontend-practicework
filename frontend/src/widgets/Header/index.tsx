@@ -9,6 +9,7 @@ import logo from '../../shared/assets/logo.svg';
 const Header = () => {
     const navigate = useNavigate();
     const [authUser, setAuthUser] = useState<User | null>(null);
+
     useEffect(() => {
         const loadUser = async () => {
             try {
