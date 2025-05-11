@@ -31,13 +31,25 @@ const Header = () => {
         <header>
             <nav className="header-nav">
                 <Link to="/" className="logo">
-                    <img src={logo} className="header-logo" alt="Логотип" />
+                    <img src={logo} className="header-logo" alt="Логотип"/>
                     <span>SOUNDTRACKER</span>
                 </Link>
-                <form className="search-form">
-                    <input type="search" name="search" className="search-input" placeholder="поиск" />
-                    <input type="submit" value="" onClick={() => navigate("/search?search={value}")}
-                           className="button submit-input" />
+                <form className="search-form" onSubmit={(e) => {
+                    e.preventDefault();
+                    const searchValue = e.currentTarget.search.value;
+                    navigate(`/search?search=${encodeURIComponent(searchValue)}`);
+                }}>
+                    <input
+                        type="search"
+                        name="search"
+                        className="search-input"
+                        placeholder="поиск"
+                    />
+                    <input
+                        type="submit"
+                        value=""
+                        className="submit-input"
+                    />
                 </form>
 
                 {authUser ? (
@@ -45,7 +57,7 @@ const Header = () => {
                         <img src={authUser.userPhoto} alt={`${authUser.username} avatar`}/>
                         <span>{authUser.username}</span>
                     </Link>
-                ) : ( <Link to="/sign-up" className="enter-button">войти</Link> )}
+                ) : (<Link to="/sign-up" className="enter-button">войти</Link>)}
             </nav>
         </header>
     );

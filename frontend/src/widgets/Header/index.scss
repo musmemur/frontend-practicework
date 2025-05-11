@@ -62,11 +62,19 @@ header::before {
     width: 1rem;
     position: absolute;
     left: 17rem;
-    border: solid black 1px !important;
+    border: 1px solid rgba(62, 80, 114, 0.4) !important;
 }
 
 .submit-input:hover {
     background-color: #baf5ba;
+}
+
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover,
+.search-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--button-primary-color) inset !important;
+    background-color: var(--button-primary-color) !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .search-input::placeholder {
