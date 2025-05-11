@@ -1,5 +1,5 @@
 .release-section {
-    background: #D6E2D6;
+    background: var(--main-content-background-color);
     padding: 1rem;
     margin: 0 1rem;
 }
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
-    border-top: 1px solid rgba(62, 80, 114, 0.4);
+    border-top: 1px solid var(--border-color);
     overflow-x: hidden;
     flex-wrap: wrap;
     justify-content: flex-start;

@@ -144,18 +144,10 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                             </div>
                         </div>
                         <div>
-                            {isSaved && (
-                                <button id="like-button" value='1'>
-                                    <img src={likeClickedImg} id="user-like" alt="Лайк"
-                                         onClick={handleClickSaveReleaseButton}/>
-                                </button>
-                            )}
-                            {!isSaved && (
-                                <button id="like-button" value='0'>
-                                    <img src={likeButtonImg} id="user-like" alt="Лайк"
-                                         onClick={handleClickSaveReleaseButton}/>
-                                </button>
-                            )}
+                            <button id="like-button" value={isSaved ? "1" : "0"}>
+                                <img src={isSaved ? likeClickedImg : likeButtonImg} id="user-like" alt="Лайк"
+                                     onClick={handleClickSaveReleaseButton}/>
+                            </button>
                         </div>
                     </div>
                     <form className="user-release-review-form" onSubmit={handleClickSaveReviewButton}>

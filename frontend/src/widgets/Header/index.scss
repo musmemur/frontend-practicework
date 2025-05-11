@@ -2,7 +2,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 2;
-    background-color: #F0F0F0;
+    background-color: var(--header-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 header::before {
@@ -13,7 +14,7 @@ header::before {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-color: #F0F0F0;
+    background-color: var(--header-color);
 }
 
 .header-nav {
@@ -61,12 +62,16 @@ header::before {
     background-repeat: no-repeat;
     width: 1rem;
     position: absolute;
-    left: 17rem;
-    border: 1px solid rgba(62, 80, 114, 0.4) !important;
+    left: 17.1rem;
+    border: 1px solid var(--border-color) !important;
+}
+
+.search-input {
+    border: 1px solid var(--border-color);
 }
 
 .submit-input:hover {
-    background-color: #baf5ba;
+    background-color: #a6f2a6;
 }
 
 .search-input:-webkit-autofill,
@@ -91,7 +96,7 @@ header::before {
 .user-header-info {
     display: flex;
     align-items: center;
-    background-color: rgba(69, 249, 24, 0.2);
+    background-color: var(--secondary-background-color);
     padding: 1rem;
 }
 

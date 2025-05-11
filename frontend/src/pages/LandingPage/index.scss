@@ -10,7 +10,7 @@
 }
 
 .landing-main {
-    background-color: #D6E2D6;
+    background-color: var(--main-content-background-color);
     font-size: 4rem;
     padding: 2rem;
     margin: 1rem;
@@ -28,7 +28,7 @@
 
 .signUp-button {
     background-color: var(--button-primary-color);
-    border: 1px solid black;
+    border: 1px solid var(--border-color);
     border-radius: 1rem;
     font-size: 3rem;
     font-weight: bold;
