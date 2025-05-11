@@ -120,7 +120,7 @@
 .loginSubmitButton, .registerSubmitButton {
     height: auto;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 0.25rem;
 }
 
 .signUp-form {
@@ -129,6 +129,12 @@
     gap: 1rem;
 }
 
+.signUp-form input.error {
+    border-color: #ff4444;
+    box-shadow: 0 0 0 1px #ff4444;
+}
+
 .signUp-error {
     color: red;
+    text-align: start;
 }

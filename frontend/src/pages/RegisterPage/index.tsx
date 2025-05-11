@@ -2,45 +2,65 @@ import React from "react";
 import {UserRegister} from "../../entities/UserRegister.ts";
 import {UserPhoto} from "../../entities/UserPhoto.ts";
 import {getFileData} from "../../processes/getFileData.ts";
-import {axiosInstance} from "../../app/axiosInstance.ts";
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
+import {registerUser} from "../../processes/registerUser.ts";
+
+interface FormValues {
+    username: string;
+    password: string;
+    photo: File | null;
+}
 
 export const RegisterPage = () => {
     const navigate = useNavigate();
 
-    const formik = useFormik({
+    const validate = (values: FormValues) => {
+        const errors: { username?: string; password?: string } = {};
+
+        if (!values.username) {
+            errors.username = 'Имя пользователя обязательно для заполнения';
+        } else if (values.username.length < 5) {
+            errors.username = 'Имя пользователя должно состоять минимум из 5 символов';
+        } else if (!/[a-zA-Zа-яА-Я]/.test(values.username)) {
+            errors.username = 'Имя пользователя должно содержать минимум 1 буквенный символ';
+        }
+
+        if (!values.password) {
+            errors.password = 'Пароль обязателен для заполнения';
+        } else if (values.password.length < 5) {
+            errors.password = 'Пароль должен состоять минимум из 5 символов';
+        }
+
+        return errors;
+    };
+
+    const formik = useFormik<FormValues>({
         initialValues: {
             username: '',
             password: '',
             photo: null as File | null,
         },
+        validate,
         onSubmit: async (values) => {
-            try {
-                let userPhoto: UserPhoto | null = null;
+            let userPhoto: UserPhoto | null = null;
 
-                if (values.photo) {
-                    userPhoto = {
-                        fileName: values.photo.name,
-                        data: await getFileData(values.photo),
-                    };
-                }
-
-                const user: UserRegister = {
-                    username: values.username,
-                    password: values.password,
-                    userPhoto: userPhoto,
+            if (values.photo) {
+                userPhoto = {
+                    fileName: values.photo.name,
+                    data: await getFileData(values.photo),
                 };
-
-                const response = await axiosInstance.post("/User/register", user, {
-                    headers: { "Content-Type": "application/json" }
-                });
-
-                localStorage.setItem("token", response.data.token);
-                navigate(`/user/${response.data.userId}`);
-            } catch(error) {
-                console.error("Registration error:", error);
             }
+
+            const user: UserRegister = {
+                username: values.username,
+                password: values.password,
+                userPhoto: userPhoto,
+            };
+
+            const response = await registerUser(user);
+            localStorage.setItem("token", response.token);
+            navigate(`/user/${response.userId}`);
         }
     });
 
@@ -63,22 +83,32 @@ export const RegisterPage = () => {
                         type="text"
                         placeholder="Логин"
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         value={formik.values.username}
                         autoComplete="new-username"
+                        className={formik.errors.username && formik.touched.username ? "error" : ""}
                     />
                     <input
                         name="password"
                         type="password"
                         placeholder="Пароль"
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         value={formik.values.password}
                         autoComplete="new-password"
+                        className={formik.errors.password && formik.touched.password ? "error" : ""}
                     />
                     <input
                         name="photo"
                         type="file"
                         onChange={handleFileChange}
                     />
+                    {formik.errors.username && formik.touched.username && (
+                        <div className="signUp-error">{formik.errors.username}</div>
+                    )}
+                    {formik.errors.password && formik.touched.password && (
+                        <div className="signUp-error">{formik.errors.password}</div>
+                    )}
                     <button type="submit" disabled={formik.isSubmitting}>
                         {formik.isSubmitting ? "Отправка..." : "Зарегистрироваться"}
                     </button>

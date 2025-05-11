@@ -1,36 +1,37 @@
-import React, {FC, useState} from "react";
+import {FC, useState} from "react";
 import {UserLogin} from "../../entities/UserLogin.ts";
 import {useNavigate} from "react-router";
-import {axiosInstance} from "../../app/axiosInstance.ts";
-import axios from "axios";
+import {useFormik} from "formik";
+import {loginUser} from "../../processes/loginUser.ts";
 
 export const LoginPage: FC = () => {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const user: UserLogin = {
-            username: login,
-            password: password
-        };
-        try {
-            const response = await axiosInstance.post("/User/login", user, {
-                headers: { "Content-Type": "application/json" }
-            });
-            localStorage.setItem("token", response.data.token);
-            navigate(`/user/${response.data.userId}`);
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                const errorMessage = error.response?.data || "Произошла неизвестная ошибка";
-                setError(errorMessage);
-            } else {
-                console.error("Неожиданная ошибка:", error);
+    const formik = useFormik({
+        initialValues: {
+            login: '',
+            password: '',
+        },
+        onSubmit: async (values) => {
+            const user: UserLogin = {
+                username: values.login,
+                password: values.password,
+            };
+
+            try {
+                const authData = await loginUser(user);
+                localStorage.setItem("token", authData.token);
+                navigate(`/user/${authData.userId}`);
+            } catch (error) {
+                if (error instanceof Error) {
+                    setError(error.message);
+                } else {
+                    setError("Произошла неизвестная ошибка");
+                }
             }
         }
-    };
+    });
 
     return(
         <div>
@@ -40,27 +41,29 @@ export const LoginPage: FC = () => {
                         <h2>Войти</h2>
                         <button onClick={() => navigate(-1)}>X</button>
                     </div>
-                    <form className="signUp-form" onSubmit={handleLoginSubmit}>
+                    <form className="signUp-form" onSubmit={formik.handleSubmit}>
                         <input
-                            name="login-input"
+                            name="login"
                             type="text"
                             placeholder="Логин"
-                            value={login}
                             autoComplete="username"
-                            onChange={e => setLogin(e.target.value)}
+                            onChange={formik.handleChange}
+                            value={formik.values.login}
                         />
                         <input
-                            name="password-input"
+                            name="password"
                             type="password"
                             placeholder="Пароль"
-                            value={password}
                             autoComplete="current-password"
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
                         />
                         {error && (
                             <span className="signUp-error">{error}</span>
                         )}
-                        <button type="submit">Войти</button>
+                        <button type="submit" disabled={formik.isSubmitting}>
+                            {formik.isSubmitting ? "Отправка..." : "Зарегистрироваться"}
+                        </button>
                     </form>
                 </div>
             </div>
