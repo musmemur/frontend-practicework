@@ -1,49 +1,52 @@
-import React, {useState} from "react";
+import React from "react";
 import {UserRegister} from "../../entities/UserRegister.ts";
 import {UserPhoto} from "../../entities/UserPhoto.ts";
 import {getFileData} from "../../processes/getFileData.ts";
 import {axiosInstance} from "../../app/axiosInstance.ts";
 import {useNavigate} from "react-router";
+import {useFormik} from "formik";
 
 export const RegisterPage = () => {
-    const [registerLogin, setRegisterLogin] = useState('');
-    const [registerPassword, setRegisterPassword] = useState('');
-    const [profilePicture, setProfilePicture] = useState<File | null>(null);
     const navigate = useNavigate();
 
-    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (!files || files.length === 0) {
-            setProfilePicture(null);
-            return;
-        }
-        setProfilePicture(files[0]);
-    };
+    const formik = useFormik({
+        initialValues: {
+            username: '',
+            password: '',
+            photo: null as File | null,
+        },
+        onSubmit: async (values) => {
+            try {
+                let userPhoto: UserPhoto | null = null;
 
-    const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        let userPhoto: UserPhoto | null = null;
-        if (profilePicture) {
-            userPhoto = {
-                fileName: profilePicture.name,
-                data: await getFileData(profilePicture),
-            };
-        }
-        const user: UserRegister = {
-            username: registerLogin,
-            password: registerPassword,
-            userPhoto: userPhoto,
-        };
+                if (values.photo) {
+                    userPhoto = {
+                        fileName: values.photo.name,
+                        data: await getFileData(values.photo),
+                    };
+                }
 
-        try {
-            const response = await axiosInstance.post("/User/register", user, {
-                headers: { "Content-Type": "application/json" }
-            });
-            localStorage.setItem("token", response.data.token);
-            navigate(`/user/${response.data.userId}`);
-        } catch(error) {
-            console.error(error);
+                const user: UserRegister = {
+                    username: values.username,
+                    password: values.password,
+                    userPhoto: userPhoto,
+                };
+
+                const response = await axiosInstance.post("/User/register", user, {
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                localStorage.setItem("token", response.data.token);
+                navigate(`/user/${response.data.userId}`);
+            } catch(error) {
+                console.error("Registration error:", error);
+            }
         }
+    });
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        formik.setFieldValue("photo", file);
     };
 
     return (
@@ -53,31 +56,34 @@ export const RegisterPage = () => {
                     <h2>Зарегистрироваться</h2>
                     <button onClick={() => navigate(-1)}>X</button>
                 </div>
-                <form className="signUp-form" onSubmit={handleRegisterSubmit}>
+
+                <form className="signUp-form" onSubmit={formik.handleSubmit}>
                     <input
-                        name="login-input"
+                        name="username"
                         type="text"
                         placeholder="Логин"
-                        value={registerLogin}
-                        autoComplete= "new-username"
-                        onChange={e => setRegisterLogin(e.target.value)}
+                        onChange={formik.handleChange}
+                        value={formik.values.username}
+                        autoComplete="new-username"
                     />
                     <input
-                        name="password-input"
+                        name="password"
                         type="password"
                         placeholder="Пароль"
-                        value={registerPassword}
-                        autoComplete= "new-password"
-                        onChange={e => setRegisterPassword(e.target.value)}
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                        autoComplete="new-password"
                     />
                     <input
-                        name="file-input"
+                        name="photo"
                         type="file"
-                        onChange={onFileChange}
+                        onChange={handleFileChange}
                     />
-                    <button type="submit">Зарегистрироваться</button>
+                    <button type="submit" disabled={formik.isSubmitting}>
+                        {formik.isSubmitting ? "Отправка..." : "Зарегистрироваться"}
+                    </button>
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
