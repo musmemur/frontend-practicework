@@ -42,7 +42,7 @@ export const UserReview: React.FC<UserReviewProps> = ({review}) => {
                         <ReleaseRating rating={ratingReview} />
                     )}
                 </div>
-                <div>
+                <div className="user-review-text">
                     {review.reviewText}
                 </div>
             </div>
