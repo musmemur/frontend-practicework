@@ -2,7 +2,7 @@ import "./index.scss";
 import {Link} from "react-router";
 import React from "react";
 import {RatingModal} from "../../entities/RatingModal.ts";
-import {calculateAverageReleaseRating} from "../../features/calculateAverageReleaseRating.ts";
+import {calculateAverageReleaseRating} from "../../shared/utils/calculateAverageReleaseRating.ts";
 
 type AlbumInfoProps = {
     title: string;
@@ -31,7 +31,7 @@ export const AlbumInfo: React.FC<AlbumInfoProps> = ({title, artist, imageUrl, ra
                     </Link>
                 </div>
                 {ratings.length > 0 && (
-                    <div>
+                    <div className="album-score">
                         <span>Общая оценка</span>
                         <div>
                             <span>★</span>

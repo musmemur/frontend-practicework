@@ -1,4 +1,4 @@
-import React, {useId} from "react";
+import React, {Fragment, useId} from "react";
 import "./index.scss";
 
 type ReleaseRatingProps = {
@@ -11,7 +11,7 @@ export const ReleaseRating: React.FC<ReleaseRatingProps> = ({rating}) => {
     return (
         <div className="release-rating">
             {[5, 4, 3, 2, 1].map((value) => (
-                <React.Fragment key={value}>
+                <Fragment key={value}>
                     <label>
                         {value}
                         <input
@@ -23,7 +23,7 @@ export const ReleaseRating: React.FC<ReleaseRatingProps> = ({rating}) => {
                             disabled
                         />
                     </label>
-                </React.Fragment>
+                </Fragment>
             ))}
         </div>
     )

@@ -5,9 +5,7 @@ import { ApiFullUserResponse } from "../../entities/ApiFullUserResponse.ts";
 import { ReleaseWithRating } from "../../entities/ReleaseWithRating.ts";
 import { fetchReleaseDataById } from "../../processes/fetchReleaseDataById.ts";
 import { SavedRelease } from "../../entities/SavedRelease.ts";
-import HeaderSkeleton from "../../shared/ui/Skeletons/HeaderSkeleton";
-import UserCardSkeleton from "../../shared/ui/Skeletons/UserCardSkeleton";
-import ReleasesSectionSkeleton from "../../shared/ui/Skeletons/ReleasesSectionSkeleton";
+import {UserPageSkeleton} from "./UserPageSkeleton.tsx";
 
 const Header = lazy(() => import("../../widgets/Header"));
 const UserCard = lazy(() => import("../../widgets/UserCard"));
@@ -77,10 +75,7 @@ export const UserPage = () => {
     if (isLoading || !user) {
         return (
             <>
-                <HeaderSkeleton />
-                <UserCardSkeleton />
-                <ReleasesSectionSkeleton />
-                <ReleasesSectionSkeleton />
+                <UserPageSkeleton />
             </>
         );
     }
@@ -89,10 +84,7 @@ export const UserPage = () => {
         <>
             <Suspense fallback={
                 <>
-                    <HeaderSkeleton />
-                    <UserCardSkeleton />
-                    <ReleasesSectionSkeleton />
-                    <ReleasesSectionSkeleton />
+                    <UserPageSkeleton />
                 </>
             }>
                 <Header />

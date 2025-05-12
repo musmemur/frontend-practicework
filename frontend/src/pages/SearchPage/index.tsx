@@ -28,9 +28,7 @@ export const SearchPage = () => {
     return(
         <>
             <Header/>
-            <div className="search-result">
-                Результаты по запросу "{searchValue}"
-            </div>
+            <div className="search-result">Результаты по запросу <span>"{searchValue}"</span></div>
             <ReleasesSection sectionTitle="Альбомы" releases={albums}/>
         </>
     )

@@ -1,9 +1,10 @@
 .search-result {
     background-color: var(--main-content-background-color);
-    display: flex;
     padding: 1rem;
     font-size: 1.5rem;
     margin: 0 1rem;
-    gap: 3rem;
+}
+
+.search-result span {
     font-weight: bold;
 }

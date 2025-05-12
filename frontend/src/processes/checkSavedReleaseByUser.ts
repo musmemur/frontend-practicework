@@ -13,7 +13,7 @@ export async function checkSavedReleaseByUser(userId: string, releaseId: string)
         return response.data;
 
     } catch (error) {
-        console.error('Ошибка при выполнении saveReleaseByUser:', error);
+        console.error('Ошибка при выполнении checkSavedReleaseByUser:', error);
         throw error;
     }
 }

@@ -1,4 +1,4 @@
-import './styles/index.scss';
+import './styles/index.module.scss';
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LandingPage} from "../pages/LandingPage";
 import {Route, Routes} from "react-router";
