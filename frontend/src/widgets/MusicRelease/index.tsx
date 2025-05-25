@@ -1,4 +1,5 @@
 import './index.scss';
+import './adaptive.scss';
 import {Link, useNavigate} from "react-router";
 import React from "react";
 import {fetchReleaseData} from "../../processes/fetchReleaseData.ts";

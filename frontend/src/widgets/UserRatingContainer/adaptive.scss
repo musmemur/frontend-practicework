@@ -1,0 +1,24 @@
+@media (max-width: 500px) {
+  .add-review-input {
+    font-size: 1.5rem;
+  }
+
+  .user-like, .user-rating-profile-picture-container {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .user-info, .rating-container {
+    gap: 0.5rem;
+  }
+
+  .rating-container {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 350px) {
+  .user-rating-container, .delete-review-button, .save-user-changes-button, .add-review-input {
+    font-size: 1rem;
+  }
+}

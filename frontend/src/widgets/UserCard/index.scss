@@ -25,4 +25,17 @@
 .profile-name {
     font-size: 1.5rem;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.profile-name button {
+    padding: 0.4rem;
+    align-items: center;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    background: none;
 }

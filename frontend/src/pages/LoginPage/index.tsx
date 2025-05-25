@@ -62,7 +62,7 @@ export const LoginPage: FC = () => {
                             <span className="signUp-error">{error}</span>
                         )}
                         <button type="submit" disabled={formik.isSubmitting}>
-                            {formik.isSubmitting ? "Отправка..." : "Зарегистрироваться"}
+                            {formik.isSubmitting ? "Отправка..." : "Войти"}
                         </button>
                     </form>
                 </div>

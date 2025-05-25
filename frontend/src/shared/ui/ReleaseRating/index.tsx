@@ -1,5 +1,6 @@
 import React, {Fragment, useId} from "react";
 import "./index.scss";
+import "./adaptive.scss";
 
 type ReleaseRatingProps = {
     rating: number;

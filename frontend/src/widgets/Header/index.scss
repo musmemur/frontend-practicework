@@ -97,8 +97,6 @@ header::before {
 .user-header-info {
     display: flex;
     align-items: center;
-    background-color: var(--secondary-background-color);
-    padding: 1rem;
 }
 
 .user-header-info img {
@@ -106,4 +104,23 @@ header::before {
     height: 2rem;
     border-radius: 50%;
     margin-right: 0.5rem;
+}
+
+.auth-user-container {
+    display: flex;
+    background-color: var(--secondary-background-color);
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.auth-user-container > button {
+    background: none;
+    border: 1px solid rgba(49, 2, 2, 0.5);
+    height: 100%;
+    padding: 1rem;
+}
+
+.show-search-form-button {
+    display: none;
 }

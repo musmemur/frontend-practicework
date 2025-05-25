@@ -1,4 +1,5 @@
 import './index.scss';
+import './adaptive.scss';
 import {MusicRelease} from "../MusicRelease";
 import React, {useState} from "react";
 import {Release} from "../../entities/Release.ts";
@@ -20,8 +21,8 @@ const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}
     }
 
     return(
-        <div className="release-section">
-            <div className="release-section-top">
+        <div className="releases-section">
+            <div className="releases-section-top">
                 <div>{sectionTitle}</div>
                 {releases.length > 4 && (
                     <button

@@ -1,4 +1,5 @@
 import "./index.scss";
+import './adaptive.scss';
 import Header from "../../widgets/Header";
 import {AlbumInfo} from "../../widgets/AlbumInfo";
 import {UserRatingContainer} from "../../widgets/UserRatingContainer";
@@ -56,9 +57,11 @@ export const AlbumPage = () => {
     return (
         <>
             <Header />
-            <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} ratings={ratings} />
-            {releaseId && <UserRatingContainer releaseId={releaseId} />}
-            <UserReviews reviews={reviews} />
+            <main className="main-albumPage">
+                <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} ratings={ratings} />
+                {releaseId && <UserRatingContainer releaseId={releaseId} />}
+                <UserReviews reviews={reviews} />
+            </main>
         </>
     );
 }

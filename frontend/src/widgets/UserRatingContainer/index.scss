@@ -1,6 +1,5 @@
 .user-rating-container {
     background-color: var(--secondary-background-color);
-    margin: 0 1rem;
     font-size: 1.5rem;
     padding: 1rem;
     border: 1px solid var(--border-color);
@@ -48,12 +47,12 @@
     margin-top: 0.5rem;
 }
 
-#like-button {
+.like-button {
     background-color: var(--secondary-background-color);
     border: none;
 }
 
-#user-like {
+.user-like {
     width: 5rem;
     height: 5rem;
 }
@@ -63,7 +62,7 @@
     flex-direction: column;
 }
 
-#add-review-input {
+.add-review-input {
     background-color: var(--secondary-background-color);
     max-width: 100%;
     height: 10rem;
@@ -72,7 +71,7 @@
     font-size: 2rem;
 }
 
-#add-review-input::placeholder {
+.add-review-input::placeholder {
     color: black;
 }
 
@@ -88,7 +87,6 @@
     font-size: 1.5rem;
     font-weight: bold;
     border-radius: 1rem;
-    height: 2.5rem;
 }
 
 .review-buttons-container {

@@ -1,6 +1,6 @@
 import "./index.scss";
+import './adaptive.scss';
 import {Link} from "react-router";
-
 import likeButtonImg from "../../shared/assets/like.svg";
 import likeClickedImg from "../../shared/assets/like(clicked).svg";
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
@@ -136,21 +136,21 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                             </div>
                         </div>
                         <div>
-                            <button id="like-button">
-                                <img src={isSaved ? likeClickedImg : likeButtonImg} id="user-like" ref={likeButtonRef} alt="Лайк"
+                            <button className="like-button">
+                                <img src={isSaved ? likeClickedImg : likeButtonImg} className="user-like" ref={likeButtonRef} alt="Лайк"
                                      onClick={handleClickSaveReleaseButton}/>
                             </button>
                         </div>
                     </div>
                     <form className="user-release-review-form" onSubmit={handleClickSaveReviewButton}>
-                            <textarea id="add-review-input"
+                            <textarea className="add-review-input"
                                       placeholder="Добавить рецензию"
                                       value={review}
                                       onChange={(e) => setReview(e.target.value)}
                             />
                         <div className="review-buttons-container">
                             {review && (
-                                <button className="delete-review-button" onClick={handleClickDeleteReview}>удалить рецензию</button>
+                                <button className="delete-review-button" onClick={handleClickDeleteReview}>удалить</button>
                             )}
                             <button className="save-user-changes-button" type="submit">сохранить</button>
                         </div>

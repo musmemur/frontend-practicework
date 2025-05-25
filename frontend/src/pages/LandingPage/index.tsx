@@ -1,5 +1,6 @@
 import Header from "../../widgets/Header";
 import "./index.scss";
+import './adaptive.scss';
 import {Link} from "react-router";
 import logo from '../../shared/assets/logo.svg';
 
@@ -17,7 +18,7 @@ export const LandingPage = () => {
                     <li>поделитесь своим мнением</li>
                     <li>сохраните любимое</li>
                 </ul>
-                <Link to="/sign-up" className="signUp-button">зарегистрироваться</Link>
+                <Link to="/sign-up" className="signUp-button">начать</Link>
             </main>
         </>
     )

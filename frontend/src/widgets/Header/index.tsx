@@ -1,10 +1,12 @@
 import "./index.scss";
+import './adaptive.scss';
 import {Link, useNavigate} from "react-router";
 import {useEffect, useState} from 'react';
 import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
 import {User} from "../../entities/User.ts";
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import logo from '../../shared/assets/logo.svg';
+import {ShowSearchFormButton} from "../../shared/ui/ShowSearchFormButton";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -34,7 +36,8 @@ const Header = () => {
                     <img src={logo} className="header-logo" alt="Логотип"/>
                     <span>SOUNDTRACKER</span>
                 </Link>
-                <form className="search-form" onSubmit={(e) => {
+
+                <form className='search-form' onSubmit={(e) => {
                     e.preventDefault();
                     const searchValue = e.currentTarget.search.value;
                     navigate(`/search?search=${encodeURIComponent(searchValue)}`);
@@ -53,10 +56,13 @@ const Header = () => {
                 </form>
 
                 {authUser ? (
-                    <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className="user-header-info">
-                        <img src={authUser.userPhoto} alt={`${authUser.username} avatar`}/>
-                        <span>{authUser.username}</span>
-                    </Link>
+                    <div className="auth-user-container">
+                        <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className="user-header-info">
+                            <img src={authUser.userPhoto} alt={`${authUser.username} avatar`}/>
+                            <span>{authUser.username}</span>
+                        </Link>
+                        <ShowSearchFormButton/>
+                    </div>
                 ) : (<Link to="/sign-up" className="enter-button">войти</Link>)}
             </nav>
         </header>

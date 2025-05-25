@@ -1,0 +1,95 @@
+@media (min-width: 1700px) {
+  .release-picture {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .music-release {
+    width: 25rem;
+  }
+
+  .music-release > div {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1700px) {
+  .release-picture {
+    width: 22rem;
+    height: 22rem;
+  }
+
+  .music-release {
+    width: 22rem;
+  }
+}
+
+@media (max-width: 1500px) {
+  .release-picture {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .music-release {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 1400px) {
+  .release-picture {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .music-release {
+    width: 18rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  .release-picture {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .music-release {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .release-picture {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .music-release {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .release-picture {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .music-release {
+    width: 12rem;
+  }
+
+  .music-release > div {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .release-picture {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .music-release {
+    width: 10rem;
+  }
+}

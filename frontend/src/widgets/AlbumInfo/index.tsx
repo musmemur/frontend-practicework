@@ -1,4 +1,5 @@
 import "./index.scss";
+import './adaptive.scss';
 import {Link} from "react-router";
 import React from "react";
 import {RatingModal} from "../../entities/RatingModal.ts";
