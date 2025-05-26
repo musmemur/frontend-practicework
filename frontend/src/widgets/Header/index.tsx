@@ -1,33 +1,23 @@
 import "./index.scss";
 import './adaptive.scss';
 import {Link, useNavigate} from "react-router";
-import {useEffect, useState} from 'react';
-import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
-import {User} from "../../entities/User.ts";
-import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
+import {useEffect} from 'react';
 import logo from '../../shared/assets/logo.svg';
 import {ShowSearchFormButton} from "../../shared/ui/ShowSearchFormButton";
+import {useDispatch, useSelector} from "react-redux";
+import {loadAuthUser} from "../../features/loadAuthUser.ts";
+import {AppDispatch, RootState} from "../../app/store.ts";
 
 const Header = () => {
     const navigate = useNavigate();
-    const [authUser, setAuthUser] = useState<User | null>(null);
+    const dispatch: AppDispatch = useDispatch();
+    const authUser = useSelector((state: RootState) => state.loadAuthUser.value);
 
     useEffect(() => {
-        const loadUser = async () => {
-            try {
-                const fetchedUser = await fetchAuthUserData();
-                fetchedUser.userPhoto = fetchedUser.userPhoto || userPhotoPlaceholder;
-                const loggedUser: User = fetchedUser as User;
-                setAuthUser(loggedUser);
-            } catch {
-                setAuthUser(null);
-            }
-        };
-
-        (async () => {
-            await loadUser();
-        })();
-    }, []);
+        if (!authUser) {
+            dispatch(loadAuthUser());
+        }
+    }, [authUser, dispatch]);
 
     return (
         <header>

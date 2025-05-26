@@ -3,10 +3,7 @@ import './adaptive.scss';
 import {Link} from "react-router";
 import likeButtonImg from "../../shared/assets/like.svg";
 import likeClickedImg from "../../shared/assets/like(clicked).svg";
-import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import {useEffect, useState, useRef} from "react";
-import {fetchAuthUserData} from "../../processes/fetchAuthUserData.ts";
-import {User} from "../../entities/User.ts";
 import {saveReleaseByUser} from "../../processes/saveReleaseByUser.ts";
 import {deleteSavedReleaseByUser} from "../../processes/deleteSavedReleaseByUser.ts";
 import React from "react";
@@ -15,54 +12,57 @@ import {deleteUserRating} from "../../processes/deleteUserRating.ts";
 import {saveReview} from "../../processes/saveReview.ts";
 import {deleteReview} from "../../processes/deleteReview.ts";
 import {fetchUserReleaseInteraction} from "../../processes/fetchUserReleaseInteraction.ts";
+import {AppDispatch, RootState} from "../../app/store.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {loadAuthUser} from "../../features/loadAuthUser.ts";
 
 interface UserRatingContainerProps {
     releaseId: string;
 }
 
 export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
-    const [user, setUser] = useState<User | null>(null);
     const [isSaved, setIsSaved] = useState(false);
     const [rating, setRating] = useState<number | null>(null);
     const [review, setReview] = useState<string>("");
     const likeButtonRef = useRef<HTMLImageElement>(null);
+    
+    const dispatch: AppDispatch = useDispatch();
+    const authUser = useSelector((state: RootState) => state.loadAuthUser.value);
 
     useEffect(() => {
-        const loadUser = async () => {
-            try {
-                const fetchedUser = await fetchAuthUserData();
-                fetchedUser.userPhoto = fetchedUser.userPhoto || userPhotoPlaceholder;
-                const loggedUser: User = fetchedUser as User;
-                setUser(loggedUser);
+        if (!authUser) {
+            dispatch(loadAuthUser());
+        }
+    }, [authUser, dispatch]);
 
-                if (loggedUser.userId && releaseId) {
-                    const { isSaved, userRating, userReview } = await fetchUserReleaseInteraction(loggedUser.userId, releaseId);
-                    setIsSaved(isSaved);
-                    if (userRating) setRating(userRating);
-                    if(userReview) setReview(userReview);
-                }
-            } catch {
-                setUser(null);
-            }
+    useEffect(() => {
+        if (!authUser?.userId || !releaseId) return;
+
+        const fetchData = async () => {
+            const {isSaved, userRating, userReview} = await fetchUserReleaseInteraction(
+                authUser.userId,
+                releaseId
+            );
+            setIsSaved(isSaved);
+            if (userRating) setRating(userRating);
+            if (userReview) setReview(userReview);
         };
 
-        (async () => {
-            await loadUser();
-        })();
-    }, [releaseId]);
+        fetchData().catch(console.error);
+    }, [authUser?.userId, releaseId]);
 
     const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedRating = parseInt(e.target.value);
         setRating(selectedRating);
-        if (user) {
-            saveUserRating(user.userId, releaseId, selectedRating);
+        if (authUser) {
+            saveUserRating(authUser.userId, releaseId, selectedRating);
         }
     };
 
     const handleCancelRating = () => {
         setRating(null);
-        if (user) {
-            deleteUserRating(user.userId, releaseId);
+        if (authUser) {
+            deleteUserRating(authUser.userId, releaseId);
         }
     };
 
@@ -70,13 +70,13 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
         if (likeButtonRef.current) {
             if (likeButtonRef.current.src.includes("like.svg")) {
                 likeButtonRef.current.src = likeClickedImg;
-                if (user) {
-                    saveReleaseByUser(user.userId, releaseId);
+                if (authUser) {
+                    saveReleaseByUser(authUser.userId, releaseId);
                 }
             } else {
                 likeButtonRef.current.src = likeButtonImg;
-                if (user) {
-                    deleteSavedReleaseByUser(user.userId, releaseId);
+                if (authUser) {
+                    deleteSavedReleaseByUser(authUser.userId, releaseId);
                 }
             }
         }
@@ -84,31 +84,31 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
 
     const handleClickSaveReviewButton = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(review && user) {
-            saveReview(user.userId, releaseId, review);
+        if(review && authUser) {
+            saveReview(authUser.userId, releaseId, review);
         }
     }
 
     const handleClickDeleteReview = () => {
         setReview("");
-        if (user) {
-            deleteReview(user.userId, releaseId);
+        if (authUser) {
+            deleteReview(authUser.userId, releaseId);
         }
     };
 
     return(
         <>
-            {user && (
+            {authUser && (
                 <div className="user-rating-container">
                     <div className="user-info-top">
                         <div className="user-info">
                             <div className="profile-picture-container user-rating-profile-picture-container">
-                                <img src={user.userPhoto} className="photo-user-placeholder"
+                                <img src={authUser.userPhoto} className="photo-user-placeholder"
                                      alt="аватарка пользователя"/>
                             </div>
                             <div>
-                                <Link to={`/user/${encodeURIComponent(user.userId)}`} className="nickname">
-                                    {user?.username}
+                                <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className="nickname">
+                                    {authUser?.username}
                                 </Link>
                                 <div className="rating-container">
                                     <div className="release-rating">
