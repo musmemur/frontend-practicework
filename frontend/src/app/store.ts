@@ -1,9 +1,11 @@
 import {configureStore, ThunkDispatch, UnknownAction} from '@reduxjs/toolkit';
 import loadAuthUserReducer from '../features/loadAuthUser.ts';
+import userReleaseInteractionReducer from '../features/userReleaseInteraction.ts';
 
 const store = configureStore({
     reducer: {
-        loadAuthUser: loadAuthUserReducer
+        loadAuthUser: loadAuthUserReducer,
+        userReleaseInteraction: userReleaseInteractionReducer
     }
 });
 
