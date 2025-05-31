@@ -1,0 +1,39 @@
+@media (max-width:650px) {
+  .search-input {
+    width: 18rem;
+  }
+
+  .submit-input {
+    left: 15rem;
+  }
+}
+
+@media (max-width:550px) {
+  .search-input {
+    width: 16rem;
+  }
+
+  .submit-input {
+    left: 12rem;
+  }
+}
+
+@media (max-width:500px) {
+  .search-input {
+    width: 18rem;
+  }
+
+  .submit-input {
+    left: 15rem;
+  }
+}
+
+@media (max-width:450px) {
+  .search-input {
+    width: 16rem;
+  }
+
+  .submit-input {
+    left: 12rem;
+  }
+}

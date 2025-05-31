@@ -9,8 +9,33 @@
     display: block;
   }
 
-  .search-form {
+  .search-form-container {
     display: none;
+    position: absolute;
+
+    &.active {
+      display: block;
+    }
+
+    .search-form {
+      display: flex;
+      position: static;
+      transform: none;
+    }
+  }
+
+  .logo {
+    display: flex;
+
+    &.active {
+      display: none;
+    }
+  }
+
+  .auth-user-container {
+    &.active {
+      margin-left: auto;
+    }
   }
 
   .auth-user-container {
@@ -47,6 +72,12 @@
 }
 
 @media (max-width: 400px) {
+  .user-header-info{
+    &.active {
+      display: none;
+    }
+  }
+
   .header-logo {
     display: none;
   }

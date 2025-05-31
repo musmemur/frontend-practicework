@@ -32,60 +32,23 @@ header::before {
     height: 4rem;
 }
 
-.logo, .search-form, .enter-button {
+.logo, .enter-button {
     display: flex;
     align-items: center;
     text-align: center;
 }
 
-.logo span, .search-input {
+.logo span {
     padding-left: 1rem;
 }
 
-.search-input, .submit-input, .enter-button {
+.enter-button {
     background-color: var(--button-primary-color);
     border: none;
     font-size: 1.5rem;
     font-weight: bold;
     border-radius: 1rem;
     height: 2rem;
-}
-
-.search-form {
-    position: relative;
-}
-
-.submit-input {
-    padding: 1rem 2rem;
-    background-image: url('../../shared/assets/loop.svg');
-    background-size: 1rem;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 1rem;
-    position: absolute;
-    left: 17.1rem;
-    border: 1px solid var(--border-color) !important;
-}
-
-.search-input {
-    border: 1px solid var(--border-color);
-}
-
-.submit-input:hover {
-    background-color: #a6f2a6;
-}
-
-.search-input:-webkit-autofill,
-.search-input:-webkit-autofill:hover,
-.search-input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px var(--button-primary-color) inset !important;
-    background-color: var(--button-primary-color) !important;
-    transition: background-color 5000s ease-in-out 0s;
-}
-
-.search-input::placeholder {
-    color: black;
-    font-weight: normal;
 }
 
 .enter-button {
@@ -123,4 +86,8 @@ header::before {
 
 .show-search-form-button {
     display: none;
+}
+
+.search-form-container {
+    align-self: center;
 }
