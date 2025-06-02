@@ -20,7 +20,7 @@ public class SavedReleaseController(AppDbContext dbContext, UserService userServ
             .AsNoTracking()
             .FirstOrDefaultAsync(ct);
     
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
         if (userId == null)
             return Unauthorized(new { message = "Пользователь не авторизован" });
     
@@ -71,7 +71,7 @@ public class SavedReleaseController(AppDbContext dbContext, UserService userServ
     [Authorize]
     public async Task<bool> CheckSavedReleaseByUser([FromBody] SavedReleaseRequest request, CancellationToken ct)
     {
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
 
         var existing = await dbContext.SavedReleases
             .FirstOrDefaultAsync(

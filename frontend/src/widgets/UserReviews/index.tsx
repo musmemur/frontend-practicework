@@ -1,6 +1,7 @@
 import {UserReview} from "../UserReview";
 import "./index.scss";
 import {ReviewModal} from "../../entities/ReviewModal.ts";
+import {Notebook} from "../../shared/assets/Notebook.tsx";
 
 export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
     return reviews.length > 0 ? (
@@ -21,5 +22,8 @@ export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
                 <button className="show-more-button search-page">больше</button>
             )}
         </div>
-    ) : null;
+    ) : <div className="no-reviews-container">
+        <Notebook />
+        Нет ни одной рецензии
+    </div>;
 }

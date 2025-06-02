@@ -1,3 +1,3 @@
 ﻿namespace Backend.Contracts;
 
-public record CreateReviewRequest(Guid UserId, Guid ReleaseId, string ReviewText);
+public record CreateReviewRequest(Guid ReleaseId, string ReviewText);

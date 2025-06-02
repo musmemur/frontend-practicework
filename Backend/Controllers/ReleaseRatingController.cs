@@ -1,5 +1,6 @@
 ﻿using Backend.Contracts;
 using Backend.Entities;
+using Backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ReleaseRatingController(AppDbContext dbContext) : ControllerBase
+public class ReleaseRatingController(AppDbContext dbContext, UserService userService) : ControllerBase
 {
     [HttpPost("rate")]
     [Authorize]
@@ -19,7 +20,9 @@ public class ReleaseRatingController(AppDbContext dbContext) : ControllerBase
             .AsNoTracking()
             .FirstOrDefaultAsync(ct);
     
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
+        if (userId == null)
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var existing = await dbContext.ReleaseRatings
             .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
@@ -33,7 +36,7 @@ public class ReleaseRatingController(AppDbContext dbContext) : ControllerBase
         {
             if (release != null)
             {
-                var rating = new ReleaseRating(userId, release.Id, request.Rating);
+                var rating = new ReleaseRating(userId.Value, release.Id, request.Rating);
                 dbContext.ReleaseRatings.Add(rating);
             }
         }
@@ -51,7 +54,9 @@ public class ReleaseRatingController(AppDbContext dbContext) : ControllerBase
             .AsNoTracking()
             .FirstOrDefaultAsync(ct);
     
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
+        if (userId == null)
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var rating = await dbContext.ReleaseRatings
             .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
@@ -79,7 +84,9 @@ public class ReleaseRatingController(AppDbContext dbContext) : ControllerBase
             return NotFound("Release not found");
         }
 
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
+        if (userId == null)
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var rating = await dbContext.ReleaseRatings
             .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == release.Id, ct);

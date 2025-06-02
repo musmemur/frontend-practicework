@@ -35,7 +35,7 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
 
     useEffect(() => {
         if (authUser?.userId && releaseId) {
-            dispatch(fetchUserInteraction(authUser.userId, releaseId));
+            dispatch(fetchUserInteraction(releaseId));
         }
     }, [authUser?.userId, releaseId, dispatch]);
 
@@ -48,32 +48,32 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedRating = parseInt(e.target.value);
         if (authUser) {
-            dispatch(updateUserRating(authUser.userId, releaseId, selectedRating));
+            dispatch(updateUserRating(releaseId, selectedRating));
         }
     };
 
     const handleCancelRating = () => {
         if (authUser) {
-            dispatch(updateUserRating(authUser.userId, releaseId, null));
+            dispatch(updateUserRating(releaseId, null));
         }
     };
 
     const handleClickSaveReleaseButton = () => {
         if (authUser && interaction) {
-            dispatch(toggleSaveRelease(authUser.userId, releaseId, interaction.isSaved));
+            dispatch(toggleSaveRelease(releaseId, interaction.isSaved));
         }
     };
 
     const handleClickSaveReviewButton = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (authUser) {
-            dispatch(updateUserReview(authUser.userId, releaseId, localReview));
+            dispatch(updateUserReview(releaseId, localReview));
         }
     };
 
     const handleClickDeleteReview = () => {
         if (authUser) {
-            dispatch(updateUserReview(authUser.userId, releaseId, ''));
+            dispatch(updateUserReview(releaseId, ''));
         }
     };
 

@@ -1,3 +1,3 @@
 ﻿namespace Backend.Contracts;
 
-public record DeleteReleaseRatingRequest(Guid UserId, Guid ReleaseId);
+public record DeleteReleaseRatingRequest(Guid ReleaseId);

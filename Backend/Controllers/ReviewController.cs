@@ -1,5 +1,6 @@
 ﻿using Backend.Contracts;
 using Backend.Entities;
+using Backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ReviewController(AppDbContext dbContext) : ControllerBase
+public class ReviewController(AppDbContext dbContext, UserService userService) : ControllerBase
 {
     [HttpPost("create")]
     [Authorize]
@@ -19,7 +20,9 @@ public class ReviewController(AppDbContext dbContext) : ControllerBase
             .AsNoTracking()
             .FirstOrDefaultAsync(ct);
     
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
+        if (userId is null)
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var existing = await dbContext.Reviews
             .FirstOrDefaultAsync(r => r.UserId == userId && release != null && r.ReleaseId == release.Id, ct);
@@ -33,7 +36,7 @@ public class ReviewController(AppDbContext dbContext) : ControllerBase
         {
             if (release != null)
             {
-                var review = new Review(userId, release.Id, request.ReviewText);
+                var review = new Review(userId.Value, release.Id, request.ReviewText);
                 dbContext.Reviews.Add(review);
             }
         }
@@ -56,7 +59,9 @@ public class ReviewController(AppDbContext dbContext) : ControllerBase
             return NotFound("Release not found");
         }
 
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
+        if (userId is null)
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var review = await dbContext.Reviews
             .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == request.ReleaseId, ct);
@@ -78,7 +83,9 @@ public class ReviewController(AppDbContext dbContext) : ControllerBase
             return NotFound("Release not found");
         }
 
-        var userId = request.UserId;
+        var userId = userService.GetUserId();
+        if (userId is null)
+            return Unauthorized(new { message = "Пользователь не авторизован" });
 
         var review = await dbContext.Reviews
             .FirstOrDefaultAsync(r => r.UserId == userId && r.ReleaseId == request.ReleaseId, ct);

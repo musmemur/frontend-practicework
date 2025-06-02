@@ -1,41 +1,40 @@
 import "./index.scss";
 import './adaptive.scss';
-import Header from "../../widgets/Header";
 import {AlbumInfo} from "../../widgets/AlbumInfo";
 import {UserRatingContainer} from "../../widgets/UserRatingContainer";
 import {UserReviews} from "../../widgets/UserReviews";
-import {useEffect, useState} from "react";
+import {lazy, Suspense, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import {fetchReleaseDataById} from "../../processes/fetchReleaseDataById.ts";
-import {RatingModal} from "../../entities/RatingModal.ts";
-import {ReviewModal} from "../../entities/ReviewModal.ts";
+import HeaderSkeleton from "../../shared/ui/Skeletons/HeaderSkeleton";
+import {ReleaseInfoType} from "../../entities/ReleaseInfoType.ts";
+
+const Header = lazy(() => import("../../widgets/Header"));
 
 export const AlbumPage = () => {
-    const [title, setTitle] = useState<string>("");
-    const [artist, setArtist] = useState<string>("");
-    const [releaseImage, setReleaseImage] = useState<string>("");
-    const [ratings, setRatings] = useState<RatingModal[] | []>([]);
-    const [reviews, setReviews] = useState<ReviewModal[] | []>([]);
+    const [release, setRelease] = useState<ReleaseInfoType | null>(null);
 
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const { releaseId } = useParams<{ releaseId: string }>();
 
     useEffect(() => {
         const fetchFullReleaseData = async () => {
             try {
-                setLoading(true);
+                setIsLoading(true);
                 const response = await fetchReleaseDataById(releaseId);
-                setTitle(response.title);
-                setArtist(response.artist);
-                setReleaseImage(response.releasePhoto);
-                setRatings(response.ratings);
-                setReviews(response.reviews);
+                setRelease( {
+                    title: response.title,
+                    artist: response.artist,
+                    releasePhoto: response.releasePhoto,
+                    ratings: response.ratings || [],
+                    reviews: response.reviews || [],
+                })
             } catch (err) {
                 console.error(err);
                 navigate('/not-found');
             } finally {
-                setLoading(false);
+                setIsLoading(false);
             }
         };
 
@@ -44,24 +43,28 @@ export const AlbumPage = () => {
         })();
     }, [releaseId, navigate]);
 
-    if (loading) {
+    if (isLoading || !release) {
         return (
-            <div className="loading-screen">
-                <Header />
-                <div className="loading-spinner"></div>
-                <p>Загружаем альбом...</p>
-            </div>
+            <>
+                <HeaderSkeleton />
+            </>
         );
     }
 
     return (
         <>
-            <Header />
-            <main className="main-albumPage">
-                <AlbumInfo title={title} artist={artist} imageUrl={releaseImage} ratings={ratings} />
-                {releaseId && <UserRatingContainer releaseId={releaseId} />}
-                <UserReviews reviews={reviews} />
-            </main>
+            <Suspense fallback={
+                <>
+                    <HeaderSkeleton />
+                </>
+            }>
+                <Header />
+                <main className="main-albumPage">
+                    <AlbumInfo release={release} />
+                    {releaseId && <UserRatingContainer releaseId={releaseId} />}
+                    <UserReviews reviews={release.reviews} />
+                </main>
+            </Suspense>
         </>
     );
 }

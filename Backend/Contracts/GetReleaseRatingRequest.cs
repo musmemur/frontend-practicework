@@ -1,3 +1,3 @@
 ﻿namespace Backend.Contracts;
 
-public record GetReleaseRatingRequest(Guid UserId, Guid ReleaseId);
+public record GetReleaseRatingRequest(Guid ReleaseId);

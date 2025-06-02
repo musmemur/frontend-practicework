@@ -1,12 +1,13 @@
 import Skeleton from "react-loading-skeleton";
+import './index.scss';
 
 const UserCardSkeleton = () => (
-    <div style={{ marginBottom: '30px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <Skeleton circle height={100} width={100} />
-            <div style={{ flex: 1 }}>
-                <Skeleton width={200} height={30} style={{ marginBottom: '10px' }} />
-                <Skeleton width={150} height={20} />
+    <div className="user-card-skeleton-container" >
+        <div className="user-card-skeleton">
+            <Skeleton circle height={150} width={150} />
+            <div className="user-card-info-skeleton">
+                <Skeleton width={200} height={30} />
+                <Skeleton width={50} height={40} />
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@ export const UserReview: React.FC<UserReviewProps> = ({review}) => {
             .catch(() => setUser(null));
 
         if(releaseId) {
-            fetchUserRating(review.userId, releaseId)
+            fetchUserRating(releaseId)
                 .then(setRating)
                 .catch(() => setRating(null));
         }

@@ -1,9 +1,9 @@
 import {axiosInstance} from "../app/axiosInstance.ts";
 
-export async function deleteSavedReleaseByUser(userId: string, releaseId: string): Promise<string> {
+export async function deleteSavedReleaseByUser(releaseId: string): Promise<string> {
     try {
         const token = localStorage.getItem('token');
-        const response = await axiosInstance.post(`/SavedRelease/delete`, {userId, releaseId}, {
+        const response = await axiosInstance.post(`/SavedRelease/delete`, {releaseId}, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`

@@ -4,10 +4,10 @@ type SaveReleaseByUserResponse = {
     savedReleaseId: string
 }
 
-export async function saveReleaseByUser(userId: string, releaseId: string): Promise<SaveReleaseByUserResponse> {
+export async function saveReleaseByUser(releaseId: string): Promise<SaveReleaseByUserResponse> {
     try {
         const token = localStorage.getItem('token');
-        const response = await axiosInstance.post(`/SavedRelease/save`, {userId, releaseId}, {
+        const response = await axiosInstance.post(`/SavedRelease/save`, {releaseId}, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`

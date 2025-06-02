@@ -6,6 +6,7 @@ import {deleteUserRating} from "../processes/deleteUserRating.ts";
 import {saveUserRating} from "../processes/saveUserRating.ts";
 import {deleteReview} from "../processes/deleteReview.ts";
 import {saveReview} from "../processes/saveReview.ts";
+import {Dispatch} from "react";
 
 interface UserReleaseInteraction {
     releaseId: string;
@@ -25,6 +26,26 @@ const initialState: UserReleaseInteractionState = {
     loading: false,
     error: null
 };
+
+interface SetLoadingAction {
+      payload: boolean;
+      type: string;
+}
+
+interface SetInteractionAction {
+    payload: {
+        releaseId: string;
+        interaction: Partial<UserReleaseInteraction>;
+    };
+    type: string;
+}
+
+interface SetErrorAction {
+     payload: string | null;
+     type: string;
+}
+
+type DispatchAction = SetLoadingAction | SetInteractionAction | SetErrorAction;
 
 export const userReleaseInteractionSlice = createSlice({
     name: 'userReleaseInteraction',
@@ -55,11 +76,12 @@ export const userReleaseInteractionSlice = createSlice({
 });
 
 export const fetchUserInteraction =
-    (userId: string, releaseId: string): any =>
+    (releaseId: string): (dispatch: Dispatch<DispatchAction>) =>
+        Promise<void> =>
         async (dispatch) => {
             try {
                 dispatch(setLoading(true));
-                const { isSaved, userRating, userReview } = await fetchUserReleaseInteraction(userId, releaseId);
+                const { isSaved, userRating, userReview } = await fetchUserReleaseInteraction(releaseId);
 
                 dispatch(setInteraction({
                     releaseId,
@@ -74,16 +96,17 @@ export const fetchUserInteraction =
             } finally {
                 dispatch(setLoading(false));
             }
-        };
+};
 
 export const toggleSaveRelease =
-    (userId: string, releaseId: string, isCurrentlySaved: boolean): any =>
+    (releaseId: string, isCurrentlySaved: boolean): (dispatch: Dispatch<DispatchAction>) =>
+        Promise<void> =>
         async (dispatch) => {
             try {
                 if (isCurrentlySaved) {
-                    await deleteSavedReleaseByUser(userId, releaseId);
+                    await deleteSavedReleaseByUser(releaseId);
                 } else {
-                    await saveReleaseByUser(userId, releaseId);
+                    await saveReleaseByUser(releaseId);
                 }
 
                 dispatch(setInteraction({
@@ -98,13 +121,14 @@ export const toggleSaveRelease =
         };
 
 export const updateUserRating =
-    (userId: string, releaseId: string, rating: number | null): any =>
+    (releaseId: string, rating: number | null): (dispatch: Dispatch<DispatchAction>) =>
+        Promise<void> =>
         async (dispatch) => {
             try {
                 if (rating === null) {
-                    await deleteUserRating(userId, releaseId);
+                    await deleteUserRating(releaseId);
                 } else {
-                    await saveUserRating(userId, releaseId, rating);
+                    await saveUserRating(releaseId, rating);
                 }
 
                 dispatch(setInteraction({
@@ -119,13 +143,14 @@ export const updateUserRating =
         };
 
 export const updateUserReview =
-    (userId: string, releaseId: string, review: string): any =>
+    (releaseId: string, review: string): (dispatch: Dispatch<DispatchAction>) =>
+        Promise<void> =>
         async (dispatch) => {
             try {
                 if (review === '') {
-                    await deleteReview(userId, releaseId);
+                    await deleteReview(releaseId);
                 } else {
-                    await saveReview(userId, releaseId, review);
+                    await saveReview(releaseId, review);
                 }
 
                 dispatch(setInteraction({
