@@ -1,0 +1,130 @@
+.searchInput {
+  padding-left: 1rem;
+}
+
+.searchInput,
+.submitInput {
+  background-color: var(--button-primary-color);
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  height: 2rem;
+}
+
+.searchForm {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.submitInput {
+  padding: 1rem 2rem;
+  background-image: url('../../shared/assets/loop.svg');
+  background-size: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 1rem;
+  position: absolute;
+  left: 18rem;
+  border: 1px solid var(--border-color) !important;
+
+  &:hover {
+    background-color: #a6f2a6;
+  }
+}
+
+.searchInput {
+  border: 1px solid var(--border-color);
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--button-primary-color) inset !important;
+    background-color: var(--button-primary-color) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  &::placeholder {
+    color: black;
+    font-weight: normal;
+  }
+}
+
+@media (max-width: 900px) {
+  .searchForm {
+    display: flex;
+    position: static;
+    transform: none;
+    height: 100%;
+  }
+
+  .searchInput,
+  .submitInput {
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  :global {
+    .logo {
+      display: flex;
+
+      &.active {
+        display: none;
+      }
+    }
+
+    .authUserContainer {
+      padding: 0;
+
+      &.active {
+        margin-left: auto;
+      }
+
+      a {
+        padding-left: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .searchInput {
+    width: 18rem;
+  }
+
+  .submitInput {
+    left: 15rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .searchInput {
+    width: 16rem;
+  }
+
+  .submitInput {
+    left: 12rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .searchInput {
+    width: 18rem;
+  }
+
+  .submitInput {
+    left: 15rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .searchInput {
+    width: 16rem;
+  }
+
+  .submitInput {
+    left: 12rem;
+  }
+}

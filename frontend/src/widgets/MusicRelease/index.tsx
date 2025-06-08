@@ -1,5 +1,4 @@
-import './index.scss';
-import './adaptive.scss';
+import styles from './index.module.scss';
 import {Link, useNavigate} from "react-router";
 import React from "react";
 import {fetchReleaseData} from "../../processes/fetchReleaseData.ts";
@@ -51,9 +50,9 @@ export const MusicRelease: React.FC<MusicReleaseProps> = ({ name, artist, image,
     };
 
     return (
-        <Link to="#" onClick={handleClick} className="music-release">
-            <img src={imageUrl} alt={name} className="release-picture"/>
-            <div className="release-title">{name}</div>
+        <Link to="#" onClick={handleClick} className={styles.musicRelease}>
+            <img src={imageUrl} alt={name} className={styles.releasePicture}/>
+            <div className={styles.releaseTitle}>{name}</div>
             <div>{artist}</div>
             {rating && (
                 <ReleaseRating rating={rating} />

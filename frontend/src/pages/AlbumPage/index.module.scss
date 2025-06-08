@@ -1,0 +1,9 @@
+.mainAlbumPage {
+    margin: 0 1rem;
+}
+
+@media (max-width: 800px) {
+    .mainAlbumPage {
+        margin: 0;
+    }
+}

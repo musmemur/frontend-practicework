@@ -3,6 +3,7 @@ import {UserLogin} from "../../entities/UserLogin.ts";
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import {loginUser} from "../../processes/loginUser.ts";
+import styles from '../SignUpPage/index.module.scss';
 
 export const LoginPage: FC = () => {
     const [error, setError] = useState<string | null>(null);
@@ -35,13 +36,13 @@ export const LoginPage: FC = () => {
 
     return(
         <div>
-            <div className="modal">
-                <div className="modal-content" onClick={e => e.stopPropagation()}>
-                    <div className="modal-content-top">
+            <div className={styles.modal}>
+                <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                    <div className={styles.modalContentTop}>
                         <h2>Войти</h2>
                         <button onClick={() => navigate(-1)}>X</button>
                     </div>
-                    <form className="signUp-form" onSubmit={formik.handleSubmit}>
+                    <form className={styles.signUpForm} onSubmit={formik.handleSubmit}>
                         <input
                             name="login"
                             type="text"
@@ -59,7 +60,7 @@ export const LoginPage: FC = () => {
                             value={formik.values.password}
                         />
                         {error && (
-                            <span className="signUp-error">{error}</span>
+                            <span className={styles.signUpError}>{error}</span>
                         )}
                         <button type="submit" disabled={formik.isSubmitting}>
                             {formik.isSubmitting ? "Отправка..." : "Войти"}

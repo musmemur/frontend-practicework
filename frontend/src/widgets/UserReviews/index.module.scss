@@ -1,4 +1,4 @@
-.user-reviews-container {
+.userReviewsContainer {
     background-color: var(--main-content-background-color);
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     font-size: 1.5rem;
 }
 
-.show-more-button {
+.showMoreButton {
     background-color: var(--button-primary-color);
     width: 10rem;
     border: 1px solid black;
@@ -18,13 +18,13 @@
     height: 2rem;
 }
 
-.album-reviews-list {
+.albumReviewsList {
     list-style-type: none;
     margin-top: 0;
     padding: 0;
 }
 
-.no-reviews-container {
+.noReviewsContainer {
     background-color: var(--secondary-background-color);
     border: 1px solid var(--border-color);
     text-align: center;
@@ -35,9 +35,9 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
-}
 
-.no-reviews-container svg {
-    width: 5rem;
-    height: 5rem;
+    svg {
+        width: 5rem;
+        height: 5rem;
+    }
 }

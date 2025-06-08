@@ -5,6 +5,7 @@ import {getFileData} from "../../shared/utils/getFileData.ts";
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import {registerUser} from "../../processes/registerUser.ts";
+import styles from '../SignUpPage/index.module.scss';
 
 interface FormValues {
     username: string;
@@ -70,14 +71,14 @@ export const RegisterPage = () => {
     };
 
     return (
-        <div className="modal">
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-                <div className="modal-content-top">
+        <div className={styles.modal}>
+            <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                <div className={styles.modalContentTop}>
                     <h2>Зарегистрироваться</h2>
                     <button onClick={() => navigate(-1)}>X</button>
                 </div>
 
-                <form className="signUp-form" onSubmit={formik.handleSubmit}>
+                <form className={styles.signUpForm} onSubmit={formik.handleSubmit}>
                     <input
                         name="username"
                         type="text"
@@ -104,10 +105,10 @@ export const RegisterPage = () => {
                         onChange={handleFileChange}
                     />
                     {formik.errors.username && formik.touched.username && (
-                        <div className="signUp-error">{formik.errors.username}</div>
+                        <div className={styles.signUpError}>{formik.errors.username}</div>
                     )}
                     {formik.errors.password && formik.touched.password && (
-                        <div className="signUp-error">{formik.errors.password}</div>
+                        <div className={styles.signUpError}>{formik.errors.password}</div>
                     )}
                     <button type="submit" disabled={formik.isSubmitting}>
                         {formik.isSubmitting ? "Отправка..." : "Зарегистрироваться"}

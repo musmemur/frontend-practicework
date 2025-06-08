@@ -1,4 +1,4 @@
-import './index.scss';
+import styles from './index.module.scss';
 import {Link, useParams} from "react-router";
 import React, {useEffect, useState} from "react";
 import {User} from "../../entities/User.ts";
@@ -32,8 +32,8 @@ export const UserReview: React.FC<UserReviewProps> = ({review}) => {
     if (!user) return <div>Загрузка...</div>;
 
     return (
-        <div className="user-review-info">
-            <div className="user-review-info-text">
+        <div className={styles.userReviewInfo}>
+            <div className={styles.userReviewInfoText}>
                 <div>
                     <Link to={`/user/${user.userId}`}>
                         {user.username}
@@ -42,7 +42,7 @@ export const UserReview: React.FC<UserReviewProps> = ({review}) => {
                         <ReleaseRating rating={ratingReview} />
                     )}
                 </div>
-                <div className="user-review-text">
+                <div className={styles.userReviewText}>
                     {review.reviewText}
                 </div>
             </div>

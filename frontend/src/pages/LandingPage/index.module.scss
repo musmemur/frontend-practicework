@@ -1,0 +1,131 @@
+.landingLogo {
+    width: 20rem;
+    height: 20rem;
+}
+
+.landingList {
+    list-style: "\2605";
+    margin-top: 0;
+    padding-left: 3rem;
+}
+
+.landingMain {
+    background-color: var(--main-content-background-color);
+    font-size: 4rem;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.landingTopic {
+    display: flex;
+    gap: 2rem;
+    font-size: 5rem;
+}
+
+.landingTopic p {
+    margin-top: 1rem;
+}
+
+.signUpButton {
+    background-color: var(--button-primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 45vw;
+}
+
+@media (max-width: 900px) {
+    .landingMain {
+        margin: 0;
+    }
+
+    .landingTopic{
+        font-size: 4rem;
+    }
+
+    .landingLogo {
+        width: 15rem;
+        height: 15rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .landingMain {
+        font-size: 3rem;
+    }
+
+    .landingTopic {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .landingTopic {
+        font-size: 2.8rem;
+    }
+
+    .landingLogo {
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .landingMain {
+        font-size: 2rem;
+    }
+
+    .landingTopic {
+        font-size: 2rem;
+    }
+
+    .landingLogo {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .signUpButton {
+        padding: 0;
+        font-size: 2rem;
+    }
+
+    .landingList{
+        padding-left: 2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .landingMain, .landingTopic {
+        font-size: 1.5rem;
+    }
+
+    .landingMain {
+        padding: 0.5rem 0.5rem 1rem 0.5rem;
+    }
+
+    .landingTopic {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .landingLogo {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    .signUpButton {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .landingLogo {
+        display: none;
+    }
+}

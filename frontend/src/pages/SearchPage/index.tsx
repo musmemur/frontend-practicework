@@ -1,5 +1,4 @@
-import './index.scss';
-import './adaptive.scss';
+import styles from './index.module.scss';
 import {useLocation} from "react-router";
 import {lazy, Suspense, useEffect, useState} from "react";
 import {axiosInstance} from "../../app/axiosInstance.ts";
@@ -53,7 +52,7 @@ export const SearchPage = () => {
                 </>
             }>
                 <Header/>
-                <div className="search-result">Результаты по запросу <span>"{searchValue}"</span></div>
+                <div className={styles.searchResult}>Результаты по запросу <span>"{searchValue}"</span></div>
                 <ReleasesSection sectionTitle="Альбомы" releases={albums}/>
             </Suspense>
         </>

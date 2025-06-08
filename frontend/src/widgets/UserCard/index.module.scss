@@ -1,0 +1,54 @@
+.profileCard {
+    background: var(--main-content-background-color);
+    padding: 2rem 1rem;
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profilePictureContainer {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.userPageProfilePictureContainer {
+    width: 10rem;
+    height: 10rem;
+}
+
+.userPagePicture {
+    width: 100%;
+    height: 100%;
+}
+
+.profileName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    overflow: hidden;
+
+    button {
+        padding: 0.4rem;
+        align-items: center;
+        border: 1px solid red;
+        border-radius: 0.5rem;
+        background: none;
+    }
+}
+
+@media (max-width: 1100px) {
+    .profileCard {
+        margin: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .userPageProfilePictureContainer {
+        width: 5rem;
+        height: 5rem;
+    }
+}

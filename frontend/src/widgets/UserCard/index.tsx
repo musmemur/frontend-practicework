@@ -1,5 +1,4 @@
-import './index.scss';
-import './adaptive.scss';
+import styles from './index.module.scss';
 import React, {useEffect} from "react";
 import userPhotoPlaceholder from "../../shared/assets/user-photo.svg";
 import {ApiFullUserResponse} from "../../entities/ApiFullUserResponse.ts";
@@ -23,12 +22,13 @@ const UserCard: React.FC<UserCardProps> = ({user}) => {
     }, [authUser, dispatch]);
 
     return(
-        <div className="profile-card">
-            <div className="profile-picture-container user-page-profile-picture-container">
-                <img src={user.userPhoto || userPhotoPlaceholder} className="user-page-picture"
-                     alt="плейсхолдер аватарки пользователя"/>
+        <div className={styles.profileCard}>
+            <div className={`${styles.profilePictureContainer} ${styles.userPageProfilePictureContainer}`}>
+                <img src={user.userPhoto || userPhotoPlaceholder} className={styles.userPagePicture}
+                     alt="плейсхолдер аватарки пользователя"
+                />
             </div>
-            <div className="profile-name">
+            <div className={styles.profileName}>
                 {user.username}
                 {authUser?.userId === user.userId && (
                     <LogOutButton />

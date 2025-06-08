@@ -1,5 +1,4 @@
-import "./index.scss";
-import './adaptive.scss';
+import styles from "./index.module.scss";
 import {AlbumInfo} from "../../widgets/AlbumInfo";
 import {UserRatingContainer} from "../../widgets/UserRatingContainer";
 import {UserReviews} from "../../widgets/UserReviews";
@@ -59,7 +58,7 @@ export const AlbumPage = () => {
                 </>
             }>
                 <Header />
-                <main className="main-albumPage">
+                <main className={styles.mainAlbumPage}>
                     <AlbumInfo release={release} />
                     {releaseId && <UserRatingContainer releaseId={releaseId} />}
                     <UserReviews reviews={release.reviews} />

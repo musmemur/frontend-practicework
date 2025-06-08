@@ -1,5 +1,4 @@
-import "./index.scss";
-import './adaptive.scss';
+import styles from "./index.module.scss";
 import {Link} from "react-router";
 import {useEffect, useState} from 'react';
 import logo from '../../shared/assets/logo.svg';
@@ -26,19 +25,25 @@ const Header = () => {
 
     return (
         <header>
-            <nav className="header-nav">
-                <Link to="/" className={`logo ${showSearchForm ? 'active' : ''}`}>
-                    <img src={logo} className="header-logo" alt="Логотип"/>
+            <nav className={styles.headerNav}>
+                <Link
+                    to="/"
+                    className={`${styles.logo} ${showSearchForm ? styles.active : ''}`}
+                >
+                    <img src={logo} className={styles.headerLogo} alt="Логотип"/>
                     <span>SOUNDTRACKER</span>
                 </Link>
 
-                <div className={`search-form-container ${showSearchForm ? 'active' : ''}`}>
+                <div className={`${styles.searchFormContainer} ${showSearchForm ? styles.active : ''}`}>
                     <SearchForm/>
                 </div>
 
                 {authUser ? (
-                    <div className={`auth-user-container ${showSearchForm ? 'active' : ''}`}>
-                        <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className={`user-header-info ${showSearchForm ? 'active' : ''}`}>
+                    <div className={`${styles.authUserContainer} ${showSearchForm ? styles.active : ''}`}>
+                        <Link
+                            to={`/user/${encodeURIComponent(authUser.userId)}`}
+                            className={`${styles.userHeaderInfo} ${showSearchForm ? styles.active : ''}`}
+                        >
                             <img src={authUser.userPhoto} alt={`${authUser.username} avatar`}/>
                             <span>{authUser.username}</span>
                         </Link>
@@ -47,7 +52,9 @@ const Header = () => {
                             onClick={toggleSearchForm}
                         />
                     </div>
-                ) : (<Link to="/sign-up" className="enter-button">войти</Link>)}
+                ) : (
+                    <Link to="/sign-up" className={styles.enterButton}>войти</Link>
+                )}
             </nav>
         </header>
     );

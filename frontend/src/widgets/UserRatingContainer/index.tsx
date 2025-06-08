@@ -1,5 +1,4 @@
-import "./index.scss";
-import './adaptive.scss';
+import styles from "./index.module.scss";
 import {Link} from "react-router";
 import likeButtonImg from "../../shared/assets/like.svg";
 import likeClickedImg from "../../shared/assets/like(clicked).svg";
@@ -80,19 +79,19 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
     return(
         <>
             {authUser && (
-                <div className="user-rating-container">
-                    <div className="user-info-top">
-                        <div className="user-info">
-                            <div className="profile-picture-container user-rating-profile-picture-container">
-                                <img src={authUser.userPhoto} className="photo-user-placeholder"
+                <div className={styles.userRatingContainer}>
+                    <div className={styles.userInfoTop}>
+                        <div className={styles.userInfo}>
+                            <div className={`${styles.profilePictureContainer} ${styles.userRatingProfilePictureContainer}`}>
+                                <img src={authUser.userPhoto} className={styles.photoUserPlaceholder}
                                      alt="аватарка пользователя"/>
                             </div>
                             <div>
-                                <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className="nickname">
+                                <Link to={`/user/${encodeURIComponent(authUser.userId)}`} className={styles.nickname}>
                                     {authUser?.username}
                                 </Link>
-                                <div className="rating-container">
-                                    <div className="release-rating">
+                                <div className={styles.ratingContainer}>
+                                    <div className={styles.releaseRating}>
                                         {[5, 4, 3, 2, 1].map((value) => (
                                             <React.Fragment key={value}>
                                                 <label>
@@ -110,30 +109,41 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                                         ))}
                                     </div>
                                     {interaction?.userRating && (
-                                        <button type="button" className="cancel-rating-button"
+                                        <button type="button" className={styles.cancelRatingButton}
                                                 onClick={handleCancelRating}>X</button>
                                     )}
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <button className="like-button">
-                                <img src={interaction?.isSaved ? likeClickedImg : likeButtonImg} className="user-like" ref={likeButtonRef} alt="Лайк"
-                                     onClick={handleClickSaveReleaseButton}/>
+                            <button className={styles.likeButton}>
+                                <img
+                                    src={interaction?.isSaved ? likeClickedImg : likeButtonImg}
+                                    className={styles.userLike}
+                                    ref={likeButtonRef}
+                                    alt="Лайк"
+                                    onClick={handleClickSaveReleaseButton}
+                                />
                             </button>
                         </div>
                     </div>
-                    <form className="user-release-review-form" onSubmit={handleClickSaveReviewButton}>
-                            <textarea className="add-review-input"
-                                      placeholder="Добавить рецензию"
-                                      value={localReview}
-                                      onChange={(e) => setLocalReview(e.target.value)}
-                            />
-                        <div className="review-buttons-container">
+                    <form className={styles.userReleaseReviewForm} onSubmit={handleClickSaveReviewButton}>
+                        <textarea
+                            className={styles.addReviewInput}
+                            placeholder="Добавить рецензию"
+                            value={localReview}
+                            onChange={(e) => setLocalReview(e.target.value)}
+                        />
+                        <div className={styles.reviewButtonsContainer}>
                             {localReview && (
-                                <button className="delete-review-button" onClick={handleClickDeleteReview}>удалить</button>
+                                <button
+                                    className={styles.deleteReviewButton}
+                                    onClick={handleClickDeleteReview}
+                                >
+                                    удалить
+                                </button>
                             )}
-                            <button className="save-user-changes-button" type="submit">сохранить</button>
+                            <button className={styles.saveUserChangesButton} type="submit">сохранить</button>
                         </div>
                     </form>
                 </div>

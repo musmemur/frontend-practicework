@@ -1,10 +1,10 @@
 import Skeleton from "react-loading-skeleton";
-import './index.scss';
+import styles from './index.module.scss';
 
 const ReleasesSectionSkeleton = () => (
-    <div className="releases-section-skeleton-container">
-        <Skeleton className="releases-section-title-skeleton" width={350} height={25} />
-        <Skeleton className="releases-skeleton" height={300} />
+    <div className={styles.releasesSectionSkeletonContainer}>
+        <Skeleton className={styles.releasesSectionTitleSkeleton} width={350} height={25} />
+        <Skeleton className={styles.releasesSkeleton} height={300} />
     </div>
 );
 

@@ -1,16 +1,16 @@
 import {UserReview} from "../UserReview";
-import "./index.scss";
+import styles from "./index.module.scss";
 import {ReviewModal} from "../../entities/ReviewModal.ts";
 import {Notebook} from "../../shared/assets/Notebook.tsx";
 
 export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
     return reviews.length > 0 ? (
-        <div className="user-reviews-container">
+        <div className={styles.userReviewsContainer}>
             <div>
                 <strong>Пользовательские рецензии</strong>
             </div>
             {reviews.length > 0 && (
-                <ul className="album-reviews-list">
+                <ul className={styles.albumReviewsList}>
                     {reviews.map((review) => (
                         <li key={`review-${review.userId}-${review.reviewText}`}>
                             <UserReview review={review}/>
@@ -19,11 +19,11 @@ export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
                 </ul>
             )}
             {reviews.length > 3 && (
-                <button className="show-more-button search-page">больше</button>
+                <button className={`${styles.showMoreButton} ${styles.searchPage}`}>больше</button>
             )}
         </div>
     ) : <div className="no-reviews-container">
-        <Notebook />
+        <Notebook/>
         Нет ни одной рецензии
     </div>;
 }

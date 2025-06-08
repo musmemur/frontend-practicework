@@ -1,0 +1,114 @@
+.musicRelease {
+    padding: 1rem 0;
+
+    & > div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.releaseTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.releasePicture {
+    box-shadow: 0 1rem 1.5rem 0 rgba(0, 11, 38, 0.10);
+}
+
+@media (min-width: 1700px) {
+    .releasePicture {
+        width: 25rem;
+        height: 25rem;
+    }
+
+    .musicRelease {
+        width: 25rem;
+    }
+
+    .musicRelease > div {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1700px) {
+    .releasePicture {
+        width: 22rem;
+        height: 22rem;
+    }
+
+    .musicRelease {
+        width: 22rem;
+    }
+}
+
+@media (max-width: 1500px) {
+    .releasePicture {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .musicRelease {
+        width: 20rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    .releasePicture {
+        width: 18rem;
+        height: 18rem;
+    }
+
+    .musicRelease {
+        width: 18rem;
+    }
+}
+
+@media (max-width: 1300px) {
+    .releasePicture {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .musicRelease {
+        width: 15rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .releasePicture {
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .musicRelease {
+        width: 15rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .releasePicture {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .musicRelease {
+        width: 12rem;
+    }
+
+    .musicRelease > div {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .releasePicture {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .musicRelease {
+        width: 10rem;
+    }
+}

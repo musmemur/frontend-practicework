@@ -1,12 +1,11 @@
 import {useNavigate} from "react-router";
-import './index.scss';
-import './adaptive.scss';
+import styles from './index.module.scss';
 
 export const SearchForm = () => {
     const navigate = useNavigate();
 
     return (
-        <form className='search-form' onSubmit={(e) => {
+        <form className={styles.searchForm} onSubmit={(e) => {
             e.preventDefault();
             const searchValue = e.currentTarget.search.value;
             navigate(`/search?search=${encodeURIComponent(searchValue)}`);
@@ -14,13 +13,13 @@ export const SearchForm = () => {
             <input
                 type="search"
                 name="search"
-                className="search-input"
+                className={styles.searchInput}
                 placeholder="поиск"
             />
             <input
                 type="submit"
                 value=""
-                className="submit-input"
+                className={styles.submitInput}
             />
         </form>
     )

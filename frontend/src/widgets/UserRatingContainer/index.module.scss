@@ -1,4 +1,4 @@
-.user-rating-container {
+.userRatingContainer {
     background-color: var(--secondary-background-color);
     font-size: 1.5rem;
     padding: 1rem;
@@ -6,13 +6,13 @@
     box-shadow: 0 0.25rem 1.5rem 0 rgba(21, 45, 103, 0.12);
 }
 
-.user-info-top {
+.userInfoTop {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.user-info {
+.userInfo {
     display: flex;
     gap: 2rem;
     padding-bottom: 1rem;
@@ -22,65 +22,65 @@
     font-weight: bold;
 }
 
-.photo-user-placeholder {
+.photoUserPlaceholder {
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
 
-.user-rating-profile-picture-container {
+.userRatingProfilePictureContainer {
     width: 5rem;
     height: 5rem;
 }
 
-.rating-container {
+.ratingContainer {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
     margin-top: 0.5rem;
 }
 
-.cancel-rating-button {
+.cancelRatingButton {
     border: 1px solid red;
     color: red;
     background: rgba(255, 0, 0, 0.1);
     margin-top: 0.5rem;
 }
 
-.like-button {
+.likeButton {
     background-color: var(--secondary-background-color);
     border: none;
 }
 
-.user-like {
+.userLike {
     width: 5rem;
     height: 5rem;
 }
 
-.user-release-review-form {
+.userReleaseReviewForm {
     display: flex;
     flex-direction: column;
 }
 
-.add-review-input {
+.addReviewInput {
     background-color: var(--secondary-background-color);
     max-width: 100%;
     height: 10rem;
     border: 1px solid var(--border-color);
     padding: 1rem 0 0 1rem;
     font-size: 2rem;
+
+    &::placeholder {
+        color: black;
+    }
 }
 
-.add-review-input::placeholder {
-    color: black;
-}
-
-.review-input-container {
+.reviewInputContainer {
     display: flex;
     flex-direction: row;
 }
 
-.save-user-changes-button {
+.saveUserChangesButton {
     background-color: var(--button-primary-color);
     border: 1px solid var(--border-color);
     margin: 1rem;
@@ -89,15 +89,45 @@
     border-radius: 1rem;
 }
 
-.review-buttons-container {
+.reviewButtonsContainer {
     align-self: end;
 }
 
-.delete-review-button {
+.deleteReviewButton {
     font-size: 1.5rem;
     font-weight: bold;
     background: rgba(255, 0, 0, 0.1);
     color: red;
     border: 1px solid red;
     border-radius: 1rem;
+}
+
+@media (max-width: 500px) {
+    .addReviewInput {
+        font-size: 1.5rem;
+    }
+
+    .userLike,
+    .userRatingProfilePictureContainer {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .userInfo,
+    .ratingContainer {
+        gap: 0.5rem;
+    }
+
+    .ratingContainer {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 350px) {
+    .userRatingContainer,
+    .deleteReviewButton,
+    .saveUserChangesButton,
+    .addReviewInput {
+        font-size: 1rem;
+    }
 }

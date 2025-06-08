@@ -1,5 +1,4 @@
-import "./index.scss";
-import './adaptive.scss';
+import styles from "./index.module.scss";
 import {Link} from "react-router";
 import React from "react";
 import {calculateAverageReleaseRating} from "../../shared/utils/calculateAverageReleaseRating.ts";
@@ -11,24 +10,24 @@ type AlbumInfoProps = {
 
 export const AlbumInfo: React.FC<AlbumInfoProps> = ({release}) => {
     return (
-        <section className="album-info">
+        <section className={styles.albumInfo}>
             <picture>
                 <img
                     src={release.releasePhoto}
                     alt={`Обложка ${release.title}`}
-                    className="album-picture"
+                    className={styles.albumPicture}
                 />
             </picture>
-            <div className="description-info">
+            <div className={styles.descriptionInfo}>
                 <div>
                     <div>
-                        <span className="album-title">{release.title}</span>
+                        <span className={styles.albumTitle}>{release.title}</span>
                     </div>
                     <Link to={`/search?search=${release.artist}`}>
                         {release.artist}
                     </Link>
                 </div>
-                <div className="album-score">
+                <div className={styles.albumScore}>
                     {release.ratings.length > 0 ? (
                         <>
                             <span>Общая оценка</span>

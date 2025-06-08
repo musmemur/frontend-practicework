@@ -1,5 +1,4 @@
-import './index.scss';
-import './adaptive.scss';
+import styles from './index.module.scss';
 import {MusicRelease} from "../MusicRelease";
 import React, {useState} from "react";
 import {Release} from "../../entities/Release.ts";
@@ -21,12 +20,12 @@ const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}
     }
 
     return(
-        <div className="releases-section">
-            <div className="releases-section-top">
+        <div className={styles.releasesSection}>
+            <div className={styles.releasesSectionTop}>
                 <div>{sectionTitle}</div>
                 {releases.length > 4 && (
                     <button
-                        className="more-button"
+                        className={styles.moreButton}
                         onClick={() => setShowAll(!showAll)}
                     >
                         {showAll ? 'Скрыть' : 'Больше'}
@@ -34,7 +33,7 @@ const ReleasesSection: React.FC<ReleaseSectionProps> = ({sectionTitle, releases}
                 )}
             </div>
 
-            <div className="releases">
+            <div className={styles.releases}>
                 {releasesToShow.map((release) => {
                     if (isReleaseWithRating(release)) {
                         return (

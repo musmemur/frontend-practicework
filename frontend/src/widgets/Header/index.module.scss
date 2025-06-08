@@ -1,0 +1,182 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--header-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 0.25rem 1.5rem 0 rgba(21, 45, 103, 0.12);
+}
+
+header::before {
+    content: "";
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: var(--header-color);
+}
+
+.headerNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.headerLogo {
+    width: 4rem;
+    height: 4rem;
+}
+
+.logo, .enterButton {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.logo span {
+    padding-left: 1rem;
+}
+
+.enterButton {
+    background-color: var(--button-primary-color);
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    height: 2rem;
+    width: 10rem;
+    display: block;
+    align-self: center;
+}
+
+.userHeaderInfo {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+    }
+}
+
+.authUserContainer {
+    display: flex;
+    background-color: var(--secondary-background-color);
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+
+    > button {
+        background: none;
+        border: 1px solid rgba(49, 2, 2, 0.5);
+        height: 100%;
+        padding: 1rem;
+    }
+}
+
+.show-search-form-button {
+    display: none;
+}
+
+.searchFormContainer {
+    align-self: center;
+}
+
+@media (max-width: 1000px) {
+    .headerNav {
+        padding: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .showSearchFormButton {
+        display: block;
+    }
+
+    .searchFormContainer {
+        display: none;
+        position: absolute;
+
+        &.active {
+            display: block;
+            height: 100%;
+        }
+
+    }
+
+    .logo {
+        display: flex;
+
+        &.active {
+            display: none;
+        }
+    }
+
+    .authUserContainer {
+        &.active {
+            margin-left: auto;
+        }
+
+        padding: 0;
+
+        a {
+            padding-left: 1rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .authUserContainer {
+        gap: 1rem;
+    }
+
+    .headerNav {
+        font-size: 1.2rem;
+    }
+
+    .logo span {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .auth-user-container span {
+        display: none;
+    }
+
+    .userHeaderInfo img {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .userHeaderInfo{
+        &.active {
+            display: none;
+        }
+    }
+
+    .headerLogo {
+        display: none;
+    }
+
+    .logo {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .headerNav {
+        font-size: 1rem;
+    }
+    .logo {
+        padding-left: 0.5rem;
+    }
+}
