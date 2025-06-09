@@ -1,0 +1,9 @@
+.showSearchFormButton {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .showSearchFormButton {
+    display: block;
+  }
+}

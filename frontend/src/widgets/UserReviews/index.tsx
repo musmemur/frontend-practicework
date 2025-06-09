@@ -22,7 +22,7 @@ export const UserReviews = ( {reviews}: {reviews: ReviewModal[] | [] }) => {
                 <button className={`${styles.showMoreButton} ${styles.searchPage}`}>больше</button>
             )}
         </div>
-    ) : <div className="no-reviews-container">
+    ) : <div className={styles.noReviewsContainer}>
         <Notebook/>
         Нет ни одной рецензии
     </div>;

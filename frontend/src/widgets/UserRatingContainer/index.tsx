@@ -1,4 +1,5 @@
 import styles from "./index.module.scss";
+import releaseRatingStyles from '../../shared/ui/ReleaseRating/index.module.scss';
 import {Link} from "react-router";
 import likeButtonImg from "../../shared/assets/like.svg";
 import likeClickedImg from "../../shared/assets/like(clicked).svg";
@@ -91,7 +92,7 @@ export const UserRatingContainer = ({releaseId}: UserRatingContainerProps) => {
                                     {authUser?.username}
                                 </Link>
                                 <div className={styles.ratingContainer}>
-                                    <div className={styles.releaseRating}>
+                                    <div className={releaseRatingStyles.releaseRating}>
                                         {[5, 4, 3, 2, 1].map((value) => (
                                             <React.Fragment key={value}>
                                                 <label>

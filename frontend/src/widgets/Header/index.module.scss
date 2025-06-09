@@ -81,10 +81,6 @@ header::before {
     }
 }
 
-.show-search-form-button {
-    display: none;
-}
-
 .searchFormContainer {
     align-self: center;
 }
@@ -96,10 +92,6 @@ header::before {
 }
 
 @media (max-width: 900px) {
-    .showSearchFormButton {
-        display: block;
-    }
-
     .searchFormContainer {
         display: none;
         position: absolute;
@@ -147,7 +139,7 @@ header::before {
 }
 
 @media (max-width: 500px) {
-    .auth-user-container span {
+    .authUserContainer span {
         display: none;
     }
 

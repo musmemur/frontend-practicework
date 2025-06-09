@@ -1,3 +1,5 @@
+import styles from './index.module.scss';
+
 interface ShowSearchFormButtonProps {
     isActive: boolean;
     onClick: () => void;
@@ -5,7 +7,7 @@ interface ShowSearchFormButtonProps {
 
 export const ShowSearchFormButton = ({ isActive, onClick }: ShowSearchFormButtonProps) => {
     return (
-        <button className='show-search-form-button' onClick={onClick}>
+        <button className={styles.showSearchFormButton} onClick={onClick}>
             {isActive ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
